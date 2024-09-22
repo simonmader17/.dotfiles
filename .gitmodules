@@ -4,3 +4,6 @@
 [submodule "scripts/pywalium"]
 	path = scripts/pywalium
 	url = git@github.com:simonmader17/pywalium.git
+[submodule ".local/share/pandoc/templates/eisvogel"]
+	path = .local/share/pandoc/eisvogel
+	url = https://github.com/Wandmalfarbe/pandoc-latex-template.git
