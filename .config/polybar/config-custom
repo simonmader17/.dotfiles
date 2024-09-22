@@ -1,0 +1,464 @@
+################################################################################
+# ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗ 
+# ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+# ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+# ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+# ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+# ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+################################################################################
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-right = 0
+margin-bottom = 0
+margin-left = 0
+
+[colors]
+background-opaque = ${xrdb:background}
+background = ${xrdb:background-transparent:${colors.background-opaque}}
+background-alt = ${xrdb:color8}
+foreground = ${xrdb:foreground}
+color1 = ${xrdb:color1}
+color2 = ${xrdb:color2}
+color3 = ${xrdb:color3}
+color4 = ${xrdb:color4}
+color5 = ${xrdb:color5}
+color6 = ${xrdb:color6}
+color6-transparent = ${xrdb:color6-transparent:${colors.color6}}
+alert = #f00
+
+[bar/base]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 27
+
+background = ${colors.color6-transparent}
+foreground = ${colors.foreground}
+
+line-size = 3
+
+font-0 = "CaskaydiaCove Nerd Font:size=11;1"
+font-1 = "Noto Color Emoji:scale=10"
+font-2 = "Fira Sans:size=11"
+
+enable-ipc = true
+
+tray-position = right
+tray-background = ${colors.background}
+
+wm-restack = i3
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+################################################################################
+# TOP BAR
+################################################################################
+[bar/top]
+inherit = bar/base
+
+modules-left = i3 before-xwindow xwindow
+modules-right = fs-root fs-d fs-f fs-p audiodevice pulseaudio memory gpu cpu temperature nordvpn wireless-icon wired-icon my-network my-network-updates wireless-speeds wired-speeds battery date
+
+################################################################################
+# TOP BAR ON SMALL SCREENS
+################################################################################
+[bar/top-small]
+inherit = bar/base
+
+modules-left = i3 before-xwindow xwindow
+modules-right = xkeyboard audiodevice pulseaudio memory gpu cpu temperature battery date
+
+################################################################################
+# BOTTOM BAR ON SMALL SCREENS
+################################################################################
+[bar/bottom-small]
+inherit = bar/base
+bottom = true
+
+background = ${colors.background}
+
+modules-left = fs-root fs-d fs-f fs-p spotify
+modules-right = nordvpn wireless-icon wired-icon my-network my-network-updates wireless-speeds wired-speeds
+
+################################################################################
+# MODULES
+################################################################################
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = true
+
+# Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+# unfocused = Inactive workspace on focused monitor
+label-unfocused = %index%
+label-unfocused-padding = 1
+label-unfocused-background = ${colors.background}
+
+# focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-padding = 1
+label-focused-foreground = ${colors.background-opaque}
+label-focused-background = ${colors.color6-transparent}
+
+# visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-padding = ${self.label-focused-padding}
+label-visible-foreground = ${self.label-focused-foreground}
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+
+# urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+# mode = Active mode on any monitor
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-foreground = ${colors.background}
+label-mode-background = ${colors.color2}
+
+################################################################################
+
+[module/before-xwindow]
+type = custom/text
+format-background = ${colors.background}
+# label = " ( ͡° ͜ʖ ͡°) "
+# label-font = 3
+label = " 💻 "
+
+[module/xwindow]
+type = internal/xwindow
+format-foreground = ${colors.background-opaque}
+label = " %instance% | %title:0:21:...% "
+
+################################################################################
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+format = <label-indicator>
+
+label-indicator = "%icon% "
+
+indicator-icon-0 = caps lock;;󰪛
+indicator-icon-1 = num lock;;󰎸
+
+label-indicator-on-capslock = "%icon% +CL"
+label-indicator-on-capslock-padding = 1
+label-indicator-on-capslock-background = ${colors.color1}
+
+label-indicator-on-numlock = "%icon% +NL"
+label-indicator-on-numlock-padding = 1
+label-indicator-on-numlock-background = ${colors.color1}
+
+################################################################################
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+format-mounted-background = ${colors.background}
+label-mounted = " 󰋊 %mountpoint%: %free% free "
+label-mounted-foreground = ${colors.color1}
+label-unmounted = ""
+
+[module/fs-root]
+inherit = module/filesystem
+mount-0 = /
+label-mounted = " 󰋊 /: %free% free "
+
+[module/fs-d]
+inherit = module/filesystem
+mount-0 = /mnt/d
+label-mounted = " 󰋊 d: %free% free "
+
+[module/fs-f]
+inherit = module/filesystem
+mount-0 = /mnt/f
+label-mounted = " 󰋊 f: %free% free "
+
+[module/fs-p]
+inherit = module/filesystem
+mount-0 = /mnt/p
+label-mounted = " 󰋊 p: %free% free "
+
+################################################################################
+
+[module/audiodevice]
+type = custom/ipc
+hook-0 = ~/.config/polybar/audiodevice.sh 2> /dev/null
+initial = 1
+format-foreground = ${colors.color2}
+format-background = ${colors.background}
+label = " 󰓃 %output% "
+click-left = fish ~/.config/i3/pactl-switch-sink.sh && polybar-msg hook audiodevice 1
+
+################################################################################
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = ${colors.color2}
+format-volume-background = ${colors.background}
+label-volume = "%percentage%% "
+
+ramp-volume-0 = " 󰕿"
+ramp-volume-1 = " 󰖀"
+ramp-volume-2 = " 󰕾"
+
+format-muted = <label-muted>
+format-muted-background = ${colors.color2}
+format-muted-padding = 1
+label-muted = 󰝟 Muted
+
+################################################################################
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-background = ${colors.background}
+label = " 󰍛 %gb_used% / %gb_total% (%percentage_used%%) "
+label-foreground = ${colors.color3}
+
+################################################################################
+
+[module/gpu]
+type = custom/script
+exec = ~/.config/polybar/gpu.sh
+interval = 2
+format-foreground = ${colors.color4}
+format-background = ${colors.background}
+label = " 󰂫 %output% "
+
+################################################################################
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+label = " 󰻠 %percentage:2%% "
+label-foreground = ${colors.color5}
+format-background = ${colors.background}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 1
+warn-temperature = 60
+
+format = <ramp> <label>
+format-foreground = ${colors.color5}
+format-background = ${colors.background}
+label = "%temperature-c% "
+
+format-warn = <ramp> <label-warn>
+format-warn-foreground = #f00
+format-warn-background = ${colors.background}
+label-warn = "%temperature-c% "
+
+ramp-0 = " 󱃃"
+ramp-1 = " 󰔏"
+ramp-2 = " 󱃂"
+
+################################################################################
+
+[module/nordvpn]
+type = custom/ipc
+hook-0 = ~/.config/polybar/nordvpn.sh
+initial = 1
+format-foreground = ${colors.color6}
+format-background = ${colors.background}
+label = " 󰒘 %output% "
+click-left = ~/.config/polybar/nordvpn_connect.sh && polybar-msg hook nordvpn 1
+
+################################################################################
+
+# [module/wireless-network]
+# type = internal/network
+# interface-type = wireless
+# interval = 3.0
+#
+# format-connected = <ramp-signal> <label-connected>
+# format-connected-foreground = ${colors.color1}
+# label-connected = %essid% (%local_ip%) 󰕒 %upspeed% 󰇚 %downspeed%
+# ramp-signal-0 = 󰤯
+# ramp-signal-1 = 󰤟
+# ramp-signal-2 = 󰤢
+# ramp-signal-3 = 󰤥
+# ramp-signal-4 = 󰤨
+#
+# format-disconnected = <label-disconnected>
+# format-disconnected-foreground = ${colors.color1}
+# label-disconnected = "%{A1:gnome-control-center:}󰤣 Not connected%{A}"
+#
+# [module/wired-network]
+# type = internal/network
+# interface-type = wired
+# interval = 3.0
+#
+# format-connected = <label-connected>
+# format-connected-foreground = ${colors.color1}
+# label-connected = 󰛳 %local_ip% 󰕒 %upspeed% 󰇚 %downspeed%
+#
+# format-disconnected = <label-disconnected>
+# format-disconnected-foreground = ${colors.color1}
+# label-disconnected = "%{A1:gnome-control-center:}󰅛 Not connected%{A}"
+#
+# [module/eth]
+# inherit = module/wired-network
+#
+# [module/eth2]
+# inherit = module/wired-network
+# label-connected = 󰛳 LAN connected 󰕒 %upspeed% 󰇚 %downspeed%
+
+[module/my-network]
+type = custom/ipc
+format-foreground = ${colors.color1}
+format-background = ${colors.background}
+hook-0 = ~/.config/polybar/my-network/my-network.sh
+initial = 0
+click-left = ~/.config/polybar/my-network/show-ip.sh && polybar-msg hook my-network 1
+
+[module/my-network-updates]
+type = custom/script
+exec = polybar-msg hook my-network 1
+interval = 3.0
+format = ""
+tail = true
+
+[module/wireless-icon]
+type = internal/network
+interface-type = wireless
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-foreground = ${colors.color1}
+format-connected-background = ${colors.background}
+ramp-signal-0 = " 󰤯 "
+ramp-signal-1 = " 󰤟 "
+ramp-signal-2 = " 󰤢 "
+ramp-signal-3 = " 󰤥 "
+ramp-signal-4 = " 󰤨 "
+label-connected = "%essid% ("
+
+format-disconnected = ""
+
+[module/wired-icon]
+type = internal/network
+interface-type = wired
+interval = 3.0
+
+format-connected = " 󰛳 "
+format-connected-foreground = ${colors.color1}
+format-connected-background = ${colors.background}
+
+format-disconnected = ""
+
+[module/wireless-speeds]
+type = internal/network
+interface-type = wireless
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-foreground = ${colors.color1}
+format-connected-background = ${colors.background}
+label-connected = ") 󰕒 %upspeed% 󰇚 %downspeed% "
+
+format-disconnected = ""
+format-disconnected-foreground = ${colors.color1}
+
+[module/wired-speeds]
+type = internal/network
+interface-type = wired
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-foreground = ${colors.color1}
+format-connected-background = ${colors.background}
+label-connected = " 󰕒 %upspeed% 󰇚 %downspeed% "
+
+format-disconnected = ""
+format-disconnected-foreground = ${colors.color1}
+
+################################################################################
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-foreground = ${colors.color2}
+format-charging-background = ${colors.background}
+animation-charging-0 = " 󰁺 󰉁"
+animation-charging-1 = " 󰁼 󰉁"
+animation-charging-2 = " 󰁾 󰉁"
+animation-charging-3 = " 󰂀 󰉁"
+animation-charging-4 = " 󰁹 󰉁"
+animation-charging-framerate = 750
+label-charging = "%percentage%% (%consumption% W) "
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-foreground = ${colors.color2}
+format-discharging-background = ${colors.background}
+animation-discharging-0 = " 󰁹"
+animation-discharging-1 = " 󰂀"
+animation-discharging-2 = " 󰁾"
+animation-discharging-3 = " 󰁼"
+animation-discharging-4 = " 󰁺"
+animation-discharging-framerate = 2500
+label-discharging = "%percentage%% (%consumption% W) "
+
+format-full = <label-full>
+format-full-foreground = ${colors.color2}
+format-full-background = ${colors.background}
+label-full = " 󰁹 %percentage%% "
+
+################################################################################
+
+[module/date]
+type = internal/date
+interval = 1
+
+format = <label>
+format-foreground = ${colors.color3}
+format-background = ${colors.background}
+label = " 󰃭 %time% %date% "
+
+date = %d.%m.%Y
+date-alt = %Y-%m-%d
+time = %H:%M
+time-alt = %H:%M:%S
+
+################################################################################
+
+# [module/tray]
+# type = internal/tray
+# tray-background = ${colors.background}
+# tray-size = 100%
+
+################################################################################
+
+[module/spotify]
+type = custom/script
+interval = 1
+format = <label>
+format-background = ${colors.background}
+format-underline = ${colors.color2}
+label = " 󰝚 %output% "
+exec = python3 ~/.config/polybar/spotify_status.py -f '{song} - {artist}'
+# control players (optional)
+click-left = playerctl --player=spotify play-pause
+click-right = playerctl --player=spotify next
+click-middle = playerctl --player=spotify previous
+
+# vim:ft=dosini
