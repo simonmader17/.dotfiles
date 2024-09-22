@@ -1,0 +1,4 @@
+.specific-floating-windows.config
+manual/*
+!manual/manual.pdf
+!manual/manual.tex
