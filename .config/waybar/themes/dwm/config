@@ -1,0 +1,32 @@
+// vim: ft=jsonc
+{
+  "layer": "top",
+
+  // Modules left
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/applauncher",
+    "hyprland/window"
+  ],
+
+  // Modules center
+  "modules-center": [],
+
+  // Modules right
+  "modules-right": [
+	// "custom/updates",
+    "group/disks",
+    "wireplumber",
+    "memory",
+    "cpu",
+    "temperature",
+    "network",
+	"battery",
+    "clock",
+	"custom/wallpaper",
+    "custom/powermenu",
+    "tray"
+  ],
+
+  "include": ["~/.config/waybar/themes/dwm/modules.json"]
+}

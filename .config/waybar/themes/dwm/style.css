@@ -1,0 +1,155 @@
+/*
+ * ██╗    ██╗ █████╗ ██╗   ██╗██████╗  █████╗ ██████╗ 
+ * ██║    ██║██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+ * ██║ █╗ ██║███████║ ╚████╔╝ ██████╔╝███████║██████╔╝
+ * ██║███╗██║██╔══██║  ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+ * ╚███╔███╔╝██║  ██║   ██║   ██████╔╝██║  ██║██║  ██║
+ *  ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+ * ███████╗████████╗██╗   ██╗██╗     ███████╗
+ * ██╔════╝╚══██╔══╝╚██╗ ██╔╝██║     ██╔════╝
+ * ███████╗   ██║    ╚████╔╝ ██║     █████╗  
+ * ╚════██║   ██║     ╚██╔╝  ██║     ██╔══╝  
+ * ███████║   ██║      ██║   ███████╗███████╗
+ * ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚══════╝
+ */
+
+@import "../../../../.cache/wal/colors-waybar.css";
+
+* {
+  font-family: "CaskaydiaCove Nerd Font";
+  font-size: 11pt;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+}
+
+window#waybar {
+  background-color: alpha(@color6, 0.7);
+  border-bottom: 1px solid @color6;
+  color: @background;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  border-bottom: 1px solid @color6;
+}
+
+/*
+ * Workspaces
+ */
+
+#workspaces button {
+  background-color: @background;
+  color: @foreground;
+  transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.visible {
+  background-color: @color6;
+  color: @background;
+}
+
+#workspaces button:hover {
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+  background-color: @color8;
+}
+
+#workspaces button.visible:hover {
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+  background-color: shade(alpha(@color6, 0.8), 1.2);
+}
+
+/*
+ * Modules
+ */
+
+#custom-applauncher {
+  background-color: @foreground;
+  color: @background;
+  padding: 0.1em 0.5em;
+}
+
+#window {
+  padding: 0.1em 0.5em;
+}
+
+#disks {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}
+
+#disk {
+  padding: 0.1em 0.5em;
+}
+
+#wireplumber {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}
+
+#memory {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}
+
+#cpu {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}
+
+#temperature {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}
+
+#network {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}
+
+#battery {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}
+
+#clock {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}
+
+#custom-updates {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}
+
+#custom-wallpaper {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}
+
+#custom-powermenu {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}
+
+#tray {
+  background-color: @background;
+  color: @foreground;
+  padding: 0.1em 0.5em;
+}

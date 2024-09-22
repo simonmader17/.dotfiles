@@ -1,0 +1,26 @@
+{
+	"layer": "top",
+
+	"include": ["~/.config/waybar/themes/theme1/modules.json"],
+
+	// Modules left
+	"modules-left": ["hyprland/workspaces"],
+
+	// Modules center
+	"modules-center": ["hyprland/window"],
+
+	// Modules right
+	"modules-right": [
+		"tray",
+		"custom/disks",
+		"wireplumber",
+		"memory",
+		"cpu",
+		"temperature",
+		"network",
+		"battery",
+		"clock",
+		"custom/notification"
+	]
+}
+// vim:ft=jsonc

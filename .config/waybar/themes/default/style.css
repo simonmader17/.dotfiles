@@ -1,0 +1,123 @@
+/*
+ * ██╗    ██╗ █████╗ ██╗   ██╗██████╗  █████╗ ██████╗ 
+ * ██║    ██║██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+ * ██║ █╗ ██║███████║ ╚████╔╝ ██████╔╝███████║██████╔╝
+ * ██║███╗██║██╔══██║  ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+ * ╚███╔███╔╝██║  ██║   ██║   ██████╔╝██║  ██║██║  ██║
+ *  ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+ * ███████╗████████╗██╗   ██╗██╗     ███████╗
+ * ██╔════╝╚══██╔══╝╚██╗ ██╔╝██║     ██╔════╝
+ * ███████╗   ██║    ╚████╔╝ ██║     █████╗  
+ * ╚════██║   ██║     ╚██╔╝  ██║     ██╔══╝  
+ * ███████║   ██║      ██║   ███████╗███████╗
+ * ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚══════╝
+ */
+
+@import '../../../../.cache/wal/colors-waybar.css';
+
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: 'CaskaydiaCove Nerd Font', FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}
+
+window#waybar {
+	background: transparent;
+	color: @foreground;
+}
+
+/*
+ * Global modules styles
+ */
+
+.modules-left, .modules-center, .modules-right {
+	margin: 5px;
+	padding: 4px 1px;
+}
+
+.modules-right > * > * {
+	background-color: alpha(@background, 0.8);
+	border-radius: 9999px;
+	padding: .5em 1em;
+	margin: 0 .3em;
+}
+
+/*
+ * Workspaces
+ */
+
+@define-color workspace-active @color6;
+@define-color workspace-inactive @background;
+
+#workspaces {
+	background: transparent;
+}
+
+#workspaces button {
+	padding: 0px 10px;
+	margin: 0px 3px;
+	border-radius: 9999px;
+	color: @foreground;
+	background-color: alpha(@workspace-inactive, 0.8);
+	transition: all 0.3s ease-in-out;
+}
+
+#workspaces button.visible {
+	border-radius: 9999px;
+	min-width: 30px;
+	color: @background;
+	background-color: alpha(@workspace-active, 0.8);
+	/* background-size: 400% 400%; */
+	transition: all 0.3s ease-in-out;
+}
+
+#workspaces button:hover {
+	background: none;
+	box-shadow: none;
+	text-shadow: none;
+	background-color: shade(alpha(@workspace-inactive, 0.8), 1.2);
+	border-color: shade(alpha(@workspace-inactive, 0.8), 1.2);
+}
+
+#workspaces button.visible:hover {
+	background: none;
+	box-shadow: none;
+	text-shadow: none;
+	background-color: shade(alpha(@workspace-active, 0.8), 1.2);
+	border-color: shade(alpha(@workspace-active, 0.8), 1.2);
+}
+
+/*
+ * Module specific styles
+ */
+
+#custom-applauncher {
+	padding: 0px 10px;
+	margin: 0px 3px;
+	border-radius: 9999px;
+	background-color: alpha(@foreground, 0.8);
+	color: @background;
+}
+
+#window {
+	background-color: alpha(@color6, 0.8);
+	color: @background;
+	font-weight: bold;
+	padding: .5em 1em;
+	margin: 0 .3em;
+	border-radius: 9999px;
+}
+
+#disks {
+	background-color: alpha(@background, 0.8);
+	border-radius: 99px;
+}
+
+#disk.root {
+	background-color: alpha(@color2, 0.8);
+	border-radius: 99px;
+}
+
+#disk {
+	padding: .5em 1em;
+}

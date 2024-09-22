@@ -1,0 +1,85 @@
+// ███╗   ███╗ ██████╗ ██████╗ ██╗   ██╗██╗     ███████╗███████╗
+// ████╗ ████║██╔═══██╗██╔══██╗██║   ██║██║     ██╔════╝██╔════╝
+// ██╔████╔██║██║   ██║██║  ██║██║   ██║██║     █████╗  ███████╗
+// ██║╚██╔╝██║██║   ██║██║  ██║██║   ██║██║     ██╔══╝  ╚════██║
+// ██║ ╚═╝ ██║╚██████╔╝██████╔╝╚██████╔╝███████╗███████╗███████║
+// ╚═╝     ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚══════╝
+{
+  "hyprland/window": {
+    // "format": "{class} | {title}",
+    // "max-length": 50,
+    "rewrite": {
+      "(.*) - Brave": "🌍 $1",
+      "(.*) - Visual Studio Code": "&lt;/&gt; $1"
+    }
+  },
+  "custom/applauncher": {
+    "format": "Apps",
+    "on-click": "~/.config/rofi/launch-menu.sh"
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%d.%m.%Y %H:%M}",
+    "format-alt": "{:%Y-%m-%d %H:%M:%S}"
+  },
+  "custom/powermenu": {
+    "format": "",
+    "on-click": "wlogout"
+  },
+  // Disks
+  "group/disks": {
+    "orientation": "horizontal",
+    "drawer": {},
+    "modules": ["disk#root", "disk#home", "disk#d", "disk#f", "disk#p"]
+  },
+  "disk#root": {
+    "format": "󰋊 /: {free} free",
+    "path": "/"
+  },
+  "disk#home": {
+    "format": "󰋊 /home: {free} free",
+    "path": "/home"
+  },
+  "disk#d": {
+    "format": "󰋊 d: {free} free",
+    "path": "/mnt/d"
+  },
+  "disk#f": {
+    "format": "󰋊 f: {free} free",
+    "path": "/mnt/f"
+  },
+  "disk#p": {
+    "format": "󰋊 p: {free} free",
+    "path": "/mnt/p"
+  },
+  // Audio
+  "wireplumber": {
+    "format": "󰓃 {node_name} {icon} {volume}%",
+    "format-icons": ["󰕿", "󰖀", "󰕾"],
+    "format-muted": "󰓃 {node_name} 󰝟 Muted"
+  },
+  // Hardware
+  "memory": {
+    "format": "󰍛 {used}GiB / {total}GiB"
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "󰻠 {usage}%"
+  },
+  "temperature": {
+    "interval": 2,
+    "thermal-zone": 1,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["󱃃", "󰔏", "󱃂"]
+  },
+  // Network
+  "network": {
+    "interval": 3,
+    "format-ethernet": "󰛳 Connected 󰕒 {bandwidthUpBytes} 󰇚 {bandwidthDownBytes}",
+    "format-wifi": "{icon} {essid}",
+    "format-disconnected": "",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "tooltip-format": "{ipaddr}"
+  }
+}
+// vim: ft=jsonc

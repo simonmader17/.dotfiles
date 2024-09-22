@@ -1,0 +1,170 @@
+@import "../../../../.cache/wal/colors-waybar.css";
+
+* {
+	font-family: "CaskaydiaCove Nerd Font";
+	font-size: 100%;
+	font-weight: 900;
+
+	background: none;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+	background-color: alpha(@background, 0.8);
+	color: @foreground;
+	border: solid 4px @color8;
+	border-radius: 999px;
+
+	margin: 10px 10px 0 10px;
+	padding: 2px 5px;
+}
+
+.modules-left {
+	padding: 0;
+}
+
+window#waybar.empty .modules-center {
+	opacity: 0;
+}
+
+/* Workspaces *****************************************************************/
+
+#workspaces button {
+	background: none;
+  color: @foreground;
+  transition: all 0.2s ease-in-out;
+	border-radius: 8px;
+	padding: 2px 5px;
+}
+
+#workspaces button:first-child {
+	border-top-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+}
+
+#workspaces button:last-child {
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+}
+
+#workspaces button.visible {
+  background-color: @color6;
+  color: @background;
+}
+
+#workspaces button:hover {
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+  background-color: alpha(@color8, 0.8);
+}
+
+#workspaces button.visible:hover {
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+  background-color: shade(alpha(@color6, 0.8), 1.2);
+}
+
+/* Tooltip ********************************************************************/
+
+tooltip {
+	background-color: alpha(@background, 0.8);
+	color: @foreground;
+	border: solid 4px @color8;
+	border-radius: 16px;
+}
+
+/* Modules ********************************************************************/
+
+#window {
+	padding-left: 1ex;
+	padding-right: 1ex;
+}
+
+#tray,
+#custom-disks,
+#wireplumber,
+#memory,
+#cpu,
+#temperature,
+#network,
+#battery,
+#clock {
+	padding-right: 3ex;
+}
+
+#tray {
+	padding-left: 1ex;
+}
+
+#tray menu {
+	background-color: alpha(@background, 0.8);
+	color: @foreground;
+	border: solid 4px @color8;
+	border-radius: 16px;
+}
+
+#custom-disks {
+	color: @color1;
+}
+
+#custom-disks.critical {
+	animation: pulse-critical 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+#wireplumber {
+	color: @color6;
+}
+
+#memory {
+	color: @color2;
+}
+
+#cpu {
+	color: @color5;
+}
+
+#temperature {
+	color: @color5;
+}
+
+#temperature.critical {
+	animation: pulse-critical 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+#network {
+	color: @color3;
+}
+
+#battery {
+	color: @color6;
+}
+
+#battery.critical.discharging {
+	animation: pulse-critical 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+#clock {
+	color: @color4;
+}
+
+#custom-notification {
+	color: @color5;
+	padding-right: 2ex;
+}
+
+/* Keyframes ******************************************************************/
+
+@keyframes pulse-critical {
+	0% {
+		color: @color6;
+	}
+	50% {
+		color: red;
+	}
+	100% {
+		color: @color6;
+	}
+}
