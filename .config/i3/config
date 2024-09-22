@@ -1,0 +1,296 @@
+# ██╗██████╗ 
+# ██║╚════██╗
+# ██║ █████╔╝
+# ██║ ╚═══██╗
+# ██║██████╔╝
+# ╚═╝╚═════╝ 
+# i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+################################################################################
+# AUTOSTART AND FLOATING WINDOWS
+################################################################################
+exec_always --no-startup-id "wal -Rq -o $HOME/dotfiles/scripts/pywal/post-pywal.sh && $HOME/dotfiles/polybar/launch.sh"
+exec_always --no-startup-id ~/dotfiles/picom/start-picom.sh
+# exec_always --no-startup-id autotiling
+# Configuration of i3-layouts in workspaces section
+exec --no-startup-id i3-layouts
+exec --no-startup-id redshift -l 48.1:16.2 -t 6500:4000
+exec --no-startup-id nextcloud
+
+include $HOME/dotfiles/i3/.specific-floating-windows.config
+for_window [class="chatterino" instance="chatterino"] floating enable
+for_window [class="TeamSpeak 3"] floating enable
+for_window [class="Spotify"] floating enable
+for_window [class="VirtualBox Machine"] floating enable
+for_window [class="Org.gnome.Nautilus"] floating enable
+for_window [class="Gimp"] floating enable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
+for_window [class=".*Emulator.*"] floating enable
+for_window [class="PrismLauncher"] floating enable
+for_window [class="Steam"] floating enable
+for_window [class="steam"] floating enable
+for_window [class="steamwebhelper"] floating enable
+for_window [class="Eog"] floating enable
+for_window [class="Gedit"] floating enable
+for_window [class="ipykernel_launcher.py"] floating enable
+for_window [class="Blender"] floating enable
+for_window [class="File-roller"] floating enable
+for_window [class="vlc"] floating enable
+for_window [class="Gnome-terminal"] floating enable
+for_window [class="Easytag"] floating enable
+for_window [class="Brave-browser" window_role="pop-up"] floating enable
+for_window [title="Terminal - floating"] floating enable
+for_window [class="com-horstmann-violet-UMLEditor"] floating enable
+# for_window [class="feh"] floating enable
+for_window [class="Signal"] floating enable
+for_window [title="video0 - mpv"] floating enable
+for_window [title="video0 - mpv"] sticky enable
+
+################################################################################
+# SETTINGS
+################################################################################
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:CaskaydiaCove Nerd Font 12
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+no_focus [window_type="pop_up"]
+
+focus_follows_mouse no
+
+# borders
+for_window [class=".*"] border pixel 4
+for_window [class="Nextcloud"] border pixel 0
+for_window [class="Nextcloud" title="Nextcloud Settings"] border pixel 4
+
+gaps inner 20
+
+#### COLORS ####################################################################
+
+## Set colors from Xresources
+set_from_resource $background i3wm.background #000000
+set_from_resource $foreground i3wm.foreground #cccccc
+set_from_resource $color0 i3wm.color0 #000000
+set_from_resource $color1 i3wm.color1 #ff6565
+set_from_resource $color2 i3wm.color2 #93d44f
+set_from_resource $color3 i3wm.color3 #eab93d
+set_from_resource $color4 i3wm.color4 #204a87
+set_from_resource $color5 i3wm.color5 #ce5c00
+set_from_resource $color6 i3wm.color6 #89b6e2
+set_from_resource $color7 i3wm.color7 #cccccc
+set_from_resource $color8 i3wm.color8 #555753
+set_from_resource $color9 i3wm.color9 #ff8d8d
+set_from_resource $color10 i3wm.color10 #c8e7a8
+set_from_resource $color11 i3wm.color11 #ffc123
+set_from_resource $color12 i3wm.color12 #3465a4
+set_from_resource $color13 i3wm.color13 #f57900
+set_from_resource $color14 i3wm.color14 #46a4ff
+set_from_resource $color15 i3wm.color15 #ffffff
+set $alert #900000
+
+## class                border		backgr.		text		indicator   child_border
+client.focused          $color8		$color6		$foreground	$color6		$color6
+client.focused_inactive $color8		$background	$foreground	$background	$background
+client.unfocused		$color8		$background	$foreground	$background	$background
+client.urgent			$background	$alert		$foreground	$alert		$alert
+client.placeholder      $background	$color8		$foreground	$background	$color8
+
+client.background       $background
+
+################################################################################
+# KEYBINDINGS
+################################################################################
+set $mod Mod4
+
+bindsym $mod+F1 exec --no-startup-id xdg-open ~/dotfiles/i3/manual/manual.pdf
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+#### WINDOW CONTROLS ###########################################################
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# resize windows
+bindsym $mod+Shift+z resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+u resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+i resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+o resize grow width 10 px or 10 ppt
+
+bindsym $mod+Control+Left resize shrink width 10 px or 10 ppt
+bindsym $mod+Control+Down resize shrink height 10 px or 10 ppt
+bindsym $mod+Control+Up resize grow height 10 px or 10 ppt
+bindsym $mod+Control+Right resize grow width 10 px or 10 ppt
+
+bindsym $mod+Shift+plus gaps inner all plus 5
+bindsym $mod+Shift+minus gaps inner all minus 5
+bindsym $mod+Shift+BackSpace gaps inner all set 20
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+space floating toggle
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Move currently focused floating window to center of the screen
+bindsym $mod+Shift+space move position center
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+#### WORKSPACES ################################################################
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# i3-layouts
+set $i3l autosplit to workspace $ws1
+set $i3l autosplit to workspace $ws2
+set $i3l autosplit to workspace $ws3
+set $i3l autosplit to workspace $ws4
+set $i3l autosplit to workspace $ws5
+set $i3l autosplit to workspace $ws6
+set $i3l autosplit to workspace $ws7
+set $i3l autosplit to workspace $ws8
+set $i3l autosplit to workspace $ws9
+set $i3l autosplit to workspace $ws10
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+#### SCREENSHOTS ###############################################################
+
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
+
+# Clipboard screenshots
+bindsym Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
+#### PROGRAMS ##################################################################
+set $browser brave-browser
+set $terminal /usr/bin/kitty
+
+# start a terminal (default: i3-sensible-terminal)
+bindsym $mod+Return exec --no-startup-id $terminal
+bindsym $mod+Shift+Return exec --no-startup-id $terminal --title "Terminal - floating"
+bindsym $mod+Control+Return exec --no-startup-id ~/dotfiles/i3/spawn-terminal-cwd.sh $terminal
+
+bindsym $mod+e exec --no-startup-id nautilus
+bindsym $mod+Shift+e exec --no-startup-id $terminal -e sh -c 'ranger /mnt/d/Wallpaper/ || ranger'
+bindsym $mod+b exec --no-startup-id $browser
+bindsym $mod+Shift+b exec --no-startup-id $browser --incognito
+bindsym $mod+Control+b exec --no-startup-id qutebrowser
+
+bindsym $mod+s exec --no-startup-id spotify
+# Spotify volume control
+bindsym $mod+plus exec --no-startup-id playerctl --player=spotify volume 0.1+
+bindsym $mod+minus exec --no-startup-id playerctl --player=spotify volume 0.1-
+
+bindsym $mod+Control+s exec --no-startup-id shazam-notif
+bindsym $mod+c exec --no-startup-id code
+bindsym $mod+t exec --no-startup-id teamspeak
+# bindsym $mod+p exec --no-startup-id pokemmo
+bindsym $mod+p exec --no-startup-id prismlauncher
+
+#### MISC. #####################################################################
+
+bindsym $mod+w exec --no-startup-id ~/dotfiles/scripts/wallpapers.sh
+bindsym $mod+Shift+w exec --no-startup-id ~/dotfiles/scripts/start-webcam.sh
+bindsym $mod+d exec --no-startup-id dunstctl history-pop
+bindsym $mod+Shift+p exec --no-startup-id ~/dotfiles/i3/picom-toggle.sh
+
+# start dmenu (a program launcher)
+bindsym $mod+period exec --no-startup-id dmenu_run -i -fn "CaskaydiaCove Nerd Font:size=14" -p "Run:" -nb "$background" -nf "$foreground" -sb "$color6" -sf "$background" -h 27 -c -l 20
+bindsym $mod+comma exec --no-startup-id EMOJIPICK_CMD='dmenu -i -p Run: -nb $background -nf $foreground -sb $color6 -sf $background -h 27 -c -l 20 -fn' emojipick
+
+# Lock system
+bindsym $mod+Control+l exec --no-startup-id betterlockscreen -l
+
+# Rotate through audio devices
+bindsym $mod+m exec --no-startup-id $HOME/.config/i3/pactl-switch-sink.sh && polybar-msg hook audiodevice 1
+
+# Audio Prev, Play, Next
+bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Brightness control
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/dotfiles/scripts/brightness-control.sh down
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/dotfiles/scripts/brightness-control.sh up
+
+# vim:ft=i3config

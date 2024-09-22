@@ -1,0 +1,121 @@
+% xelatex
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\setmainfont{Brill}
+
+\usepackage{ot-tableau}
+\usepackage[backend=biber, style=authoryear-icomp]{biblatex}
+\usepackage{easylist}
+\usepackage{hanging}
+\usepackage{hyperref}
+\usepackage{blindtext}
+\usepackage{tipa}
+\usepackage{cgloss4e}
+\usepackage{gb4e}
+\usepackage{qtree}
+\usepackage{enumerate}
+\usepackage{longtable}
+\usepackage{textgreek}
+
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=-5pt}
+
+\title{i3 keybindings}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\texttt{Mod+F1} --- view this pdf. \\
+\texttt{Mod+Shift+c} --- reload i3 config. \\
+\texttt{Mod+Shift+r} --- restart i3.
+
+\section*{window controls}
+
+\vspace*{-.5\baselineskip}
+\begin{itemize}
+	\item \texttt{Mod+Shift+q} --- close focused window.
+	\item \texttt{Mod+h} or \texttt{Mod+Left} --- focus left.
+	\item \texttt{Mod+j} or \texttt{Mod+Down} --- focus down.
+	\item \texttt{Mod+k} or \texttt{Mod+Up} --- focus up.
+	\item \texttt{Mod+l} or \texttt{Mod+Right} --- focus right.
+	\item \texttt{Mod+Shift+h} or \texttt{Mod+Shift+Left} --- move left.
+	\item \texttt{Mod+Shift+j} or \texttt{Mod+Shift+Down} --- move down.
+	\item \texttt{Mod+Shift+k} or \texttt{Mod+Shift+Up} --- move up.
+	\item \texttt{Mod+Shift+l} or \texttt{Mod+Shift+Right} --- move right.
+	\item \texttt{Mod+Shift+z} or \texttt{Mod+Control+Left} --- decrease window width.
+	\item \texttt{Mod+Shift+u} or \texttt{Mod+Control+Down} --- decrease window height.
+	\item \texttt{Mod+Shift+i} or \texttt{Mod+Control+Up} --- increase window height.
+	\item \texttt{Mod+Shift+o} or \texttt{Mod+Control+Right} --- increase window width.
+	\item \texttt{Mod+Shift{\small+}+} --- increase window gap size.
+	\item \texttt{Mod+Shift{\small+}-} --- decrease window gap size.
+	\item \texttt{Mod+Shift+BackSpace} --- reset window gap size.
+	\item \texttt{Mod+f} --- toggle fullscreen mode for focused window.
+	\item \texttt{Mod+Shift+Space} --- toggle floating mode for focused window.
+	\item \texttt{Mod+Mouse} --- move or resize floating windows.
+	\item \texttt{Mod+Space} --- move focused window to the center of the screen.
+	\item \texttt{Mod+a} --- focus parent.
+\end{itemize}
+
+\section*{workspaces}
+
+\vspace*{-.5\baselineskip}
+\begin{itemize}
+	\item \texttt{Mod+(Number)} --- go to the workspace with that number.
+	\item \texttt{Mod+Shift+(Number)} --- move focused window to the workspace with that number.
+\end{itemize}
+
+\section*{screenshots}
+
+\vspace*{-.5\baselineskip}
+\begin{itemize}
+	\item \texttt{Mod+Shift+s} --- take a screenshot using \texttt{flameshot}.
+	\item \texttt{Print} --- takes a screenshot using \texttt{maim} and copies it to the clipboard.
+	\item \texttt{Mod+Print} --- takes a screenshot of the active window using \texttt{maim} and copies it to the clipboard.
+	\item \texttt{Shift+Print} --- takes a screenshot of the selected area using \texttt{maim} and copies it to the clipboard.
+\end{itemize}
+
+\section*{programs}
+
+\vspace*{-.5\baselineskip}
+\begin{itemize}
+	\item \texttt{Mod+Return} --- spawn new terminal.
+	\item \texttt{Mod+Shift+Return} --- spawn new terminal in floating mode.
+	\item \texttt{Mod+Control+Return} --- spawn new terminal with the current directory as working directory.
+	\item \texttt{Mod+e} --- nautilus.
+	\item \texttt{Mod+Shift+e} --- ranger.
+	\item \texttt{Mod+b} --- web browser (defaults to brave-browser).
+	\item \texttt{Mod+Shift+b} --- web browser (incognito mode).
+	\item \texttt{Mod+Control+b} --- qutebrowser.
+	\item \texttt{Mod+s} --- spotify.
+
+		\vspace*{-\baselineskip}
+		\begin{itemize}
+			\item \texttt{Mod{\small+}+} --- increase spotify volume.
+			\item \texttt{Mod{\small+}-} --- decrease spotify volume.
+		\end{itemize}\vspace*{-.5\baselineskip}
+	\item \texttt{Mod+Control+s} --- shazam.
+	\item \texttt{Mod+c} --- vscode.
+	\item \texttt{Mod+t} --- teamspeak.
+	\item \texttt{Mod+p} --- prismlauncher.
+\end{itemize}
+
+\section*{misc.}
+
+\vspace*{-.5\baselineskip}
+\begin{itemize}
+	\item \texttt{Mod+w} --- show webcam in a floating window.
+	\item \texttt{Mod+Shift+s} --- show the last notification in the dunst history.
+	\item \texttt{Mod+Shift+p} --- toggle picom.
+	\item \texttt{Mod+.} --- dmenu.
+	\item \texttt{Mod+,} --- emoji picker.
+	\item \texttt{Mod+Control+l} --- lock screen.
+	\item \texttt{Mod+m} --- rotate through audio devices.
+\end{itemize}
+
+\end{document}
