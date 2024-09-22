@@ -11,15 +11,15 @@
 ################################################################################
 # AUTOSTART AND FLOATING WINDOWS
 ################################################################################
-exec_always --no-startup-id "wal -Rq -o $HOME/dotfiles/scripts/pywal/post-pywal.sh && $HOME/dotfiles/polybar/launch.sh"
-exec_always --no-startup-id ~/dotfiles/picom/start-picom.sh
+exec_always --no-startup-id "wal -Rq -o $HOME/scripts/pywal/post-pywal.sh && $HOME/.config/polybar/launch.sh"
+exec_always --no-startup-id ~/.config/picom/start-picom.sh
 # exec_always --no-startup-id autotiling
 # Configuration of i3-layouts in workspaces section
 exec --no-startup-id i3-layouts
 exec --no-startup-id redshift -l 48.1:16.2 -t 6500:4000
 exec --no-startup-id nextcloud
 
-include $HOME/dotfiles/i3/.specific-floating-windows.config
+include $HOME/.config/i3/.specific-floating-windows.config
 for_window [class="chatterino" instance="chatterino"] floating enable
 for_window [class="TeamSpeak 3"] floating enable
 for_window [class="Spotify"] floating enable
@@ -108,7 +108,7 @@ client.background       $background
 ################################################################################
 set $mod Mod4
 
-bindsym $mod+F1 exec --no-startup-id xdg-open ~/dotfiles/i3/manual/manual.pdf
+bindsym $mod+F1 exec --no-startup-id xdg-open ~/.config/i3/manual/manual.pdf
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -241,7 +241,7 @@ set $terminal /usr/bin/kitty
 # start a terminal (default: i3-sensible-terminal)
 bindsym $mod+Return exec --no-startup-id $terminal
 bindsym $mod+Shift+Return exec --no-startup-id $terminal --title "Terminal - floating"
-bindsym $mod+Control+Return exec --no-startup-id ~/dotfiles/i3/spawn-terminal-cwd.sh $terminal
+bindsym $mod+Control+Return exec --no-startup-id ~/.config/i3/spawn-terminal-cwd.sh $terminal
 
 bindsym $mod+e exec --no-startup-id nautilus
 bindsym $mod+Shift+e exec --no-startup-id $terminal -e sh -c 'ranger /mnt/d/Wallpaper/ || ranger'
@@ -262,10 +262,10 @@ bindsym $mod+p exec --no-startup-id prismlauncher
 
 #### MISC. #####################################################################
 
-bindsym $mod+w exec --no-startup-id ~/dotfiles/scripts/wallpapers.sh
-bindsym $mod+Shift+w exec --no-startup-id ~/dotfiles/scripts/start-webcam.sh
+bindsym $mod+w exec --no-startup-id ~/scripts/wallpapers.sh
+bindsym $mod+Shift+w exec --no-startup-id ~/scripts/start-webcam.sh
 bindsym $mod+d exec --no-startup-id dunstctl history-pop
-bindsym $mod+Shift+p exec --no-startup-id ~/dotfiles/i3/picom-toggle.sh
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/picom-toggle.sh
 
 # start dmenu (a program launcher)
 bindsym $mod+period exec --no-startup-id dmenu_run -i -fn "CaskaydiaCove Nerd Font:size=14" -p "Run:" -nb "$background" -nf "$foreground" -sb "$color6" -sf "$background" -h 27 -c -l 20
@@ -290,7 +290,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Brightness control
-bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/dotfiles/scripts/brightness-control.sh down
-bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/dotfiles/scripts/brightness-control.sh up
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/scripts/brightness-control.sh down
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/scripts/brightness-control.sh up
 
 # vim:ft=i3config

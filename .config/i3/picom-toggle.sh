@@ -3,5 +3,5 @@ if pgrep -x "picom" > /dev/null
 then
 	killall picom
 else
-	bash ~/dotfiles/picom/start-picom.sh
+	bash ~/.config/picom/start-picom.sh
 fi

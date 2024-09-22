@@ -149,7 +149,7 @@ nordvpn() {
 }
 
 # change-theme completions
-source ~/dotfiles/scripts/change-theme/change-theme-completions-bash.sh
+source ~/scripts/change-theme/change-theme-completions-bash.sh
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
