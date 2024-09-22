@@ -1,0 +1,8 @@
+[Unit]
+Description=Spotify Notifier
+
+[Service]
+ExecStart=%h/scripts/notifiers/spotify-notifier/spotify-notifier.sh
+
+[Install]
+WantedBy=default.target

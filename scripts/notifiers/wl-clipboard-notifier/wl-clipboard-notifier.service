@@ -1,0 +1,8 @@
+[Unit]
+Description=Wayland Clipboard Notifier
+
+[Service]
+ExecStart=%h/scripts/notifiers/wl-clipboard-notifier/wl-clipboard-notifier.sh
+
+[Install]
+WantedBy=default.target

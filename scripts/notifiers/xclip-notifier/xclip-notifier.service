@@ -1,0 +1,9 @@
+[Unit]
+Description=X Clipboard Notifier
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=%h/scripts/notifiers/xclip-notifier/xclip-notifier.sh
+
+[Install]
+WantedBy=xsession.target

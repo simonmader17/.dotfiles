@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/mnt/d/Wallpaper/minimalist/wp4676582-4k-pc-wallpapers.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#121726",
+        "foreground": "#c3c5c8",
+        "cursor": "#c3c5c8"
+    },
+    "colors": {
+        "color0": "#121726",
+        "color1": "#3f87c9",
+        "color2": "#06b5f4",
+        "color3": "#7588d4",
+        "color4": "#43b3e2",
+        "color5": "#2ec5fa",
+        "color6": "#4ed4ff",
+        "color7": "#c3c5c8",
+        "color8": "#4d515c",
+        "color9": "#3f87c9",
+        "color10": "#06b5f4",
+        "color11": "#7588d4",
+        "color12": "#43b3e2",
+        "color13": "#2ec5fa",
+        "color14": "#4ed4ff",
+        "color15": "#c3c5c8"
+    }
+}

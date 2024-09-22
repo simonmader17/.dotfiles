@@ -1,0 +1,6 @@
+[submodule "scripts/grimshot/imgur.sh"]
+	path = scripts/grimshot/imgur.sh
+	url = https://github.com/tremby/imgur.sh.git
+[submodule "scripts/pywalium"]
+	path = scripts/pywalium
+	url = git@github.com:simonmader17/pywalium.git

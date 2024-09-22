@@ -1,0 +1,8 @@
+[Unit]
+Description=Pulseaudio Volume Notifier
+
+[Service]
+ExecStart=%h/scripts/notifiers/pactl-volume-notifier/pactl-volume-notifier.sh
+
+[Install]
+WantedBy=default.target

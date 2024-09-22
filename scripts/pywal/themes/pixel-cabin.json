@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/mnt/d/Wallpaper/pixel-ai-landscape/pixel-lake06-uhd-sunny-center-cabin.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#1f200e",
+        "foreground": "#c7c7c2",
+        "cursor": "#c7c7c2"
+    },
+    "colors": {
+        "color0": "#1f200e",
+        "color1": "#9ea34b",
+        "color2": "#67aa7a",
+        "color3": "#90c1c0",
+        "color4": "#4fa3a6",
+        "color5": "#2f95a9",
+        "color6": "#8f869f",
+        "color7": "#c7c7c2",
+        "color8": "#57574a",
+        "color9": "#9ea34b",
+        "color10": "#67aa7a",
+        "color11": "#90c1c0",
+        "color12": "#4fa3a6",
+        "color13": "#2f95a9",
+        "color14": "#8f869f",
+        "color15": "#c7c7c2"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/mnt/d/Wallpaper/macos/10-12-6k.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#301107",
+        "foreground": "#cbc3c1",
+        "cursor": "#cbc3c1"
+    },
+    "colors": {
+        "color0": "#301107",
+		"color0transparent": "#AA301107",
+        "color1": "#b6767f",
+        "color2": "#8291ae",
+        "color3": "#ff6547",
+        "color4": "#d48173",
+        "color5": "#c68f8c",
+        "color6": "#f18755",
+        "color7": "#cbc3c1",
+        "color8": "#634c45",
+        "color9": "#b6767f",
+        "color10": "#8291ae",
+        "color11": "#ff6547",
+        "color12": "#d48173",
+        "color13": "#c68f8c",
+        "color14": "#f18755",
+        "color15": "#cbc3c1"
+    }
+}
