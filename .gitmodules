@@ -7,3 +7,6 @@
 [submodule ".local/share/pandoc/templates/eisvogel"]
 	path = .local/share/pandoc/eisvogel
 	url = https://github.com/Wandmalfarbe/pandoc-latex-template.git
+[submodule ".config/rofi/rofi-themes-collection"]
+	path = .config/rofi/rofi-themes-collection
+	url = https://github.com/newmanls/rofi-themes-collection.git

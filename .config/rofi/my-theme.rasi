@@ -1,0 +1,39 @@
+@theme "default"
+
+@import "~/.cache/wal/colors-rofi.rasi"
+
+* {
+	font: "CaskaydiaCove Nerd Font 12";
+
+	active-background: transparent;
+	active-foreground: @foreground;
+	normal-background: transparent;
+	normal-foreground: @foreground;
+	urgent-background: transparent;
+	urgent-foreground: @foreground;
+
+	alternate-active-background: transparent;
+	alternate-active-foreground: @foreground;
+	alternate-normal-background: transparent;
+	alternate-normal-foreground: @foreground;
+	alternate-urgent-background: transparent;
+	alternate-urgent-foreground: @foreground;
+	
+	selected-active-background: @color2;
+	selected-active-foreground: @color0;
+	selected-normal-background: @color2;
+	selected-normal-foreground: @color0;
+	selected-urgent-background: @color2;
+	selected-urgent-foreground: @color0;
+}
+
+window {
+	border: 4px solid;
+	border-color: @color2;
+	border-radius: 10px;
+}
+
+element {
+	padding: 4px;
+	border-radius: 4px;
+}
