@@ -22,7 +22,6 @@ export PDF_READER="zathura"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
 # XDG Base Directory
-export PATH="$HOME/dotfiles/aliases/scripts:$PATH" # aliases
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
