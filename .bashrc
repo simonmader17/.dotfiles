@@ -134,7 +134,7 @@ PS1="\[\e[31m\][\[\e[92m\]\u\[\e[37m\] \[\e[94m\]\w\[\e[31m\]]\[\e[37m\]$\[\e[00
 
 source ~/.fonts/*.sh
 
-# wal -Rqe -o ~/dotfiles/polybar/add_alpha_to_color0.sh
+# wal -Rqe -o ~/.config/polybar/add_alpha_to_color0.sh
 /usr/bin/cat ~/.cache/wal/sequences
 
 # My Aliases
