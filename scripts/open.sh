@@ -11,13 +11,25 @@ base="${file%.*}"
 cd "$dir" || exit 1
 
 case "$ext" in
-	tex) zathura "$base.pdf" & ;;
+	tex)
+		[ -f "$base.pdf" ] &&
+			{ zathura "$base.pdf" & } ||
+			notify-send -a nvim "open.sh" "No matching .pdf file found."
+		;;
 	md)
 		sed -n '/^---$/,/^---$/p' "$file" | grep -qi "html: true" &&
-			{ $BROWSER && kitty \
-				--working-directory "$dir" \
-				-- live-server "$base.html" & } ||
-			{ zathura "$base.pdf" & }
+			{
+				[ -f "$base.html" ] &&
+					{ kitty \
+						--working-directory "$dir" \
+						-- live-server "$base.html" & } ||
+					notify-send -a nvim "open.sh" "No matching .html file found."
+			} ||
+			{
+				[ -f "$base.pdf" ] &&
+					{ zathura "$base.pdf" & } ||
+					notify-send -a nvim "open.sh" "No matching .pdf file found."
+			}
 		;;
 	*) notify-send -a nvim "open.sh" "Can't find file to open." ;;
 esac
