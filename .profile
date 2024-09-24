@@ -5,6 +5,9 @@
 # ██╗██║     ██║  ██║╚██████╔╝██║     ██║███████╗███████╗
 # ╚═╝╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
 
+# Reload pywal cache
+wal -R
+
 # Environmental variables
 export EDITOR="vim"
 export TERMINAL="kitty"
