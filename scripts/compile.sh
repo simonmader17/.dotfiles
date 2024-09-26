@@ -14,19 +14,7 @@ base="${file%.*}"
 cd "$dir" || exit 1
 
 case "$ext" in
-	tex)
-		# .tex files that should not be compiled using `pdflatex` should contain a
-		# comment in the first line of the document, that contains the wanted TeX
-		# engine (lualatex, xelatex, ...).
-		command="pdflatex"
-		head -n1 "$file" | grep -qi "lualatex" && command="lualatex"
-		head -n1 "$file" | grep -qi "xelatex" && command="xelatex"
-		$command "$file"
-		# For biber support:
-		grep -qi "addbibresource" "$file" &&
-			biber "$base" &&
-			$command "$file"
-		;;
+	mom|ms) preconv "$file" | tbl | refer -PS -e | groff -Tpdf -m"$ext" > "$base.pdf" ;;
 	md)
 		metadata="$(sed -n '/^---$/,/^---$/p' "$file")"
 		echo "$metadata" | grep -qi "marp: true" && marp=true || marp=false
@@ -50,6 +38,19 @@ case "$ext" in
 					"$file"
 				;;
 		esac
+		;;
+	tex)
+		# .tex files that should not be compiled using `pdflatex` should contain a
+		# comment in the first line of the document, that contains the wanted TeX
+		# engine (lualatex, xelatex, ...).
+		command="pdflatex"
+		head -n1 "$file" | grep -qi "lualatex" && command="lualatex"
+		head -n1 "$file" | grep -qi "xelatex" && command="xelatex"
+		$command "$file"
+		# For biber support:
+		grep -qi "addbibresource" "$file" &&
+			biber "$base" &&
+			$command "$file"
 		;;
 	*) notify-send -a nvim "compile.sh" "No compilation option for .$ext files specified." ;;
 esac

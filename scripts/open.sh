@@ -11,6 +11,7 @@ base="${file%.*}"
 cd "$dir" || exit 1
 
 case "$ext" in
+	mom|ms) ;&
 	tex)
 		[ -f "$base.pdf" ] &&
 			{ zathura "$base.pdf" & } ||
