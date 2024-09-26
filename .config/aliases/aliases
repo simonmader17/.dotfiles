@@ -23,6 +23,8 @@ alias rsmv='rsync -aP --remove-source-files'
 
 alias grep='grep --color'
 
+alias se="~/scripts/fuzzy-finder.sh"
+
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 
 if [ "$TERM" = "xterm-kitty" ]; then
