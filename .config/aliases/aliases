@@ -16,7 +16,7 @@ alias la='eza -a --color=always --icons=auto --group-directories-first'
 alias ll='eza -l --color=always --icons=auto --group-directories-first'
 alias lt='eza -aT --color=always --icons=auto --group-directories-first'
 
-alias cat='bat --paging=never --style=grid --theme=base16'
+alias cat='bat --paging=never --style=plain --theme=base16'
 
 alias rscp='rsync -aP'
 alias rsmv='rsync -aP --remove-source-files'
@@ -26,6 +26,9 @@ alias grep='grep --color'
 alias se="~/scripts/fuzzy-finder.sh"
 
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+
+# ~/ clean up
+alias abook='abook --config "$XDG_CONFIG_HOME/abook/abookrc" --datafile "$XDG_DATA_HOME/abook/addressbook"'
 
 if [ "$TERM" = "xterm-kitty" ]; then
 	alias ssh="kitten ssh"

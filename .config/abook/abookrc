@@ -1,0 +1,17 @@
+field birthday = Birthday, date
+field address-alt = Address
+field zip-alt = "ZIP/Postal Code"
+field city-alt = City
+field country-alt = Country
+
+view general = name, email, mobile, birthday, nick
+view address = address, zip, city, country
+view "address 2" = address-alt, zip-alt, city-alt, country-alt
+view phone = mobile, workphone, phone, fax
+view other = birthday, nick, url, notes
+
+set index_format = "{name:22} {mobile:17} {birthday:11} {email}"
+
+set use_colors = true
+set color_header_bg = default
+set color_list_header_fg = black
