@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -z "$(git config --local user.name)" ] || [ -z "$(git config --local user.email)" ]; then
+	echo "Error: You must set a local user.name and user.email before committing."
+	echo "Use git.config user.name \"Your Name\" and git config user.email \"Your E-Mail\"."
+	exit 1
+fi
+# vim:ft=sh

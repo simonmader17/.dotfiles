@@ -71,16 +71,6 @@ type ng &>/dev/null && source <(ng completion script)
 # change-theme completions
 source ~/scripts/pywal/change-theme/change-theme-completions-bash.sh
 
-# nb - because it need global git user and email
-function nb() {
-	[ -f ~/.gitconfig.lock ] && rm -f ~/.gitconfig.lock
-	git config --global user.name "DO NOT PUSH COMMITS WITH THESE CREDENTIALS"
-	git config --global user.email "DO NOT PUSH COMMITS@WITH THESE CREDENTIALS"
-	command nb $@
-	git config --global --unset user.name
-	git config --global --unset user.email
-}
-
 ################################################################################
 # Plugins
 ################################################################################

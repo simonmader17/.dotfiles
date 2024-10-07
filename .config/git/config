@@ -1,0 +1,7 @@
+[user]
+	name = simonmader17
+	email = mail@simonmader.at
+[core]
+	editor = vim
+[init]
+	templatedir = ~/.config/git/template
