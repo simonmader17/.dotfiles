@@ -23,7 +23,7 @@ case "$ext" in
 				[ -f "$base.html" ] &&
 					{ kitty \
 						--working-directory "$dir" \
-						-- live-server "$base.html" & } ||
+						-- live-server "$dir" --open="${base##*/}.html" & } ||
 					notify-send -a nvim "open.sh" "No matching .html file found."
 			} ||
 			{
