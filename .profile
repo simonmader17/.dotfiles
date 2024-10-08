@@ -14,6 +14,9 @@ export TERMINAL="kitty"
 export BROWSER="firefox"
 export PDF_READER="zathura"
 
+# Gtk theme
+export GTK_THEME="Vimix-dark-jade"
+
 # When running bash
 [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 
