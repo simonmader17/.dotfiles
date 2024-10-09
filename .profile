@@ -6,7 +6,7 @@
 # ╚═╝╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
 
 # Reload pywal cache
-wal -R
+command -v wal && wal -Rq
 
 # Environmental variables
 export EDITOR="vim"
