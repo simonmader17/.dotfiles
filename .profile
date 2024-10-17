@@ -26,6 +26,7 @@ export GTK_THEME="Vimix-dark-jade"
 # PATH stuff
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/scripts/aliases" ] && PATH="$HOME/scripts/aliases:$PATH"
 
 # XDG Base Directory
 export XDG_CONFIG_HOME="$HOME/.config"
