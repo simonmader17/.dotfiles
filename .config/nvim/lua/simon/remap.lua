@@ -14,7 +14,7 @@ vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 
 -- (auto)compile, format and open document
 vim.keymap.set("n", "<leader>c", ":w<CR>:!~/scripts/compile.sh \"%:p\"<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>a", ":!~/scripts/autocompile.sh \"%:p\"<CR><CR>", { noremap = true })
+vim.keymap.set("n", "<leader>a", ":call jobstart([expand('~/scripts/autocompile.sh'), expand('%:p')])<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>f", ":w<CR>:!~/scripts/format.sh \"%:p\"<CR><CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>o", ":!~/scripts/open.sh \"%:p\"<CR><CR>", { noremap = true, silent = true })
 
