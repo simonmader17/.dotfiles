@@ -42,11 +42,6 @@ nordvpn() {
 	polybar-msg hook nordvpn 1 >/dev/null
 }
 
-# nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -70,6 +65,13 @@ type ng &>/dev/null && source <(ng completion script)
 
 # change-theme completions
 source ~/scripts/pywal/change-theme/change-theme-completions-bash.sh
+
+# flutter sdk
+export PATH="$HOME/.local/share/flutter/sdk/flutter/bin:$PATH"
+
+# fnm - Fast and simple Node.js version manager
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
+eval "$(fnm completions --shell zsh)"
 
 ################################################################################
 # Plugins

@@ -151,6 +151,9 @@ nordvpn() {
 # change-theme completions
 source ~/scripts/pywal/change-theme/change-theme-completions-bash.sh
 
-# nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# flutter sdk
+export PATH="$HOME/.local/share/flutter/sdk/flutter/bin:$PATH"
+
+# fnm - Fast and simple Node.js version manager
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell bash)"
+eval "$(fnm completions --shell bash)"
