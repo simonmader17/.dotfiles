@@ -5,10 +5,33 @@
 # ██╗███████╗███████║██║  ██║██║  ██║╚██████╗
 # ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 
+################################################################################
+# Greeting
+################################################################################
+
 if [ -n "$1" ] && [ "$1" != "--no-greeting" ]; then
 	echo "Usage: source $0 [ --no-greeting ]"
 	return 1
 fi
+
+greeting() {
+	if type colorscript &>/dev/null && type krabby &>/dev/null; then
+		if [ $(($RANDOM % 2)) = 0 ]; then
+			colorscript -r
+		else
+			[ $(($RANDOM % 4096)) -eq 0 ] && krabby random --shiny || krabby random
+		fi
+	else
+		type cowsay &>/dev/null && cowsay "Hello $USER" || echo "Hello $USER"
+	fi
+}
+if [ "$1" != "--no-greeting" ]; then
+	[ -f /usr/local/bin/greeting ] && /usr/local/bin/greeting || greeting
+fi
+
+################################################################################
+# Basic settings
+################################################################################
 
 stty -ixon # Disable ctrl-s and ctrl-q
 
@@ -39,7 +62,7 @@ fi
 # NordVPN automatically update polybar hook
 nordvpn() {
 	command nordvpn $@
-	polybar-msg hook nordvpn 1 >/dev/null
+	type polybar-msg &>/dev/null && polybar-msg hook nordvpn 1 >/dev/null
 }
 
 # bun
@@ -133,24 +156,3 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[OA' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^[OB' history-substring-search-down
-
-################################################################################
-# Greeting
-################################################################################
-greeting() {
-	if type colorscript &>/dev/null && type pokemon-colorscripts &>/dev/null; then
-		if [ $(($RANDOM % 2)) = 0 ]; then
-			colorscript -r
-		else
-			if [ $(($RANDOM % 4096)) -gt 0 ]
-			then pokemon-colorscripts -r
-			else pokemon-colorscripts -r -s
-			fi
-		fi
-	else
-		type cowsay &>/dev/null && cowsay "Hello $USER" || echo "Hello $USER"
-	fi
-}
-if [ "$1" != "--no-greeting" ]; then
-	[ -f /usr/local/bin/greeting ] && /usr/local/bin/greeting || greeting
-fi
