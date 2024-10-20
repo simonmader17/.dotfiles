@@ -3,6 +3,8 @@ Description=Spotify Notifier
 
 [Service]
 ExecStart=%h/scripts/notifiers/spotify-notifier/spotify-notifier.sh
+Restart=always
+RestartSec=3
 
 [Install]
 WantedBy=default.target

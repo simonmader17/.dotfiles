@@ -17,6 +17,9 @@ if type swww; then
 fi
 type waybar && ~/.config/waybar/launch.sh && ~/.config/waybar/launch.sh &
 
+# ckb-next
+~/scripts/pywal/set-ckb-next-colors.sh
+
 # Update betterlockscreen background
 # dunstify -h string:x-dunst-stack-tag:wallpaper-setter -i ~/scripts/pywal/pywal-icon.png "Wallpaper Setter" "Updating betterlockscreen background."
 type betterlockscreen && betterlockscreen -u "$WALLPAPER" --fx
@@ -32,8 +35,8 @@ ln -sf "$WALLPAPER" /mnt/d/Wallpaper/lockscreen
 ln -sf ~/sources/ChromiumPywal/Pywal ~/00-CHROMIUM-PYWAL-QUICK-ACCESS
 
 # apply spicetify and restart notification service
-type spicetify && (spicetify apply || spicetify restore backup apply)
-systemctl --user restart spotify-notifier.service
+# type spicetify && (spicetify apply || spicetify restore backup apply)
+# systemctl --user restart spotify-notifier.service
 
 # update pywalfox colors
 ~/.mozilla/firefox/simon-arkenfox/update-pywalfox.sh
