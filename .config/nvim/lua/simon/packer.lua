@@ -98,4 +98,7 @@ return require('packer').startup(function(use)
 
 	-- nvim-markdown
 	use "ixru/nvim-markdown"
+
+	-- Vim Tmux Navigator
+	use "christoomey/vim-tmux-navigator"
 end)
