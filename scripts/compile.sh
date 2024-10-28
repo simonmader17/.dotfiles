@@ -39,6 +39,9 @@ case "$ext" in
 				;;
 		esac
 		;;
+	rs)
+		cargo run
+		;;
 	tex)
 		# .tex files that should not be compiled using `pdflatex` should contain a
 		# comment in the first line of the document, that contains the wanted TeX

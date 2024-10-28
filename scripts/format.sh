@@ -22,5 +22,14 @@ case "$ext" in
 			-i \
 			"$file"
 		;;
+	rs)
+		rustfmt "$file"
+		;;
+	xml)
+		xmllint \
+			--format \
+			-o "$file" \
+			"$file"
+		;;
 	*) notify-send -a nvim "format.sh" "No formatting option for .$ext files specified." ;;
 esac
