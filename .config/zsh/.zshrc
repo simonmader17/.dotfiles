@@ -19,7 +19,7 @@ greeting() {
 		if [ $(($RANDOM % 2)) = 0 ]; then
 			colorscript -r
 		else
-			[ $(($RANDOM % 4096)) -eq 0 ] && krabby random --shiny || krabby random
+			[ $(($RANDOM % 4096)) -eq 0 ] && krabby random --info --shiny || krabby random --info
 		fi
 	else
 		type cowsay &>/dev/null && cowsay "Hello $USER" || echo "Hello $USER"
@@ -93,8 +93,8 @@ source ~/scripts/pywal/change-theme/change-theme-completions-bash.sh
 export PATH="$HOME/.local/share/flutter/sdk/flutter/bin:$PATH"
 
 # fnm - Fast and simple Node.js version manager
-eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
-eval "$(fnm completions --shell zsh)"
+type fnm &>/dev/null && eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
+type fnm &>/dev/null && eval "$(fnm completions --shell zsh)"
 
 ################################################################################
 # Plugins
