@@ -2,8 +2,8 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/simon/.gtkrc-2.0.mine"
-gtk-theme-name="Vimix-dark-jade"
-gtk-icon-theme-name="Vimix-Jade-dark"
+gtk-theme-name="Vimix-dark-doder"
+gtk-icon-theme-name="Vimix-Doder-dark"
 gtk-font-name="Cantarell 11"
 gtk-cursor-theme-name="BreezeX-RosePine-Linux"
 gtk-cursor-theme-size=30
