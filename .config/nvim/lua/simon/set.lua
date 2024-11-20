@@ -22,6 +22,8 @@ vim.opt.linebreak = true
 -- Deactivate mouse interactivity
 vim.opt.mouse = ""
 
+vim.opt.showmode = false
+
 vim.opt.cursorline = true
 
 vim.opt.scrolloff = 8
@@ -29,6 +31,14 @@ vim.opt.scrolloff = 8
 vim.opt.updatetime = 500
 
 vim.opt.colorcolumn = "80"
+
+-- This fixes manpage width
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = "man",
+	callback = function()
+		vim.opt_local.signcolumn = "no"
+	end
+})
 
 vim.g.tex_flavor = "latex"
 vim.api.nvim_create_autocmd({ "FileType" }, {
