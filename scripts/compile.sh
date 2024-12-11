@@ -39,6 +39,9 @@ case "$ext" in
 				;;
 		esac
 		;;
+	puml)
+		plantuml "$file"
+		;;
 	rs)
 		cargo run
 		;;
@@ -53,6 +56,9 @@ case "$ext" in
 		# For biber support:
 		grep -qi "addbibresource" "$file" &&
 			biber "$base" &&
+			$command "$file"
+		# Compile one more time for "witharrows" environment:
+		grep -qi "WithArrows" "$file" &&
 			$command "$file"
 		;;
 	*) notify-send -a nvim "compile.sh" "No compilation option for .$ext files specified." ;;

@@ -32,5 +32,10 @@ case "$ext" in
 					notify-send -a nvim "open.sh" "No matching .pdf file found."
 			}
 		;;
+	puml)
+		[ -f "$base.png" ] &&
+			{ nsxiv "$base.png" & } ||
+			notify-send -a nvim "open.sh" "No matching .png file found."
+		;;
 	*) notify-send -a nvim "open.sh" "Can't find file to open." ;;
 esac
