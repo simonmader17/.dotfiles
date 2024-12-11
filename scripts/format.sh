@@ -25,7 +25,7 @@ case "$ext" in
 	rs)
 		rustfmt "$file"
 		;;
-	xml)
+	xml|xslt)
 		xmllint \
 			--format \
 			-o "$file" \
