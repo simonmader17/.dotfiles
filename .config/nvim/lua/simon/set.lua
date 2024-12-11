@@ -32,11 +32,15 @@ vim.opt.updatetime = 500
 
 vim.opt.colorcolumn = "80"
 
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 -- This fixes manpage width
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = "man",
 	callback = function()
 		vim.opt_local.signcolumn = "no"
+		vim.opt.cursorline = false
 	end
 })
 
