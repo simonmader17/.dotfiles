@@ -2,7 +2,7 @@
 
 * {
   all: unset;
-  font-size: 14px;
+  font-size: 15px;
   font-family: "CaskaydiaCove Nerd Font";
   transition: 200ms;
 }
@@ -47,6 +47,8 @@ slider {
 
 .floating-notifications.background .notification-row .notification-background .notification .notification-content .summary {
   color: @foreground;
+	font-size: 17px;
+	font-weight: bold;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification .notification-content .time {
@@ -157,6 +159,8 @@ slider {
 
 .control-center .notification-row .notification-background .notification .notification-content .summary {
   color: @foreground;
+	font-size: 17px;
+	font-weight: bold;
 }
 
 .control-center .notification-row .notification-background .notification .notification-content .time {
