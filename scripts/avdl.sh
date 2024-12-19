@@ -21,3 +21,5 @@ echo "dl_link: <${dl_link%\?*}>"
 wget "${dl_link%\?*}" -O "$artist - $title.jpg"
 
 rm "$tmp_html"
+
+echo "$artist - $title.jpg"
