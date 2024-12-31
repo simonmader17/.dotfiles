@@ -6,6 +6,7 @@ dunst_tag='string:x-dunst-stack-tag:wl-clipboard-image-notifier'
 send_image_notification() {
 	tmpfile=$(mktemp)
 	wl-paste --type image/png > "$tmpfile"
+	[ ! -s "$tmpfile" ] && exit 0
 	ACTION=$(notify-send \
 		-a Clipboard \
 		-h "$swaync_tag" \
