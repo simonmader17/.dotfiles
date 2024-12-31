@@ -1,6 +1,6 @@
 #!/bin/bash
 
-waybar_theme="theme1"
+waybar_theme="dwm2"
 
 function waybar() {
 	echo "Launching waybar"

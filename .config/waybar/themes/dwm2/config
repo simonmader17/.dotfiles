@@ -1,0 +1,31 @@
+{
+	"layer": "top",
+
+	"include": ["~/.config/waybar/themes/dwm2/modules.json"],
+
+	// Modules left
+	"modules-left": [
+		"hyprland/workspaces",
+		"custom/seperator",
+		"hyprland/window"
+	],
+
+	// Modules center
+	"modules-center": [],
+
+	// Modules right
+	"modules-right": [
+		"tray",
+		"custom/disks",
+		"wireplumber",
+		"memory",
+		"cpu",
+		"temperature",
+		"network",
+		"battery",
+		"custom/weather",
+		"clock",
+		"custom/notification"
+	]
+}
+// vim:ft=jsonc
