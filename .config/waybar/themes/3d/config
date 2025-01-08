@@ -1,0 +1,37 @@
+{
+	"layer": "top",
+
+	"include": ["~/.config/waybar/themes/3d/modules.json"],
+
+	// Modules left
+	"modules-left": [
+		"hyprland/workspaces",
+		"hyprland/window"
+	],
+
+	// Modules center
+	"modules-center": [],
+
+	// Modules right
+	"modules-right": [
+		"tray",
+		"custom/disks",
+		"wireplumber",
+		"group/hardware",
+		"network",
+		"battery",
+		"custom/weather",
+		"clock",
+		"custom/notification"
+	],
+
+	"group/hardware": {
+		"orientation": "inherit",
+		"modules": [
+			"memory",
+			"cpu",
+			"temperature"
+		]
+	}
+}
+// vim:ft=jsonc

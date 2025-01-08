@@ -1,0 +1,113 @@
+// ███╗   ███╗ ██████╗ ██████╗ ██╗   ██╗██╗     ███████╗███████╗
+// ████╗ ████║██╔═══██╗██╔══██╗██║   ██║██║     ██╔════╝██╔════╝
+// ██╔████╔██║██║   ██║██║  ██║██║   ██║██║     █████╗  ███████╗
+// ██║╚██╔╝██║██║   ██║██║  ██║██║   ██║██║     ██╔══╝  ╚════██║
+// ██║ ╚═╝ ██║╚██████╔╝██████╔╝╚██████╔╝███████╗███████╗███████║
+// ╚═╝     ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚══════╝
+{
+	// Left modules
+	"hyprland/workspaces": {},
+
+	"hyprland/window": {
+		"icon": true
+	},
+
+	// Right modules
+	"tray": {
+		"show-passive-items": true,
+		"spacing": 5
+	},
+	"custom/weather": {
+		"format": "{}°C",
+		"interval": 900,
+		// "exec": "~/.config/waybar/themes/3d/scripts/custom-weather.sh",
+		"exec": "wttrbar --date-format %d.%m.%Y --location Böheimkirchen --hide-conditions -l de --observation-time",
+		"return-type": "json"
+	},
+	"custom/disks": {
+		"format": "",
+		"interval": 60,
+		"exec": "~/.config/waybar/themes/3d/scripts/custom-disks.sh",
+		"exec-if": "exit 0" // always run
+	},
+	"wireplumber": {
+		"format": "{volume}% {icon}",
+		"format-icons": ["", "", ""],
+		"format-muted": ""
+	},
+	"memory": {
+		"interval": 2,
+		"format": "{percentage}% ",
+		"tooltip-format": "{used}GiB memory used out of {total}GiB ({percentage}%)\n{swapUsed}GiB swap used out of {swapTotal}GiB ({swapPercentage}%)"
+	},
+	"cpu": {
+		"interval": 2,
+		"format": "{usage}% "
+	},
+	"temperature": {
+		"thermal-zone": 1,
+		"interval": 2,
+		"critical-threshold": 80,
+		"format": "{temperatureC}°C {icon}",
+		"format-icons": ["", "", "", "", ""],
+		"tooltip-format": "{temperatureC}°C\n{temperatureF}°F\n{temperatureK}°K"
+	},
+	"network": {
+		"interval": 3,
+		"format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes} {icon}",
+		"format-wifi": " {bandwidthDownBytes}  {bandwidthUpBytes} {icon}",
+		"format-icons": {
+			"ethernet": [""],
+			"wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+		},
+		"format-disconnected": "Disconnected 󰤮",
+		"tooltip-format-ethernet": "IP-Address: {ipaddr}\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}",
+		"tooltip-format-wifi": "{essid}\nIP-Address: {ipaddr}\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}\nSignal Strength: {signalStrength}%"
+	},
+	"battery": {
+		"interval": 15,
+		"states": {
+			"critical": 15
+		},
+		"format": "{capacity}% {icon}",
+		"format-icons": ["", "", "", "", ""],
+		"format-charging": "{capacity}% {icon}",
+		"tooltip-format": "{timeTo}\nPower Draw: {power}W\nCharge Cycles: {cycles}\nHealth: {health}%"
+	},
+	"clock": {
+		"interval": 1,
+		// "format": "{:%H:%M 󰥔 %d.%m.%Y }",
+		"format": "{:%h %d, %H:%M }",
+		"format-alt": "{:%H:%M:%S 󰥔 %Y-%m-%d }",
+		"tooltip-format": "{calendar}",
+		"calendar": {
+			"mode": "month",
+			"weeks-pos": "right",
+			"format": {
+				"today": "<span color='#ff6666'><b>{}</b></span>",
+				"weeks": "<span color='grey'><b>KW{}</b></span>"
+			}
+		}
+	},
+	"custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span ><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span ><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span ><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span ><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+}
+// vim:ft=jsonc
