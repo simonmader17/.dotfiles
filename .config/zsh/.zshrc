@@ -38,6 +38,10 @@ stty -ixon # Disable ctrl-s and ctrl-q
 # Change prompt
 source ~/.config/zsh/themes/sashimi-zsh-theme/sashimi.zsh-theme
 
+# Window title
+precmd () { print -Pn "\e]0;%n@%M: %~\a" } 
+preexec () { print -Pn "\e]0;%n@%M: $1\a" }
+
 # History
 HISTSIZE=10000
 SAVEHIST=10000
