@@ -37,7 +37,7 @@
 	},
 	"memory": {
 		"interval": 2,
-		"format": "{percentage}% ",
+		"format": "{percentage}% ",
 		"tooltip-format": "{used}GiB memory used out of {total}GiB ({percentage}%)\n{swapUsed}GiB swap used out of {swapTotal}GiB ({swapPercentage}%)"
 	},
 	"cpu": {
@@ -54,8 +54,8 @@
 	},
 	"network": {
 		"interval": 3,
-		"format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes} {icon}",
-		"format-wifi": " {bandwidthDownBytes}  {bandwidthUpBytes} {icon}",
+		"format-ethernet": "󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes} {icon}",
+		"format-wifi": "󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes} {icon}",
 		"format-icons": {
 			"ethernet": [""],
 			"wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
