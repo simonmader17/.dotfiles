@@ -9,7 +9,10 @@
 	"hyprland/workspaces": {},
 
 	"hyprland/window": {
-		"icon": true
+		"icon": true,
+		"rewrite": {
+			"(.*) — Mozilla Firefox": "$1"
+		}
 	},
 
 	// Right modules
@@ -61,8 +64,8 @@
 			"wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
 		},
 		"format-disconnected": "Disconnected 󰤮",
-		"tooltip-format-ethernet": "IP-Address: {ipaddr}\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}",
-		"tooltip-format-wifi": "{essid}\nIP-Address: {ipaddr}\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}\nSignal Strength: {signalStrength}%"
+		"tooltip-format-ethernet": "IP-Address: {ipaddr}<span color=\"gray\">/{cidr}</span>\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}",
+		"tooltip-format-wifi": "{essid}\nIP-Address: {ipaddr}<span color=\"gray\">/{cidr}</span>\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}\nSignal Strength: {signalStrength}%\nFrequency: {frequency}"
 	},
 	"battery": {
 		"interval": 15,
@@ -79,15 +82,25 @@
 		// "format": "{:%H:%M 󰥔 %d.%m.%Y }",
 		"format": "{:%h %d, %H:%M }",
 		"format-alt": "{:%H:%M:%S 󰥔 %Y-%m-%d }",
-		"tooltip-format": "{calendar}",
+		"tooltip-format": "<tt>{calendar}</tt>",
 		"calendar": {
 			"mode": "month",
-			"weeks-pos": "right",
+			"weeks-pos": "left",
+			"on-scroll": 1,
 			"format": {
 				"today": "<span color='#ff6666'><b>{}</b></span>",
 				"weeks": "<span color='grey'><b>KW{}</b></span>"
 			}
 		}
+	},
+	"custom/clock": {
+		"exec": "date '+%b %-d, %H:%M '",
+		"interval": 1,
+		"tooltip": false
+	},
+	"privacy": {
+		"icon-spacing": 5,
+		"icon-size": 14,
 	},
 	"custom/notification": {
     "tooltip": false,

@@ -77,7 +77,8 @@ tooltip label {
 #battery,
 #custom-weather,
 #clock,
-#custom-notification {
+#custom-clock,
+#notifications {
 	color: @background;
 	margin-right: 4px;
 	padding-left: 15px;
@@ -147,14 +148,19 @@ tooltip label {
 	border-bottom: 8px solid shade(@color4, 0.8);
 }
 
-#clock {
+#custom-clock, #clock {
 	background: @color6;
 	border-bottom: 8px solid shade(@color6, 0.8);
 }
 
-#custom-notification {
+#notifications {
 	background: @color1;
 	border-bottom: 8px solid shade(@color1, 0.8);
+}
+
+#notifications > * > label {
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 /* Keyframes ******************************************************************/

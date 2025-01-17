@@ -22,7 +22,9 @@
 		"battery",
 		"custom/weather",
 		"clock",
-		"custom/notification"
+		// "custom/clock",
+		// "custom/notification",
+		"group/notifications"
 	],
 
 	"group/hardware": {
@@ -31,6 +33,14 @@
 			"memory",
 			"cpu",
 			"temperature"
+		]
+	},
+
+	"group/notifications": {
+		"orientation": "inherit",
+		"modules": [
+			"privacy",
+			"custom/notification"
 		]
 	}
 }

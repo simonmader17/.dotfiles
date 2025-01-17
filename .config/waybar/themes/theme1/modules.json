@@ -52,8 +52,8 @@
 	},
 	"network": {
 		"interval": 3,
-		"format-ethernet": "{icon}",
-		"format-wifi": "{icon}",
+		"format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes} {icon}",
+		"format-wifi": " {bandwidthDownBytes}  {bandwidthUpBytes} {icon}",
 		"format-icons": {
 			"ethernet": [""],
 			"wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
