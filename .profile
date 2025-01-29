@@ -14,6 +14,7 @@ export MANPAGER="vim +Man!"
 export TERMINAL="kitty"
 export BROWSER="firefox"
 export PDF_READER="zathura"
+export CLIPHIST_DB_PATH="/tmp/cliphist/db"
 
 # Gtk theme
 export GTK_THEME="Vimix-dark-doder"
@@ -28,6 +29,7 @@ export GTK_THEME="Vimix-dark-doder"
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/scripts/aliases" ] && PATH="$HOME/scripts/aliases:$PATH"
+. "/home/simon/.local/share/cargo/env" # rustup
 
 # XDG Base Directory
 export XDG_CONFIG_HOME="$HOME/.config"
