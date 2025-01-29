@@ -18,7 +18,7 @@ fi
 type waybar && ~/.config/waybar/launch.sh && ~/.config/waybar/launch.sh &
 
 # ckb-next
-~/scripts/pywal/set-ckb-next-colors.sh
+# ~/scripts/pywal/set-ckb-next-colors.sh
 
 # Update betterlockscreen background
 # dunstify -h string:x-dunst-stack-tag:wallpaper-setter -i ~/scripts/pywal/pywal-icon.png "Wallpaper Setter" "Updating betterlockscreen background."
