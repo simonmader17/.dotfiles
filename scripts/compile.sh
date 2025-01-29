@@ -11,6 +11,8 @@ ext="${file##*.}"
 dir=${file%/*}
 base="${file%.*}"
 
+NID="$(notify-send -p -a nvim "compile.sh" "Compiling $base...")"
+
 cd "$dir" || exit 1
 
 case "$ext" in
@@ -53,13 +55,15 @@ case "$ext" in
 		head -n1 "$file" | grep -qi "lualatex" && command="lualatex"
 		head -n1 "$file" | grep -qi "xelatex" && command="xelatex"
 		$command "$file"
+		twice=false
 		# For biber support:
-		grep -qi "addbibresource" "$file" &&
-			biber "$base" &&
-			$command "$file"
-		# Compile one more time for "witharrows" environment:
-		grep -qi "WithArrows" "$file" &&
-			$command "$file"
+		grep -qi "addbibresource" "$file" && biber "$base" && twice=true
+		# Compile a second time in some cases:
+		grep -qi "WithArrows" "$file" && twice=true
+		grep -qi "tableofcontents" "$file" && twice=true
+		[ "$twice" = true ] && NID="$(notify-send -p -r $NID -a nvim "compile.sh" "Second compilation of $base...")" && $command "$file"
 		;;
-	*) notify-send -a nvim "compile.sh" "No compilation option for .$ext files specified." ;;
+	*) notify-send -r $NID -a nvim "compile.sh" "No compilation option for .$ext files specified." ;;
 esac
+
+notify-send -r $NID -t 1000 -a nvim "compile.sh" "Finished compilation."
