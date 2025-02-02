@@ -11,6 +11,7 @@ command -v wal && wal -Rq
 # Environmental variables
 export EDITOR="vim"
 export MANPAGER="vim +Man!"
+export MANWIDTH="80"
 export TERMINAL="kitty"
 export BROWSER="firefox"
 export PDF_READER="zathura"
