@@ -55,6 +55,7 @@ slider {
   background-color: @color2;
 	border-bottom: .3em solid shade(@color2, 0.8);
 	border-radius: .2em;
+	margin-top: 7px;
 }
 .notification.critical progress {
   background-color: @background;
@@ -264,5 +265,5 @@ slider {
 }
 
 .image {
-  padding-right: 0.5rem;
+	margin-right: 7px;
 }
