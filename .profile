@@ -17,8 +17,10 @@ export BROWSER="firefox"
 export PDF_READER="zathura"
 export CLIPHIST_DB_PATH="/tmp/cliphist/db"
 
-# Gtk theme
+# Theming stuff
 export GTK_THEME="Vimix-dark-doder"
+export QT_QPA_PLATFORMTHEME="gtk3"
+export QT_WAYLAND_DECORATION="adwaita"
 
 # When running bash
 [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
