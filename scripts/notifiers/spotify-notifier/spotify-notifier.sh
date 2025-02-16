@@ -1,24 +1,24 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 swaync_tag='string:x-canonical-private-synchronous:spotify-notifier'
 dunst_tag='string:x-dunst-stack-tag:spotify-notifier'
 
-# This icon cache maps a requested album art url to the tmp file that contains
-# the album art if it has already been requested. But the 3 different follow
-# processes have independent caches as they are different processes. Possible
-# solution: using shared memory and semaphores (TODO)
-declare -A icon_cache
+# The cover art images will be saved in /tmp/spotify-notifier/<hash of cover art
+# URL>.
+# If a file for a URL already exists, it will not be fetched again.
+cache_dir="/tmp/spotify-notifier"
+mkdir "$cache_dir"
 
 rm_cached_files() {
 	echo "Removing cached files"
-	for cached_file in "${icon_cache[@]}"
-	do
-		# rm -v "$cached_file"
-		echo "$cached_file" # Not working TODO
-	done
+	rm -rf "$cache_dir"
 }
+trap rm_cached_files SIGINT SIGTERM
 
-trap rm_cached_files SIGINT
+# Hash function
+hash() {
+	md5sum | cut -d" " -f1
+}
 
 # send_notification()
 #
@@ -33,34 +33,37 @@ send_notification() {
 
 		iconurl=$(playerctl --player=spotify metadata mpris:artUrl)
 		if [ -z "$iconurl" ]; then
-			icon="/usr/share/Pictures/spotify-black.png"
+			icon=""
 		else
-			if [ -z "${icon_cache["$iconurl"]}" ]; then
-				# if iconurl is not in the cache
-				iconfile=$(mktemp)
-				curl "$iconurl" > "$iconfile"
-				icon_cache["$iconurl"]="$iconfile"
-				echo "$iconurl not in cache, created $iconfile."
+			iconfile="$(echo "$iconurl" | hash)"
+			icon="$cache_dir/$iconfile"
+			if [ -f "$icon" ]; then
+				echo "Icon has already been fetched: $icon"
 			else
-				iconfile="${icon_cache["$iconurl"]}"
-				echo "Found $iconurl in cache: $iconfile."
-				fi
-				icon="$iconfile"
-			fi
-
-			if pgrep obs; then
-				dunstctl close-all
-			fi
-			if [ "$2" = "true" ]; then
-				notify-send -a Spotify -h "$swaync_tag" -h "$dunst_tag" -i "$icon" "$1$title" "$artist\nAlbum: <i>$album</i>" -h "int:value:$volume"
-			else
-				notify-send -a Spotify -h "$swaync_tag" -h "$dunst_tag" -i "$icon" "$1$title" "$artist\nAlbum: <i>$album</i>"
-			fi
-
-			if pgrep obs; then
-				maim --window $(xdotool search --class "Dunst") >/mnt/d/Fotos/spotify-dunst.png
+				echo "Fetching icon and saving to $icon"
+				curl "$iconurl" > "$icon"
 			fi
 		fi
+
+		if [ "$2" = "true" ]; then
+			notify-send \
+				-a spotify-launcher \
+				-h "$swaync_tag" \
+				-h "$dunst_tag" \
+				-h "int:value:$volume" \
+				-i "$icon" \
+				"$1$title" \
+				"$artist\nAlbum: <i>$album</i>" 
+		else
+			notify-send \
+				-a spotify-launcher \
+				-h "$swaync_tag" \
+				-h "$dunst_tag" \
+				-i "$icon" \
+				"$1$title" \
+				"$artist\nAlbum: <i>$album</i>"
+		fi
+	fi
 }
 
 follow_status() {
