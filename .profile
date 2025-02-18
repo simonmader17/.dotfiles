@@ -32,7 +32,6 @@ export QT_WAYLAND_DECORATION="adwaita"
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/scripts/aliases" ] && PATH="$HOME/scripts/aliases:$PATH"
-. "/home/simon/.local/share/cargo/env" # rustup
 
 # XDG Base Directory
 export XDG_CONFIG_HOME="$HOME/.config"

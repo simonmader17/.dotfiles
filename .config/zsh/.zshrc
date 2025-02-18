@@ -84,9 +84,6 @@ export CHROME_PATH="$(which brave-browser)"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
-# cargo
-export PATH="$HOME/.cargo/bin:$PATH"
-
 # Load Angular CLI autocompletion.
 type ng &>/dev/null && source <(ng completion script)
 

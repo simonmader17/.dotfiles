@@ -140,8 +140,6 @@ source ~/.fonts/*.sh
 # My Aliases
 source ~/.config/aliases/aliases
 
-export PATH="$HOME/.cargo/bin:$PATH"
-
 # NordVPN automatically update polybar hook
 nordvpn() {
 	command nordvpn "$@"
