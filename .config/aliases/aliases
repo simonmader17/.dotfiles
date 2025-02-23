@@ -23,7 +23,8 @@ alias rsmv='rsync -aP --remove-source-files'
 
 alias grep='grep --color'
 
-alias se="~/scripts/fuzzy-finder.sh"
+alias neofetch='fastfetch --config neofetch.jsonc'
+alias se='~/scripts/fuzzy-finder.sh'
 
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 alias lazydotfiles='/usr/bin/lazygit --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
@@ -31,8 +32,6 @@ alias lazydotfiles='/usr/bin/lazygit --git-dir="$HOME/.dotfiles/" --work-tree="$
 # ~/ clean up
 alias abook='abook --config "$XDG_CONFIG_HOME/abook/abookrc" --datafile "$XDG_DATA_HOME/abook/addressbook"'
 
-if [ "$TERM" = "xterm-kitty" ]; then
-	alias ssh="kitten ssh"
-fi
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 # vim:ft=sh
