@@ -55,8 +55,9 @@ source ~/.config/aliases/aliases
 autoload -U compinit && compinit
 autoload -U bashcompinit && bashcompinit
 _comp_options+=(globdots) # Include hidden files
-zstyle ':completion:*' menu select
+zstyle ':completion:*' menu select # tab opens cmp menu
 bindkey '^[[Z' reverse-menu-complete # Enable Shift+Tab in menu selection
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} 'ma=38;5;0;48;5;14' # colorize cmp menu
 
 # Load pywal theme
 if [ "$TERM" != "xterm-kitty" ]; then
