@@ -24,7 +24,7 @@
 		"format": "{}°C",
 		"interval": 900,
 		// "exec": "~/.config/waybar/themes/3d/scripts/custom-weather.sh",
-		"exec": "wttrbar --date-format %d.%m.%Y --location Böheimkirchen --hide-conditions -l de --observation-time",
+		"exec": "wttrbar --date-format %d.%m.%Y --hide-conditions -l de --observation-time",
 		"return-type": "json"
 	},
 	"custom/disks": {
