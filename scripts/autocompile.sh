@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This script toggles autocompilation for a document/file.
 # I bind this to <leader>a in vim.

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 swaync_tag='string:x-canonical-private-synchronous:wl-clipboard-image-notifier'
 dunst_tag='string:x-dunst-stack-tag:wl-clipboard-image-notifier'

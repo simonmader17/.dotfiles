@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 swaync_tag='string:x-canonical-private-synchronous:wallpaper-setter'
 dunst_tag='string:x-dunst-stack-tag:wallpaper-setter'

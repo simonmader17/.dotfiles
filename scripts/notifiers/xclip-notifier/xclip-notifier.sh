@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 send_text_notification() {
 	# Don't send text notification if a recording software like obs is running,

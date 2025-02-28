@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This script opens the file that has been produced by the `compile.sh` script.
 # I bind this to <leader>o in vim.

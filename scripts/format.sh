@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This script formats a document/file.
 # I bind this to <leader>f in vim.

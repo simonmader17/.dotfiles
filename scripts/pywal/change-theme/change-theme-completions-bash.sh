@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 _change_theme_completions() {
 	current_path=$(pwd)

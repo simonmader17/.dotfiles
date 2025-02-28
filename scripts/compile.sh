@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This script compiles a document/file.
 # I bind this to <leader>c in vim.

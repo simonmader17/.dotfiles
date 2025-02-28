@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 randw=$(find "/mnt/d/Wallpaper" \
 	-type f \
 	-not -path "*\.git*" \

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 if grimshot copy area; then
 	tmpfile=$(mktemp)
 	wl-paste > "$tmpfile"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Usage: ./brightness-control.sh { up | down }
 
 swaync_tag='string:x-canonical-private-synchronous:brightness-control'

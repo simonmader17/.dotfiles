@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 rbw unlock && rbw ls --fields name,user,folder \
 	| sort \

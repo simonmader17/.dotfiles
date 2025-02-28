@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 swaync_tag='string:x-canonical-private-synchronous:xclip-notifier'
 dunst_tag='string:x-dunst-stack-tag:xclip-notifier'

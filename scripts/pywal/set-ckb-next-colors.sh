@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 while ! lsof /tmp/ckbpipe000 || ! lsof /tmp/ckbpipe001; do
 	echo "Could not set ckb-next color."
 	echo "Is ckb-next running? Trying again in 2 seconds..."

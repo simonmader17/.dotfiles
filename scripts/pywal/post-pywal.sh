@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Add transparency to background and color6
 # dunstify -h string:x-dunst-stack-tag:wallpaper-setter -i ~/scripts/pywal/pywal-icon.png "Wallpaper Setter" "Adding transparency to background for Polybar."
@@ -26,7 +26,7 @@ type betterlockscreen && betterlockscreen -u "$WALLPAPER" --fx
 
 # Link /usr/share/Pictures/lockscreen to wallpaper
 # dunstify -h string:x-dunst-stack-tag:wallpaper-setter -i ~/scripts/pywal/pywal-icon.png "Wallpaper Setter" "Linking lockscreen image to wallpaper."
-ln -sf "$WALLPAPER" /mnt/d/Wallpaper/lockscreen
+# ln -sf "$WALLPAPER" /mnt/d/Wallpaper/lockscreen
 
 # Generate chromium theme
 # dunstify -h string:x-dunst-stack-tag:wallpaper-setter -i ~/scripts/pywal/pywal-icon.png "Wallpaper Setter" "Generating chromium theme."
