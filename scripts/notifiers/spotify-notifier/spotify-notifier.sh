@@ -37,11 +37,11 @@ send_notification() {
 		else
 			iconfile="$(echo "$iconurl" | hash)"
 			icon="$cache_dir/$iconfile"
-			if [ -f "$icon" ]; then
+			if [ -s "$icon" ]; then
 				echo "Icon has already been fetched: $icon"
 			else
 				echo "Fetching icon and saving to $icon"
-				curl "$iconurl" > "$icon"
+				curl "$iconurl" > "$icon" || icon=""
 			fi
 		fi
 
