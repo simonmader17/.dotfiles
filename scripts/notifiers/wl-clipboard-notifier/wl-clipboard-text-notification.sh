@@ -32,18 +32,18 @@ send_text_notification() {
 				-h "$dunst_tag" \
 				-i "accessories-clipboard" \
 				"Clipboard - Artvee" "Downloading artwork..."
-			cd /mnt/d/Wallpaper/artvee/
+			cd "$WALLS/artvee/"
 			artwork="$(~/scripts/avdl.sh "$content" | tail -n1)"
 			ACTION=$(notify-send \
 				-a Clipboard \
 				-h "$swaync_tag" \
 				-h "$dunst_tag" \
-				-i "/mnt/d/Wallpaper/artvee/$artwork" \
+				-i "$WALLS/artvee/$artwork" \
 				--action="openArtwork=Open artwork" \
 				"Clipboard - Artvee" "Downloaded artwork: $artwork")
 			case "$ACTION" in
 				"openArtwork")
-					nsxiv "/mnt/d/Wallpaper/artvee/$artwork" &
+					nsxiv "$WALLS/artvee/$artwork" &
 					;;
 				"2")
 					;;

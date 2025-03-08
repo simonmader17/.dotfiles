@@ -244,7 +244,7 @@ bindsym $mod+Shift+Return exec --no-startup-id $terminal --title "Terminal - flo
 bindsym $mod+Control+Return exec --no-startup-id ~/.config/i3/spawn-terminal-cwd.sh $terminal
 
 bindsym $mod+e exec --no-startup-id nautilus
-bindsym $mod+Shift+e exec --no-startup-id $terminal -e sh -c 'ranger /mnt/d/Wallpaper/ || ranger'
+bindsym $mod+Shift+e exec --no-startup-id $terminal -e sh -c "ranger $WALLS/ || ranger"
 bindsym $mod+b exec --no-startup-id $browser
 bindsym $mod+Shift+b exec --no-startup-id $browser --incognito
 bindsym $mod+Control+b exec --no-startup-id qutebrowser

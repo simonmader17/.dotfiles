@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-find /mnt/d/Wallpaper -type f | shuf | nsxiv -atb -
+find "$WALLS" -type f | shuf | nsxiv -atb -

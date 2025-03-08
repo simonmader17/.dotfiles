@@ -1,5 +1,5 @@
 {
-    "wallpaper": "/mnt/d/Wallpaper/nordic-wallpapers/wallpapers/ign_evening.png",
+    "wallpaper": "$WALLS/nordic-wallpapers/wallpapers/ign_evening.png",
     "alpha": "100",
 
     "special": {

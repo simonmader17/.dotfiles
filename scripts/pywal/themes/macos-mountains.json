@@ -1,5 +1,5 @@
 {
-    "wallpaper": "/mnt/d/Wallpaper/macos/10-12-6k.jpg",
+    "wallpaper": "$WALLS/macos/10-12-6k.jpg",
     "alpha": "100",
     "special": {
         "background": "#301107",

@@ -1,5 +1,5 @@
 {
-    "wallpaper": "/mnt/d/Wallpaper/nordic-wallpapers/wallpapers/misty_mountains.jpg",
+    "wallpaper": "$WALLS/nordic-wallpapers/wallpapers/misty_mountains.jpg",
     "alpha": "100",
 
     "special": {

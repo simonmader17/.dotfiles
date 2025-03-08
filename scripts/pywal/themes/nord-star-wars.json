@@ -1,5 +1,5 @@
 {
-    "wallpaper": "/mnt/d/Wallpaper/nordic-wallpapers/wallpapers/ign_starWars.jpg",
+    "wallpaper": "$WALLS/nordic-wallpapers/wallpapers/ign_starWars.jpg",
     "alpha": "100",
 
     "special": {
