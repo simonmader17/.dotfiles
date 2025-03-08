@@ -279,6 +279,9 @@ accent=$(trim_rgb "$(hex_to_rgb "$color2")")
 echo "Creating new userChrome.css..."
 
 cat > "$chrome_dir/userChrome.css" << EOF
+$chrome_overrides
+
+/* HERE IS PYWAL RELATED STUFF ************************************************/
 menupopup:not(#ContentSelectDropdownPopup, .toolbar-menupopup, .toolbar-menupopup menupopup) {
 	--panel-background: rgb($bg_light) !important;
 	--panel-border-color: rgb($accent) !important;
@@ -288,14 +291,14 @@ menupopup:not(#ContentSelectDropdownPopup, .toolbar-menupopup, .toolbar-menupopu
 		background-color: rgb($bg_lighter) !important;
 	}
 }
-
-/* Here are your overrides */
-$chrome_overrides
 EOF
 
 echo "Creating new userContent.css..."
 
 cat > "$chrome_dir/userContent.css" << EOF
+$content_overrides
+
+/* HERE IS PYWAL RELATED STUFF ************************************************/
 :root {
 	scrollbar-color: rgb($accent) rgb($bg_light);
 }
@@ -304,7 +307,4 @@ cat > "$chrome_dir/userContent.css" << EOF
 	color: #ffffff;
 	background: rgb($accent);
 }
-
-/* Here are your overrides */
-$content_overrides
 EOF

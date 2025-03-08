@@ -33,3 +33,7 @@ user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.aboutwelcome.enabled", false);
 user_pref("browser.tabs.tabmanager.enabled", false);
 user_pref("browser.profiles.enabled", true);
+
+/** other **/
+// user_pref("svg.context-properties.content.enabled", true);
+// user_pref("userchrome.curved_tabs.flipped-curve.enabled", false);

@@ -1,7 +1,18 @@
-/* @import url(css/autohide_bookmarks_toolbar.css); */ /* Does not seem to work... */
+/* FIREFOX CSSHACKS COMPONENTS ************************************************/
+
+/* @import url("./firefox-csshacks/chrome/tabs_on_bottom_v2.css"); */
+/* @import url("./firefox-csshacks/chrome/tabs_fill_available_width.css"); */
+@import url("./firefox-csshacks/chrome/centered_tab_content.css");
+@import url("./firefox-csshacks/chrome/urlbar_centered_text.css");
+@import url("./firefox-csshacks/chrome/tab_separator_lines.css");
+/* @import url("./firefox-csshacks/chrome/curved_tabs.css"); */
+@import url("./firefox-csshacks/chrome/autohide_bookmarks_toolbar.css");
+
+/* CUSTOM MODIFICATIONS *******************************************************/
 
 * {
-	font-family: "CaskaydiaCove Nerd Font";
+	/* font-family: "CaskaydiaCove Nerd Font"; */
+	font-family: "Ubuntu Nerd Font";
 	font-weight: 900;
 }
 
@@ -18,6 +29,8 @@ tab:not(:hover) .close-icon {
 #tabbrowser-tabs {
 	margin-left: 14px !important;
 	margin-right: 14px !important;
+	/* margin-left: 2px !important; */
+	/* margin-right: 2px !important; */
 }
 
 /* Hide unused space between #tabbrowser-tabs and .titlebar-buttonbox-container */
@@ -26,6 +39,7 @@ tab:not(:hover) .close-icon {
 }
 
 /* Hide window close button */
+.titlebar-button,
 .titlebar-buttonbox-container {
 	display: none !important;
 }
@@ -42,31 +56,3 @@ tab:not(:hover) .close-icon {
 #alltabs-button {
     display: none !important;
 }
-
-/* menupopup:not(#ContentSelectDropdownPopup, .toolbar-menupopup, .toolbar-menupopup menupopup) { */
-/*     --panel-padding: var(--panel-padding-block) 0 !important; */
-/*     --panel-border-radius: 0 !important; */
-/*     --panel-shadow: 4px 4px 2px -2px hsla(0,0%,0%,.4) !important; */
-/**/
-/*     > menu > menupopup { */
-/*         margin-inline: calc(-2 * var(--panel-shadow-margin)) !important; */
-/*     } */
-/**/
-/*     > menu, */
-/*     > menuitem { */
-/*         padding-block: 2px !important; */
-/*     } */
-/**/
-/*     menu:not([icon], .menu-iconic), */
-/*     menuitem:not([checked="true"], [icon], .menuitem-iconic) { */
-/*         padding-inline-start: 36px !important; */
-/*     } */
-/**/
-/*     menuseparator { */
-/*         padding-inline: 4px !important; */
-/*     } */
-/* } */
-/**/
-/* #context-navigation > .menuitem-iconic > .menu-iconic-left > .menu-iconic-icon { */
-/*     padding: 3px !important; */
-/* } */
