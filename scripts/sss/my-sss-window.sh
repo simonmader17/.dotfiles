@@ -15,7 +15,7 @@ if type Hyprland; then
 		--window-controls \
 		--window-background "#313131" \
 		--window-title-color "$(echo "$xcolors" | jq -r '.colors.color7')" \
-		-o "/mnt/d/Fotos/sss/$(date "+%Y-%m-%d_%H-%M-%S").png" && nautilus /mnt/d/Fotos/sss/
+		-o "$PIX/sss/$(date "+%Y-%m-%d_%H-%M-%S").png" && nautilus "$PIX/sss/"
 else
 	sss \
 		--notify \
@@ -29,5 +29,5 @@ else
 		--window-controls \
 		--window-background "#313131" \
 		--window-title-color "$(xrdb -get color7)" \
-		-o "/mnt/d/Fotos/sss/$(date "+%Y-%m-%d_%H-%M-%S").png" && nautilus /mnt/d/Fotos/sss/
+		-o "$PIX/sss/$(date "+%Y-%m-%d_%H-%M-%S").png" && nautilus "$PIX/sss/"
 fi

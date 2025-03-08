@@ -10,7 +10,7 @@ if type Hyprland; then
 		--author-font "CaskaydiaCove Nerd Font" \
 		--author "simonmader17" \
 		--shadow --shadow-image \
-		-o "/mnt/d/Fotos/sss/$(date "+%Y-%m-%d_%H-%M-%S").png" && nautilus /mnt/d/Fotos/sss/
+		-o "$PIX/sss/$(date "+%Y-%m-%d_%H-%M-%S").png" && nautilus "$PIX/sss/"
 else
 	sss \
 		--notify \
@@ -20,5 +20,5 @@ else
 		--fonts "CaskaydiaCove Nerd Font=18.0;" \
 		--author-font "CaskaydiaCove Nerd Font" \
 		--shadow --shadow-image \
-		-o "/mnt/d/Fotos/sss/$(date "+%Y-%m-%d_%H-%M-%S").png" && nautilus /mnt/d/Fotos/sss/
+		-o "$PIX/sss/$(date "+%Y-%m-%d_%H-%M-%S").png" && nautilus "$PIX/sss/"
 fi
