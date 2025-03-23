@@ -98,6 +98,9 @@ export PATH="$HOME/.local/share/flutter/sdk/flutter/bin:$PATH"
 type fnm &>/dev/null && eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
 type fnm &>/dev/null && eval "$(fnm completions --shell zsh)"
 
+# gpg-agent
+export GPG_TTY="$(tty)"
+
 ################################################################################
 # Plugins
 ################################################################################

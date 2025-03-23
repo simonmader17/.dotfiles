@@ -155,3 +155,6 @@ export PATH="$HOME/.local/share/flutter/sdk/flutter/bin:$PATH"
 # fnm - Fast and simple Node.js version manager
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell bash)"
 eval "$(fnm completions --shell bash)"
+
+# gpg-agent
+export GPG_TTY="$(tty)"
