@@ -4,8 +4,13 @@
 user_pref("browser.search.separatePrivateDefault", false);
 
 /** History **/
-user_pref("privacy.clearOnShutdown.history", false);
-user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false);
+user_pref("privacy.clearHistory.browsingHistoryAndDownloads", false);
+user_pref("privacy.clearHistory.formdata", false);
+user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", false);
+user_pref("privacy.clearOnShutdown_v2.downloads", false);
+user_pref("privacy.clearOnShutdown_v2.formdata", false);
+user_pref("privacy.clearSiteData.browsingHistoryAndDownloads", false);
+user_pref("privacy.clearSiteData.formdata", false);
 
 /** POCKET ***/
 user_pref("extensions.pocket.enabled", false);
