@@ -16,7 +16,7 @@
 log_file="$HOME/logs/simple-scan-ocr.log"
 echo "--------------------------------------------------------------------------------" >>"$log_file"
 echo "$(date -Iseconds): OCR started" >>"$log_file"
-nid="$(notify-send -p -i scanner "OCR started...")"
+nid="$(notify-send -p -t 100000 -i scanner "Performing OCR...")"
 
 filename=$3
 ocrmypdf \

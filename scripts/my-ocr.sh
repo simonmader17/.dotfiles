@@ -8,16 +8,16 @@
 # Arguments:
 # $1 - filename of the already existing PDF file
 
-[ -z "$1" ] && echo "filename missing" && exit 1
+[ -z "$1" ] && echo "Usage: $0 FILE" && exit 1
 filename="$1"
 
 log_file="$HOME/logs/my-ocr.log"
 echo "--------------------------------------------------------------------------------" >>"$log_file"
 echo "$(date -Iseconds): OCR started" >>"$log_file"
-nid="$(notify-send -p -i scanner "OCR started...")"
+nid="$(notify-send -p -t 100000 -i scanner "Performing OCR...")"
 
 mkdir /tmp/my-ocr
-cp "$filename" /tmp/my-ocr/"$filename" # Backup original file to /tmp/my-ocr/ directory
+cp "$filename" /tmp/my-ocr/"$(basename "$filename")" # Backup original file to /tmp/my-ocr/ directory
 
 ocrmypdf \
 	-l deu \
