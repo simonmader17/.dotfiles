@@ -3,10 +3,6 @@
 # 
 # Usage: set this file as the post-processing script in the simple-scan preferences. No extra arguments needed.
 # 
-# Requirements:
-# - simple-scan
-# - ocrmypdf
-# 
 # For reference, at the time of writing the arguments from simple-scan are:
 # $1    - the mime type, eg application/pdf
 # $2    - boolean, keep original file
@@ -16,19 +12,7 @@
 log_file="$HOME/logs/simple-scan-ocr.log"
 echo "--------------------------------------------------------------------------------" >>"$log_file"
 echo "$(date -Iseconds): OCR started" >>"$log_file"
-nid="$(notify-send -p -t 100000 -i scanner "Performing OCR...")"
 
 filename=$3
-ocrmypdf \
-	-l deu \
-	--deskew \
-	--clean \
-	--force-ocr \
-	--keywords "OCR,OCRmyPDF" \
-	"$filename" "$filename" &>>"$log_file"
-if [ $? -ne 0 ]; then
-  notify-send -r "$nid" -i scanner "OCR failed. See $log_file"
-  exit 1
-fi
-action="$(notify-send -r "$nid" --action="OPEN=Open PDF" -i scanner "OCR complete")"
-[ "$action" = "OPEN" ] && zathura "$filename" &
+echo "Executing ~/scripts/my-ocr.sh \"$filename\"" >>"$log_file"
+~/scripts/my-ocr.sh "$filename" &>>"$log_file"

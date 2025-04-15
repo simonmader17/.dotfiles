@@ -56,5 +56,5 @@ export WINEPREFIX="$XDG_DATA_HOME/wine"
 export XCURSOR_PATH="/usr/share/icons:$XDG_DATA_HOME/icons"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-# Device specific profile
-[ -f "$HOME/.device-specific-profile" ] && source "$HOME/.device-specific-profile"
+# Device specific profile overrides
+[ -f "$HOME/.profile-overrides" ] && source "$HOME/.profile-overrides"

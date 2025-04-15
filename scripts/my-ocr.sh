@@ -4,6 +4,7 @@
 #
 # Requirements:
 # - ocrmypdf
+# - tesseract-data-deu
 #
 # Arguments:
 # $1 - filename of the already existing PDF file
@@ -16,11 +17,15 @@ echo "--------------------------------------------------------------------------
 echo "$(date -Iseconds): OCR started" >>"$log_file"
 nid="$(notify-send -p -t 100000 -i scanner "Performing OCR...")"
 
-mkdir /tmp/my-ocr
-cp "$filename" /tmp/my-ocr/"$(basename "$filename")" # Backup original file to /tmp/my-ocr/ directory
+# Backup original file to /tmp/my-ocr/ directory
+tmp_file='/tmp/my-ocr'
+rm -rf "$tmp_file"; mkdir "$tmp_file"
+cp "$filename" "$tmp_file"/"$(date -Iseconds)"_"$(basename "$filename")"
 
 ocrmypdf \
 	-l deu \
+	--rotate-pages \
+	--rotate-pages-threshold 5 \
 	--deskew \
 	--clean \
 	--force-ocr \
@@ -30,5 +35,7 @@ if [ $? -ne 0 ]; then
   notify-send -r "$nid" -i scanner "OCR failed. See $log_file"
   exit 1
 fi
-action="$(notify-send -r "$nid" --action="OPEN=Open PDF" -i scanner "OCR complete")"
-[ "$action" = "OPEN" ] && zathura "$filename" &
+{
+	action="$(notify-send -r "$nid" --action="OPEN=Open PDF" -i scanner "OCR complete")"
+	[ "$action" = "OPEN" ] && zathura "$filename" &>/dev/null &
+} &
