@@ -16,7 +16,7 @@
 	"modules-right": [
 		"tray",
 		"custom/disks",
-		"wireplumber",
+		"group/controls",
 		"group/hardware",
 		"network",
 		"battery",
@@ -26,6 +26,14 @@
 		// "custom/notification",
 		"group/notifications"
 	],
+
+	"group/controls": {
+		"orientation": "inherit",
+		"modules": [
+			"wireplumber",
+			"backlight"
+		]
+	},
 
 	"group/hardware": {
 		"orientation": "inherit",

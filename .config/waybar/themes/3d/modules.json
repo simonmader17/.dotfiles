@@ -33,6 +33,10 @@
 		"exec": "~/.config/waybar/themes/3d/scripts/custom-disks.sh",
 		"exec-if": "exit 0" // always run
 	},
+	"backlight": {
+		"format": "{percent}% {icon}",
+		"format-icons": ["󰃞", "󰃟", "󰃠"]
+	},
 	"wireplumber": {
 		"format": "{volume}% {icon}",
 		"format-icons": ["", "", ""],

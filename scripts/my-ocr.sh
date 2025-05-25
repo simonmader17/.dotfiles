@@ -14,7 +14,7 @@ filename="$1"
 
 log_file="$HOME/logs/my-ocr.log"
 echo "--------------------------------------------------------------------------------" >>"$log_file"
-echo "$(date -Iseconds): OCR started" >>"$log_file"
+echo "$(date -Iseconds): Applying OCR to \"$filename\"" >>"$log_file"
 nid="$(notify-send -p -t 100000 -i scanner "Performing OCR...")"
 
 # Backup original file to /tmp/my-ocr/ directory
