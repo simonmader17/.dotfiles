@@ -97,7 +97,7 @@ return require('packer').startup(function(use)
 	use "amarakon/nvim-cmp-lua-latex-symbols"
 
 	-- nvim-markdown
-	use "ixru/nvim-markdown"
+	-- use "ixru/nvim-markdown"
 
 	-- Vim Tmux Navigator
 	use "christoomey/vim-tmux-navigator"

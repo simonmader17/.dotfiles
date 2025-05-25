@@ -8,7 +8,7 @@ color6="$(xrdb -get color6)"
 echo "*color6-transparent: ${color6:0:1}CC${color6:1}" >> ~/.cache/wal/colors.Xresources
 xrdb -merge ~/.cache/wal/colors.Xresources
 
-WALLPAPER="$(cat ~/.cache/wal/colors.json | jq ".wallpaper" -r)"
+WALLPAPER="$(cat ~/.cache/wal/wal)"
 
 # On wayland
 if type swww; then
@@ -22,7 +22,7 @@ type waybar && ~/.config/waybar/launch.sh && ~/.config/waybar/launch.sh &
 
 # Update betterlockscreen background
 # dunstify -h string:x-dunst-stack-tag:wallpaper-setter -i ~/scripts/pywal/pywal-icon.png "Wallpaper Setter" "Updating betterlockscreen background."
-type betterlockscreen && betterlockscreen -u "$WALLPAPER" --fx
+# type betterlockscreen && betterlockscreen -u "$WALLPAPER" --fx
 
 # Link /usr/share/Pictures/lockscreen to wallpaper
 # dunstify -h string:x-dunst-stack-tag:wallpaper-setter -i ~/scripts/pywal/pywal-icon.png "Wallpaper Setter" "Linking lockscreen image to wallpaper."
@@ -30,12 +30,12 @@ type betterlockscreen && betterlockscreen -u "$WALLPAPER" --fx
 
 # Generate chromium theme
 # dunstify -h string:x-dunst-stack-tag:wallpaper-setter -i ~/scripts/pywal/pywal-icon.png "Wallpaper Setter" "Generating chromium theme."
-~/sources/ChromiumPywal/generate-theme.sh
-~/scripts/pywalium/generate.sh
-ln -sf ~/sources/ChromiumPywal/Pywal ~/00-CHROMIUM-PYWAL-QUICK-ACCESS
+# ~/sources/ChromiumPywal/generate-theme.sh
+# ~/scripts/pywalium/generate.sh
+# ln -sf ~/sources/ChromiumPywal/Pywal ~/00-CHROMIUM-PYWAL-QUICK-ACCESS
 
 # apply spicetify and restart notification service
-# type spicetify && (spicetify apply || spicetify restore backup apply)
+type spicetify && (spicetify apply || spicetify restore backup apply)
 # systemctl --user restart spotify-notifier.service
 
 # update pywalfox colors

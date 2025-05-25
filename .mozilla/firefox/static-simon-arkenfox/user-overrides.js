@@ -42,3 +42,8 @@ user_pref("browser.profiles.enabled", true);
 /** other **/
 // user_pref("svg.context-properties.content.enabled", true);
 // user_pref("userchrome.curved_tabs.flipped-curve.enabled", false);
+
+/** Move disk cache to RAM **/
+user_pref("browser.cache.disk.enable", true);
+user_pref("browser.cache.disk.parent_directory", "/run/user/1000/firefox");
+user_pref("browser.cache.memory.enable", true);

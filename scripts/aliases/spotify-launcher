@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-pgrep -f 'spicetify watch --style' && pkill -f 'spicetify watch --style'
-spicetify watch --style &
