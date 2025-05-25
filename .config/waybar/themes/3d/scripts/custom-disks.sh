@@ -1,34 +1,35 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 # waybar custom module expects: $test\n$tooltip\n$class
 
-critical_threshold=95
-critical=false
-
 # First line: $text
-echo -n -e "\n"
+echo -ne "\n"
 
 # Second line: $tooltip
-~/scripts/my-disks.sh |
-{
-	while read line; do
-		if [[ "$line" =~ ^In\ total.*$ ]]; then
-			# Last line of tooltip
-			echo -n -e "$line\n"
-		else
-			percentage_used=$(echo $line | grep -oP '\(\K[0-9]+(?=%)')
-			if [ $percentage_used -ge $critical_threshold ]; then
-				critical=true
-				echo -n -e "<span color='#ff6666'>$line</span>\r"
-			else
-				echo -n -e "$line\r"
-			fi
-		fi
-	done
-
-	# Third line
-	if [[ "$critical" == true ]]; then
-		echo -n -e "critical\n"
+critical_threshold=92
+critical=false # flag for the $class in the third line
+while read -r line; do
+	if [[ "$line" =~ ^In\ total.*$ ]]; then
+		# Last line of tooltip
+		echo -ne "$line\n"
 	else
-		echo -n -e "\n"
+		# removes everything up to '('
+		percentage_used="${line##*(}"
+		# removes everything from '%)' onwards
+		percentage_used="${percentage_used%%%)*}"
+
+		if ((percentage_used >= critical_threshold)); then
+			critical=true
+			echo -ne "<span color='#ff6666'>$line</span>\r"
+		else
+			echo -ne "$line\r"
+		fi
 	fi
-}
+done < <(~/scripts/my-disks.sh)
+
+# Third line
+if $critical; then
+	echo -ne "critical\n"
+else
+	echo -ne "\n"
+fi
