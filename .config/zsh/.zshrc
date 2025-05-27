@@ -35,18 +35,21 @@ fi
 
 stty -ixon # Disable ctrl-s and ctrl-q
 
-# Change prompt
-source ~/.config/zsh/themes/sashimi-zsh-theme/sashimi.zsh-theme
+setopt globdots # include dotfiles
+setopt extended_glob # match ~ # ^
+setopt interactive_comments # allow comments in shell
+unsetopt prompt_sp # don't autoclean blanklines
 
 # Window title
 precmd () { print -Pn "\e]0;%n@%M: %~\a" } 
 preexec () { print -Pn "\e]0;%n@%M: $1\a" }
 
 # History
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 HISTFILE=~/.cache/zsh/history
-setopt hist_ignore_all_dups
+setopt hist_ignore_all_dups append_history inc_append_history share_history # better history
+# on exit, history appends rather than overwrites; history is appended as soon as cmds are executed; history shared across sessions
 
 # Aliases
 source ~/.config/aliases/aliases
@@ -114,33 +117,6 @@ source ~/.config/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # zsh-vi-mode
 source ~/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
-function zvm_after_select_vi_mode() {
-	# The vi mode indicator code below depends on my Sashimi zsh theme (loaded in line 9):
-	# https://github.com/simonmader17/sashimi-zsh-theme
-	case $ZVM_MODE in
-		$ZVM_MODE_NORMAL)
-			vi_mode_indicator="%B%{$fg[blue]%}[N]%{$reset_color%}"
-			PROMPT='$vi_mode_indicator $(sashimi)'
-			;;
-		$ZVM_MODE_INSERT)
-			vi_mode_indicator="%B%{$fg[green]%}[I]%{$reset_color%}"
-			PROMPT='$vi_mode_indicator $(sashimi)'
-			;;
-		$ZVM_MODE_VISUAL)
-			vi_mode_indicator="%B%{$fg[yellow]%}[V]%{$reset_color%}"
-			PROMPT='$vi_mode_indicator $(sashimi)'
-			;;
-		$ZVM_MODE_VISUAL_LINE)
-			vi_mode_indicator="%B%{$fg[yellow]%}[V]%{$reset_color%}"
-			PROMPT='$vi_mode_indicator $(sashimi)'
-			;;
-		$ZVM_MODE_REPLACE)
-			vi_mode_indicator="%B%{$fg[red]%}[R]%{$reset_color%}"
-			PROMPT='$vi_mode_indicator $(sashimi)'
-			;;
-	esac
-}
-zvm_after_init_commands+=(zvm_after_select_vi_mode)
 ZVM_CURSOR_STYLE_ENABLED=false
 function init_other_plugins() {
 	# Cycle through completion menu using Tab and Shift-Tab
@@ -148,9 +124,6 @@ function init_other_plugins() {
 	bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 }
 zvm_after_init_commands+=(init_other_plugins)
-
-# zsh-colored-man-pages
-# source ~/.config/zsh/plugins/zsh-colored-man-pages/colored-man-pages.plugin.zsh
 
 # zsh-syntax-highlighting (should be at the end of the config file)
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -161,3 +134,16 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[OA' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^[OB' history-substring-search-down
+
+# prompt
+NEWLINE=$'\n'
+# PS1="${NEWLINE}%B%F{cyan}%n%b%f @ %B%F{yellow}%M%b%f in %B%F{green}%~%b%f ${NEWLINE}%B%F{blue}$%b%f "
+# PS2="%F{blue}>%f "
+# PS1='%K{black} black %k%K{red} red %k%K{green} green %k%K{yellow} yellow %k%K{blue} blue %k%K{magenta} magenta %k%K{cyan} cyan %k%K{white} white %k%# '
+PS1="%F{244}[%f%B%F{blue}%n%b%f%F{244}@%f%B%F{magenta}%M%b%f %B%F{cyan}%1~%b%f%F{244}]%f%B%F{yellow}$%b%f "
+PS2="%F{yellow}>%f "
+
+# Change prompt
+# source ~/.config/zsh/themes/sashimi-zsh-theme/sashimi.zsh-theme
+
+source ~/.config/zsh/plugins/zsh-vi-mode-indicator/zsh-vi-mode-indicator.plugin.zsh
