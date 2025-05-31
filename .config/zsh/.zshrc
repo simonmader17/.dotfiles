@@ -6,7 +6,7 @@
 # ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 
 ################################################################################
-# Greeting
+# GREETING
 ################################################################################
 
 if [ -n "$1" ] && [ "$1" != "--no-greeting" ]; then
@@ -30,7 +30,7 @@ if [ "$1" != "--no-greeting" ]; then
 fi
 
 ################################################################################
-# Basic settings
+# BASIC SETTINGS
 ################################################################################
 
 stty -ixon # Disable ctrl-s and ctrl-q
@@ -105,7 +105,7 @@ type fnm &>/dev/null && eval "$(fnm completions --shell zsh)"
 export GPG_TTY="$(tty)"
 
 ################################################################################
-# Plugins
+# PLUGINS
 ################################################################################
 	
 # zsh-autosuggestions
@@ -135,13 +135,56 @@ bindkey '^[OA' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^[OB' history-substring-search-down
 
+################################################################################
+# BUILD PROMPT
+################################################################################
+setopt prompt_subst
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git # enable vcs_info only for git to improve performance
+zstyle ':vcs_info:*' check-for-changes true # causes %c and %u to show, potentially computationally expensive
+_vcs_git_ahead() {
+	commits="$(git rev-list --left-right --count '@{upstream}...HEAD' 2>/dev/null)"
+	(( $? != 0 )) && return
+	IFS=$'\t' read -r behind ahead <<< "$commits"
+	(( ahead > 0 )) && echo " ↑$ahead"
+	(( behind > 0 )) && echo " ↓$behind"
+}
+# vcs_info replacements:
+# - %b ... current branch
+# - %u ... unstagedstr
+# - %c ... stagedstr
+# - %m ... "misc" information
+zstyle ':vcs_info:*' formats       \
+	' %b%u%c%m'
+zstyle ':vcs_info:*' actionformats \
+	' %b (%a)%u%c%m'
+zstyle ':vcs_info:*' unstagedstr   \
+	' ✗'
+zstyle ':vcs_info:*' stagedstr     \
+	' '
+precmd_functions+=(vcs_info)
+# exit code of last process
+PS1='$(ret=$?; ((ret != 0)) && echo "%B%F{red}[$ret]%b%f ")'
+# begin of prompt
+PS1+='%F{244}[%f'
+# username
+PS1+='%B%F{blue}%n%b%f'
+# hostname
+PS1+='%F{244}@%f%B%F{magenta}%M%b%f '
+# pwd
+PS1+='%B%F{cyan}%1~%b%f'
+# git info
+PS1+='%F{green}${vcs_info_msg_0_}$(_vcs_git_ahead)%f'
+# end of prompt
+PS1+='%F{244}]%f%B%F{yellow}$%b%f '
+
+PS2="%F{yellow}>%f "
+
 # prompt
-NEWLINE=$'\n'
+# NEWLINE=$'\n'
 # PS1="${NEWLINE}%B%F{cyan}%n%b%f @ %B%F{yellow}%M%b%f in %B%F{green}%~%b%f ${NEWLINE}%B%F{blue}$%b%f "
 # PS2="%F{blue}>%f "
 # PS1='%K{black} black %k%K{red} red %k%K{green} green %k%K{yellow} yellow %k%K{blue} blue %k%K{magenta} magenta %k%K{cyan} cyan %k%K{white} white %k%# '
-PS1="%F{244}[%f%B%F{blue}%n%b%f%F{244}@%f%B%F{magenta}%M%b%f %B%F{cyan}%1~%b%f%F{244}]%f%B%F{yellow}$%b%f "
-PS2="%F{yellow}>%f "
 
 # Change prompt
 # source ~/.config/zsh/themes/sashimi-zsh-theme/sashimi.zsh-theme
