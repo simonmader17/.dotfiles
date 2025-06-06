@@ -6,7 +6,9 @@
 // ╚═╝     ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚══════╝
 {
 	// Left modules
-	"hyprland/workspaces": {},
+	"hyprland/workspaces": {
+		"sort-by": "id"
+	},
 
 	"hyprland/window": {
 		"icon": true,
