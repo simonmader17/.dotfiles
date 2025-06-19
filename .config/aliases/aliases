@@ -23,8 +23,8 @@ alias rscp='rsync -aP'
 alias rsmv='rsync -aP --remove-source-files'
 alias se='~/scripts/fuzzy-finder.sh'
 
-alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
-alias lazydotfiles='/usr/bin/lazygit --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+alias dotfiles='/usr/bin/git --git-dir ~/.dotfiles/ --work-tree ~'
+alias lazydotfiles='/usr/bin/lazygit --git-dir ~/.dotfiles/ --work-tree ~'
 
 # ~/ clean up
 alias abook='abook --config "$XDG_CONFIG_HOME/abook/abookrc" --datafile "$XDG_DATA_HOME/abook/addressbook"'
