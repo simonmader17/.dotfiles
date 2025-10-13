@@ -25,6 +25,9 @@ case "$ext" in
 	rs)
 		rustfmt "$file"
 		;;
+	tsx)
+		npx prettier "$file" --write
+		;;
 	xml|xslt)
 		xmllint \
 			--format \
