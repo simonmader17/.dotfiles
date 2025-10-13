@@ -63,6 +63,7 @@
 	},
 	"network": {
 		"interval": 3,
+		"format": "󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes} ",
 		"format-ethernet": "󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes} {icon}",
 		"format-wifi": "󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes} {icon}",
 		"format-icons": {
@@ -70,6 +71,7 @@
 			"wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
 		},
 		"format-disconnected": "Disconnected 󰤮",
+		"tooltip-format": "IP-Address: {ipaddr}<span color=\"gray\">/{cidr}</span>\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}",
 		"tooltip-format-ethernet": "IP-Address: {ipaddr}<span color=\"gray\">/{cidr}</span>\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}",
 		"tooltip-format-wifi": "{essid}\nIP-Address: {ipaddr}<span color=\"gray\">/{cidr}</span>\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}\nSignal Strength: {signalStrength}%\nFrequency: {frequency}"
 	},
@@ -86,7 +88,7 @@
 	"clock": {
 		"interval": 1,
 		// "format": "{:%H:%M 󰥔 %d.%m.%Y }",
-		"format": "{:%h %d, %H:%M }",
+		"format": "{:%a %d %h, %H:%M }",
 		"format-alt": "{:%H:%M:%S 󰥔 %Y-%m-%d }",
 		"tooltip-format": "<tt>{calendar}</tt>",
 		"calendar": {

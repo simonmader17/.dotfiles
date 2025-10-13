@@ -12,4 +12,6 @@ if [ ! -f "$theme_path" ]; then
 	exit 2
 fi
 
+wallpaper="$(jq -r '.wallpaper' "$theme_path" | envsubst)"
+wal -n -i "$wallpaper"
 wal --theme "$theme_path" -o "$HOME/scripts/pywal/post-pywal.sh"

@@ -7,7 +7,7 @@ notify-send -h "$swaync_tag" -h "$dunst_tag" \
 	-i ~/scripts/pywal/pywal-icon.png \
 	"Wallpaper Setter" "Setting \"$1\" as wallpaper..."
 
-wal -i "$1" --backend colorz -o ~/scripts/pywal/post-pywal.sh |
+wal -i "$1" -o ~/scripts/pywal/post-pywal.sh |
 while read -r line; do
 	notify-send -h "$swaync_tag" -h "$dunst_tag" \
 		-i ~/scripts/pywal/pywal-icon.png \

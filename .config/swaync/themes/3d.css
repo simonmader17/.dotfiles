@@ -3,7 +3,7 @@
 @define-color red #e78284;
 
 * {
-  all: unset;
+  // all: unset;
   font-size: 15px;
   font-family: "CaskaydiaCove Nerd Font";
   transition: 200ms;
