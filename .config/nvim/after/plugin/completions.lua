@@ -100,6 +100,20 @@ ls.add_snippets("markdown", {
 	s("sc", { t("["), i(1, "SMALLCAPS_TEXT"), t("]{.smallcaps}"), i(0) }),
 })
 
+ls.add_snippets("typst", {
+	s("bf", { t("*"), i(1, "BOLD_TEXT"), t("*"), i(0) }),
+	s("hi", { t("#highlight["), i(1, "IMPORTANT_TEXT"), t("]"), i(0)}),
+	s("it", { t("_"), i(1, "ITALIC_TEXT"), t("_"), i(0) }),
+	s("low", { t("#lower["), i(1, "LOWERCASE_TEXT"), t("]"), i(0)}),
+	s("ov", { t("#overline["), i(1, "OVERLINED_TEXT"), t("]"), i(0)}),
+	s("sc", { t("#smallcaps["), i(1, "SMALLCAPS_TEXT"), t("]"), i(0) }),
+	s("str", { t("#strike["), i(1, "STRIKE_THROUGH_TEXT"), t("]"), i(0)}),
+	s("sub", { t("#sub["), i(1, "TEXT_IN_SUBSCRIPT"), t("]"), i(0)}),
+	s("sup", { t("#super["), i(1, "TEXT_IN_SUPERSCRIPT"), t("]"), i(0)}),
+	s("tt", { t("`"), i(1, "TYPEWRITTEN_TEXT"), t("`"), i(0) }),
+	s("un", { t("#underline["), i(1, "UNDERLINED_TEXT"), t("]"), i(0)}),
+})
+
 ls.add_snippets("c", {
 	s("***", {
 		t { "/************************************************", " * " },
