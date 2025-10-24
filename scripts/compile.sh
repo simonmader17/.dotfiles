@@ -16,7 +16,6 @@ NID="$(notify-send -p -a nvim "compile.sh" "Compiling $base...")"
 cd "$dir" || exit 1
 
 case "$ext" in
-	mom|ms) preconv "$file" | tbl | refer -PS -e | groff -Tpdf -m"$ext" > "$base.pdf" ;;
 	md)
 		metadata="$(sed -n '/^---$/,/^---$/p' "$file")"
 		echo "$metadata" | grep -qi "marp: true" && marp=true || marp=false
@@ -41,6 +40,7 @@ case "$ext" in
 				;;
 		esac
 		;;
+	mom|ms) preconv "$file" | tbl | refer -PS -e | groff -Tpdf -m"$ext" > "$base.pdf" ;;
 	puml)
 		plantuml "$file"
 		;;
@@ -62,6 +62,9 @@ case "$ext" in
 		grep -qi "WithArrows" "$file" && twice=true
 		grep -qi "tableofcontents" "$file" && twice=true
 		[ "$twice" = true ] && NID="$(notify-send -p -r $NID -a nvim "compile.sh" "Second compilation of $base...")" && $command "$file"
+		;;
+	typ)
+		typst compile "$file"
 		;;
 	*) notify-send -r $NID -a nvim "compile.sh" "No compilation option for .$ext files specified." ;;
 esac

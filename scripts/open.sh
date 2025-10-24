@@ -12,7 +12,8 @@ cd "$dir" || exit 1
 
 case "$ext" in
 	mom|ms) ;&
-	tex)
+	tex) ;&
+	typ)
 		[ -f "$base.pdf" ] &&
 			{ zathura "$base.pdf" & } ||
 			notify-send -a nvim "open.sh" "No matching .pdf file found."
