@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+#
+# Use it in a git repo that is only accessible over vpn, like so:
+# `git config alias.vpn '!~/scripts/git-over-vpn.sh -V "VPN NAME"'`
+# then you can do:
+# `git vpn pull` and `git vpn push`
 
 usage() {
 	echo "Usage: $0 [-h] [-V VPN_NAME] [GIT_ARGS]"
