@@ -22,6 +22,7 @@ if [[ -z "$vpn_name" ]]; then
 	exit 1
 fi
 
+NEEDS_DISCONNECT=false
 if ! nmcli connection show --active | grep -q "$vpn_name"; then
 	NEEDS_DISCONNECT=true
 	nmcli connection up "$vpn_name"
