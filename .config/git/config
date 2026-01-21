@@ -1,7 +1,7 @@
 [user]
-	name = simonmader17
+	name = Simon Mader
 	email = mail@simonmader.at
-	signingkey = mail@simonmader.at
+	signingkey = 0C912397109B5D1F5D58FAB5A19ACD01D8CAE998
 [core]
 	editor = vim
 [init]
