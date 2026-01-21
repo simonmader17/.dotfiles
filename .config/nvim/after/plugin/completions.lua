@@ -38,6 +38,7 @@ local s = ls.snippet
 local t = ls.text_node
 local f = ls.function_node
 local i = ls.insert_node
+local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
 local tex_snippets = {
@@ -112,6 +113,17 @@ ls.add_snippets("typst", {
 	s("sup", { t("#super["), i(1, "TEXT_IN_SUPERSCRIPT"), t("]"), i(0)}),
 	s("tt", { t("`"), i(1, "TYPEWRITTEN_TEXT"), t("`"), i(0) }),
 	s("un", { t("#underline["), i(1, "UNDERLINED_TEXT"), t("]"), i(0)}),
+	s("code", fmt([[
+			```{}
+			{}
+			```
+
+			{}
+		]], {
+			i(1, "PROGRAMMING_LANGUAGE"),
+			i(2),
+			i(0),
+		})),
 })
 
 ls.add_snippets("c", {
