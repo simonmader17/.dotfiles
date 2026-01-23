@@ -13,7 +13,7 @@ export EDITOR="vim"
 export MANPAGER="vim +Man!"
 export MANWIDTH="80"
 export TERMINAL="kitty"
-export BROWSER="firefox"
+export BROWSER="brave"
 export PDF_READER="zathura"
 export CLIPHIST_DB_PATH="/tmp/cliphist/db"
 
