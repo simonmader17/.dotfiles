@@ -15,7 +15,7 @@ if type swww; then
 	pgrep swww || swww init
     swww img --transition-type outer --transition-pos 0.97,0.99 --transition-step 90 "$WALLPAPER"
 fi
-type waybar && ~/.config/waybar/launch.sh && ~/.config/waybar/launch.sh &
+pgrep -x waybar && ~/.config/waybar/toggle.sh && ~/.config/waybar/toggle.sh &
 
 # ckb-next
 # ~/scripts/pywal/set-ckb-next-colors.sh
@@ -31,7 +31,7 @@ type waybar && ~/.config/waybar/launch.sh && ~/.config/waybar/launch.sh &
 # Generate chromium theme
 # dunstify -h string:x-dunst-stack-tag:wallpaper-setter -i ~/scripts/pywal/pywal-icon.png "Wallpaper Setter" "Generating chromium theme."
 # ~/sources/ChromiumPywal/generate-theme.sh
-# ~/scripts/pywalium/generate.sh
+~/scripts/pywalium/generate.sh
 # ln -sf ~/sources/ChromiumPywal/Pywal ~/00-CHROMIUM-PYWAL-QUICK-ACCESS
 
 # apply spicetify and restart notification service

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 waybar_theme="3d"
 
@@ -10,7 +10,6 @@ function waybar() {
 }
 
 if pgrep -x waybar; then
-	# killall -ew waybar && waybar
 	killall -ew waybar
 else
 	waybar
