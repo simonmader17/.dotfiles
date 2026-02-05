@@ -23,16 +23,16 @@ Singleton {
 		stdout: StdioCollector {
 			onStreamFinished: {
 				if (text) {
-					var p = text.split(";")
-					root.iface = p[0]
-					root.rx = p[1]
-					root.rx_total = p[2]
-					root.tx = p[3]
-					root.tx_total = p[4]
-					root.quality = parseInt(p[5])
-					root.valid = true
+					var p = text.split(";");
+					root.iface = p[0];
+					root.rx = p[1];
+					root.rx_total = p[2];
+					root.tx = p[3];
+					root.tx_total = p[4];
+					root.quality = parseInt(p[5]);
+					root.valid = true;
 				} else {
-					root.valid = false
+					root.valid = false;
 				}
 			}
 		}

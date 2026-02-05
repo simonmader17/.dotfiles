@@ -39,10 +39,10 @@ My3dRectangle {
 			renderType: Globals.myIconFontRenderType
 			text: {
 				if (NetworkProc.iface.startsWith("e")) {
-					return "\ueb2f" // lan
+					return "\ueb2f"; // lan
 				} else if (NetworkProc.iface.startsWith("w")) {
 					if (NetworkProc.quality == -1) {
-						return "\ue1d8" // signal-wifi-4-bar
+						return "\ue1d8"; // signal-wifi-4-bar
 					}
 					return Helper.chooseIconBasedOnPercentage(
 						[
@@ -53,9 +53,9 @@ My3dRectangle {
 							"\ue1d8", // signal-wifi-4-bar
 						],
 						NetworkProc.quality / 100
-					)
+					);
 				} else {
-					return "\ueb8b" // question-mark
+					return "\ueb8b"; // question-mark
 				}
 			}
 		}

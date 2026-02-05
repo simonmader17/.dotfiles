@@ -40,9 +40,9 @@ My3dRectangle {
 					acceptedButtons: Qt.LeftButton | Qt.RightButton
 					onClicked: (mouse) => {
 						if (mouse.button == Qt.LeftButton) {
-							trayItem.modelData.activate()
+							trayItem.modelData.activate();
 						} else if (mouse.button == Qt.RightButton) {
-							menu.open()
+							menu.open();
 						}
 					}
 				}

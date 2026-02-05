@@ -20,13 +20,13 @@ Singleton {
 		stdout: StdioCollector {
 			onStreamFinished: {
 				if (text) {
-					var p = text.split(";")
-					root.memoryUsage = parseInt(p[0])
-					root.memoryUsed = parseFloat(p[1])
-					root.memoryTotal = parseFloat(p[2])
-					root.valid = true
+					var p = text.split(";");
+					root.memoryUsage = parseInt(p[0]);
+					root.memoryUsed = parseFloat(p[1]);
+					root.memoryTotal = parseFloat(p[2]);
+					root.valid = true;
 				} else {
-					root.valid = false
+					root.valid = false;
 				}
 			}
 		}

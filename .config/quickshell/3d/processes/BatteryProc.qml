@@ -28,21 +28,21 @@ Singleton {
 		stdout: StdioCollector {
 			onStreamFinished: {
 				if (text) {
-					var p = text.split(";")
-					root.capacity = parseInt(p[0])
-					root.status = p[1]
-					root.acOnline = parseInt(p[2])
-					root.powerNow = parseInt(p[3])
-					root.energyNow = parseInt(p[4])
-					root.energyFull = parseInt(p[5])
-					root.energyFullDesign = parseInt(p[6])
-					root.voltageNow = parseInt(p[7])
-					root.voltageMinDesign = parseInt(p[8])
-					root.manufacturer = p[9]
-					root.modelName = p[10]
-					root.valid = true
+					var p = text.split(";");
+					root.capacity = parseInt(p[0]);
+					root.status = p[1];
+					root.acOnline = parseInt(p[2]);
+					root.powerNow = parseInt(p[3]);
+					root.energyNow = parseInt(p[4]);
+					root.energyFull = parseInt(p[5]);
+					root.energyFullDesign = parseInt(p[6]);
+					root.voltageNow = parseInt(p[7]);
+					root.voltageMinDesign = parseInt(p[8]);
+					root.manufacturer = p[9];
+					root.modelName = p[10];
+					root.valid = true;
 				} else {
-					root.valid = false
+					root.valid = false;
 				}
 			}
 		}

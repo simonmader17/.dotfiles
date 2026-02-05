@@ -37,19 +37,19 @@ My3dRectangle {
 					renderType: Globals.myIconFontRenderType
 					text: {
 						if (!root.sink) {
-							return "\uf4f3"
+							return "\uf4f3"; // media-output-off
 						}
 						if (root.sink.audio.muted) {
-							return "\ue04f"
+							return "\ue04f"; // volume-off
 						}
 						return Helper.chooseIconBasedOnPercentage(
 							[
-								"\ue04e",
-								"\ue04d",
-								"\ue050",
+								"\ue04e", // volume-mute
+								"\ue04d", // volume-down
+								"\ue050", // volume-up
 							],
 							root.sink?.audio.volume || 0
-						)
+						);
 					}
 				}
 
@@ -70,12 +70,12 @@ My3dRectangle {
 				anchors.fill: parent
 				onClicked: {
 					if (root.sink) {
-						root.sink.audio.muted = !root.sink.audio.muted
+						root.sink.audio.muted = !root.sink.audio.muted;
 					}
 				}
 				onWheel: (event) => {
 					if (root.sink) {
-						root.sink.audio.volume = Math.min(1, root.sink.audio.volume + (event.angleDelta.y / 120) * 0.05)
+						root.sink.audio.volume = Math.min(1, root.sink.audio.volume + (event.angleDelta.y / 120) * 0.05);
 					}
 				}
 			}
@@ -98,12 +98,12 @@ My3dRectangle {
 					renderType: Globals.myIconFontRenderType
 					text: {
 						if (!root.source) {
-							return "\uf392"
+							return "\uf392"; // mic-alert
 						}
 						if (root.source.audio.muted) {
-							return "\ue02b"
+							return "\ue02b"; // mic-off
 						}
-						return "\ue029"
+						return "\ue029"; // mic
 					}
 				}
 
@@ -124,12 +124,12 @@ My3dRectangle {
 				anchors.fill: parent
 				onClicked: {
 					if (root.source) {
-						root.source.audio.muted = !root.source.audio.muted
+						root.source.audio.muted = !root.source.audio.muted;
 					}
 				}
 				onWheel: (event) => {
 					if (root.source) {
-						root.source.audio.volume = Math.min(1, root.source.audio.volume + (event.angleDelta.y / 120) * 0.05)
+						root.source.audio.volume = Math.min(1, root.source.audio.volume + (event.angleDelta.y / 120) * 0.05);
 					}
 				}
 			}

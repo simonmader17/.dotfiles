@@ -18,10 +18,10 @@ Singleton {
 		stdout: StdioCollector {
 			onStreamFinished: {
 				if (text) {
-					root.cpuTemp = parseInt(text)
-					root.valid = true
+					root.cpuTemp = parseInt(text);
+					root.valid = true;
 				} else {
-					root.valid = false
+					root.valid = false;
 				}
 			}
 		}

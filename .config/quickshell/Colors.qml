@@ -28,25 +28,25 @@ Singleton {
 	property string color15
 
 	function loadPywalColors(data: string): void {
-		const wal = JSON.parse(data)
-		root.background = wal.special.background
-		root.foreground = wal.special.foreground
-		root.color0 = wal.colors.color0
-		root.color1 = wal.colors.color1
-		root.color2 = wal.colors.color2
-		root.color3 = wal.colors.color3
-		root.color4 = wal.colors.color4
-		root.color5 = wal.colors.color5
-		root.color6 = wal.colors.color6
-		root.color7 = wal.colors.color7
-		root.color8 = wal.colors.color8
-		root.color9 = wal.colors.color9
-		root.color10 = wal.colors.color10
-		root.color11 = wal.colors.color11
-		root.color12 = wal.colors.color12
-		root.color13 = wal.colors.color13
-		root.color14 = wal.colors.color14
-		root.color15 = wal.colors.color15
+		const wal = JSON.parse(data);
+		root.background = wal.special.background;
+		root.foreground = wal.special.foreground;
+		root.color0 = wal.colors.color0;
+		root.color1 = wal.colors.color1;
+		root.color2 = wal.colors.color2;
+		root.color3 = wal.colors.color3;
+		root.color4 = wal.colors.color4;
+		root.color5 = wal.colors.color5;
+		root.color6 = wal.colors.color6;
+		root.color7 = wal.colors.color7;
+		root.color8 = wal.colors.color8;
+		root.color9 = wal.colors.color9;
+		root.color10 = wal.colors.color10;
+		root.color11 = wal.colors.color11;
+		root.color12 = wal.colors.color12;
+		root.color13 = wal.colors.color13;
+		root.color14 = wal.colors.color14;
+		root.color15 = wal.colors.color15;
 	}
 
 	FileView {

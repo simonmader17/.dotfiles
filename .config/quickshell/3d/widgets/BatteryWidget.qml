@@ -30,17 +30,17 @@ My3dRectangle {
 
 			color: {
 				if (BatteryProc.status == "Charging") {
-					return Helper.contrastColor(root.baseColor, Qt.darker(root.baseColor, 1.5), Qt.lighter(root.baseColor, 1.5))
+					return Helper.contrastColor(root.baseColor, Qt.darker(root.baseColor, 1.5), Qt.lighter(root.baseColor, 1.5));
 				} else if (BatteryProc.capacity <= 20) {
-					return "red"
+					return "red";
 				} else {
-					return Helper.contrastColor(root.baseColor, Colors.background, Colors.foreground)
+					return Helper.contrastColor(root.baseColor, Colors.background, Colors.foreground);
 				}
 			}
 
 			text: {
 				if (BatteryProc.status !== "Charging" && BatteryProc.acOnline) {
-					return "\ue63c" // power
+					return "\ue63c"; // power
 				}
 				return Helper.chooseIconBasedOnPercentage(
 					[
@@ -54,7 +54,7 @@ My3dRectangle {
 						"\uf304", // battery-android-full
 					],
 					BatteryProc.capacity / 100
-				)
+				);
 			}
 			// Overlay charging icon
 			Text {
@@ -75,27 +75,29 @@ My3dRectangle {
 			baseColor: Qt.darker(root.baseColor, 2)
 
 			function r(value) {
-				return Math.round(value * 10) / 10
+				return Math.round(value * 10) / 10;
 			}
+
 			function f(value) {
-				return r(value / 1_000_000)
+				return r(value / 1_000_000);
 			}
+
 			function remainingTime() {
 				if (BatteryProc.powerNow === 0) {
-					return "No power draw detected."
+					return "No power draw detected.";
 				}
-				const totalSeconds = Math.floor((BatteryProc.status === "Discharging" ? BatteryProc.energyNow : BatteryProc.energyFull - BatteryProc.energyNow) / BatteryProc.powerNow * 3600)
-				const label = `Time until ${BatteryProc.status === "Discharging" ? "empty" : "full"}`
+				const totalSeconds = Math.floor((BatteryProc.status === "Discharging" ? BatteryProc.energyNow : BatteryProc.energyFull - BatteryProc.energyNow) / BatteryProc.powerNow * 3600);
+				const label = `Time until ${BatteryProc.status === "Discharging" ? "empty" : "full"}`;
 				if (totalSeconds >= 3600) {
-					const h = Math.floor(totalSeconds / 3600)
-					const m = Math.floor((totalSeconds % 3600) / 60)
-					return `${label}: ${h}h ${m}m remaining`
+					const h = Math.floor(totalSeconds / 3600);
+					const m = Math.floor((totalSeconds % 3600) / 60);
+					return `${label}: ${h}h ${m}m remaining`;
 				}
 				if (totalSeconds >= 60) {
-					const m = Math.floor(totalSeconds / 60)
-					return `${label}: ${m} minutes remaining`
+					const m = Math.floor(totalSeconds / 60);
+					return `${label}: ${m} minutes remaining`;
 				}
-				return `${label}: ${totalSeconds} seconds remaining`
+				return `${label}: ${totalSeconds} seconds remaining`;
 			}
 
 			text: "Model: " + BatteryProc.manufacturer + " " + BatteryProc.modelName + "\n"

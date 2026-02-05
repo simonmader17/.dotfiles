@@ -21,13 +21,13 @@ Item {
 			let child = node.children[i];
 			if (child.hasOwnProperty("text") && "color" in child && !child.colorSet) {
 				if (root.textColor.valid) {
-					child.color = Qt.binding(() => root.textColor)
+					child.color = Qt.binding(() => root.textColor);
 				} else {
 					child.color = Qt.binding(() => Helper.contrastColor(
 						root.baseColor,
 						Colors.background,
 						Colors.foreground
-					))
+					));
 				}
 			}
 			if (child.children.length > 0) {
