@@ -39,10 +39,11 @@ My3dRectangle {
 					anchors.fill: parent
 					acceptedButtons: Qt.LeftButton | Qt.RightButton
 					onClicked: (mouse) => {
-						if (mouse.button == Qt.LeftButton) {
+						console.log(JSON.stringify(trayItem.modelData))
+						if (mouse.button == Qt.RightButton || trayItem.modelData.onlyMenu) {
+							if (trayItem.modelData.hasMenu) menu.open();
+						} else {
 							trayItem.modelData.activate();
-						} else if (mouse.button == Qt.RightButton) {
-							menu.open();
 						}
 					}
 				}
