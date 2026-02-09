@@ -21,6 +21,7 @@ Singleton {
 			"wght": 700
 		}
 	})
+
 	readonly property font myIconFontOutlined: ({
 		family: "Material Symbols Outlined",
 		pixelSize: 24,
@@ -31,5 +32,18 @@ Singleton {
 			"wght": 700
 		}
 	})
+
 	readonly property var myIconFontRenderType: Text.CurveRendering
+
+	function guessIcon(id) {
+		switch (id) {
+			// custom icon mappings
+			case "terminal-floating": return "kitty";
+		}
+		const byId = DesktopEntries.byId(id);
+		if (byId) return byId.icon;
+		const heuristicLookup = DesktopEntries.heuristicLookup(id);
+		if (heuristicLookup) return heuristicLookup.icon;
+		return "application-x-executable";
+	}
 }

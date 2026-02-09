@@ -72,7 +72,10 @@ GridLayout {
 								id: iconImage
 
 								anchors.fill: parent
-								source: icon.modelData.wayland ? Quickshell.iconPath(icon.modelData.wayland.appId, true) : ""
+								source: {
+									var id = icon.modelData?.wayland?.appId;
+									return Quickshell.iconPath(Globals.guessIcon(id), true)
+								}
 							}
 
 							MultiEffect {

@@ -17,8 +17,13 @@ My3dRectangle {
 	textColor: Helper.contrastColor(baseColor, "black", "white")
 
 	RowLayout {
+		Layout.maximumWidth: 350
+
 		IconImage {
-			source: Quickshell.iconPath(Hyprland.activeToplevel?.wayland?.appId, true)
+			source: {
+				var id = Hyprland.activeToplevel?.wayland?.appId;
+				return Quickshell.iconPath(Globals.guessIcon(id), true)
+			}
 			visible: source.toString() !== ""
 			implicitWidth: 1.5 * title.implicitHeight
 			implicitHeight: 1.5 * title.implicitHeight
@@ -27,6 +32,8 @@ My3dRectangle {
 		Text {
 			id: title
 
+			Layout.fillWidth: true
+			elide: Text.ElideRight
 			font: Globals.myFont
 			text: Hyprland.activeToplevel?.title || ""
 		}
