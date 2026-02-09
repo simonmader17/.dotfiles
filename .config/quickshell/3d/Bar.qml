@@ -78,49 +78,59 @@ Scope {
 					}
 				}
 
-				// Left widgets
-				RowLayout {
-					id: leftWidgets
+				FlexboxLayout {
+					anchors.fill: parent
+					justifyContent: FlexboxLayout.JustifySpaceBetween
+					gap: 4
 
-					spacing: 4
-					anchors {
-						left: parent.left
-						top: parent.top
-						bottom: parent.bottom
+					// Left widgets
+					RowLayout {
+						id: leftWidgets
+
+						Layout.fillWidth: true
+
+						spacing: 4
+						// anchors {
+						// 	left: parent.left
+						// 	top: parent.top
+						// 	bottom: parent.bottom
+						// }
+
+						WorkspacesWidget {
+							screen: topBar.screen
+							visible: screen.height > 1080
+						}
+
+						WindowWidget {}
 					}
 
-					WorkspacesWidget {
-						screen: topBar.screen
-						visible: screen.height > 1080
+					// Right widgets
+					RowLayout {
+						id: rightWidgets
+
+						spacing: 4
+						// anchors {
+						// 	right: parent.right
+						// 	top: parent.top
+						// 	bottom: parent.bottom
+						// }
+
+						MediaWidget {}
+
+						TrayWidget {}
+
+						AudioWidget {}
+
+						CpuMemWidget {}
+
+						NetworkWidget {}
+
+						BatteryWidget {}
+
+						ClockWidget {}
+
+						NotificationsWidget {}
 					}
-
-					WindowWidget {}
-				}
-
-				// Right widgets
-				RowLayout {
-					id: rightWidgets
-
-					spacing: 4
-					anchors {
-						right: parent.right
-						top: parent.top
-						bottom: parent.bottom
-					}
-
-					TrayWidget {}
-
-					AudioWidget {}
-
-					CpuMemWidget {}
-
-					NetworkWidget {}
-
-					BatteryWidget {}
-
-					ClockWidget {}
-
-					NotificationsWidget {}
 				}
 			}
 		}
