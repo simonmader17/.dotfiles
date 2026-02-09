@@ -15,7 +15,11 @@ My3dRectangle {
 
 	RowLayout {
 		Repeater {
-			model: SystemTray.items.values
+			model: {
+				let trayItems = [...SystemTray.items.values]
+				trayItems.sort((i1, i2) => i1.title.localeCompare(i2.title))
+				return trayItems;
+			}
 
 			Item {
 				id: trayItem
@@ -39,7 +43,6 @@ My3dRectangle {
 					anchors.fill: parent
 					acceptedButtons: Qt.LeftButton | Qt.RightButton
 					onClicked: (mouse) => {
-						console.log(JSON.stringify(trayItem.modelData))
 						if (mouse.button == Qt.RightButton || trayItem.modelData.onlyMenu) {
 							if (trayItem.modelData.hasMenu) menu.open();
 						} else {
