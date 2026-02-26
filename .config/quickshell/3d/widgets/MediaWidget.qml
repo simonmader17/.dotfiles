@@ -5,6 +5,7 @@ import Quickshell.Services.Mpris
 
 import ".."
 import "../components"
+import "../helper.js" as Helper
 
 My3dRectangle {
 	id: root
@@ -62,7 +63,7 @@ My3dRectangle {
 							width: parent.width
 							height: equalizer.height * 0.3
 							radius: 2
-							color: Colors.foreground
+							color: Helper.contrastColor(Colors.color4, Colors.background, Colors.foreground)
 
 							SequentialAnimation on height {
 								running: true

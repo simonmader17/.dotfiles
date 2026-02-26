@@ -8,24 +8,24 @@ import Quickshell.Io
 Singleton {
 	id: root
 
-	property string background
-	property string foreground
-	property string color0
-	property string color1
-	property string color2
-	property string color3
-	property string color4
-	property string color5
-	property string color6
-	property string color7
-	property string color8
-	property string color9
-	property string color10
-	property string color11
-	property string color12
-	property string color13
-	property string color14
-	property string color15
+	property color background
+	property color foreground
+	property color color0
+	property color color1
+	property color color2
+	property color color3
+	property color color4
+	property color color5
+	property color color6
+	property color color7
+	property color color8
+	property color color9
+	property color color10
+	property color color11
+	property color color12
+	property color color13
+	property color color14
+	property color color15
 
 	function loadPywalColors(data: string): void {
 		const wal = JSON.parse(data);
