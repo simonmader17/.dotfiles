@@ -11,9 +11,9 @@ xrdb -merge ~/.cache/wal/colors.Xresources
 WALLPAPER="$(cat ~/.cache/wal/wal)"
 
 # On wayland
-if type swww; then
-	pgrep swww || swww init
-    swww img --transition-type outer --transition-pos 0.97,0.99 --transition-step 90 "$WALLPAPER"
+if type awww; then
+	pgrep awww || awww init
+	awww img --transition-type outer --transition-pos 0.97,0.99 --transition-step 90 "$WALLPAPER"
 fi
 pgrep -x waybar && ~/.config/waybar/toggle.sh && ~/.config/waybar/toggle.sh &
 

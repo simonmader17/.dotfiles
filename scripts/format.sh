@@ -13,6 +13,12 @@ cd "$dir" || exit 1
 case "$ext" in
 	c) clang-format -i --style "{BasedOnStyle: llvm, IndentWidth: 4}" "$file" ;;
 	java) clang-format -i "$file" ;;
+	lua)
+		stylua \
+			--column-width=80 \
+			--space-after-function-names=Definitions \
+			"$file"
+		;;
 	py) black "$file" ;;
 	rs) rustfmt "$file" ;;
 	tsx) npx prettier "$file" --write ;;
