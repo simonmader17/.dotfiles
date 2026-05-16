@@ -406,10 +406,26 @@ for i = 1, 4 do
 end
 
 -- Resize window
-hl.bind("SUPER + SHIFT + Z", hl.dsp.window.resize({ x = -20, y = 0 }), r)
-hl.bind("SUPER + SHIFT + U", hl.dsp.window.resize({ x = 0, y = -20 }), r)
-hl.bind("SUPER + SHIFT + I", hl.dsp.window.resize({ x = 0, y = 20 }), r)
-hl.bind("SUPER + SHIFT + O", hl.dsp.window.resize({ x = 20, y = 0 }), r)
+hl.bind(
+	"SUPER + SHIFT + Z",
+	hl.dsp.window.resize({ x = -20, y = 0, relative = true }),
+	r
+)
+hl.bind(
+	"SUPER + SHIFT + U",
+	hl.dsp.window.resize({ x = 0, y = -20, relative = true }),
+	r
+)
+hl.bind(
+	"SUPER + SHIFT + I",
+	hl.dsp.window.resize({ x = 0, y = 20, relative = true }),
+	r
+)
+hl.bind(
+	"SUPER + SHIFT + O",
+	hl.dsp.window.resize({ x = 20, y = 0, relative = true }),
+	r
+)
 
 -- Resize gaps
 require("gaps")
