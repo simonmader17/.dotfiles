@@ -84,10 +84,12 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 ---- CURSOR SETTINGS ----
 -------------------------
 
-hl.exec_cmd(
-	"gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic"
-)
-hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size 24")
+hl.on("hyprland.start", function ()
+	hl.exec_cmd(
+		"gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic"
+	)
+	hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size 24")
+end)
 hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_THEME", "bibata-cursor-git")
