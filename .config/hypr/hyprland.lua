@@ -39,16 +39,16 @@ local terminal = "kitty"
 -------------------
 
 hl.on("hyprland.start", function ()
+	hl.exec_cmd("awww-daemon")
 	hl.exec_cmd("blueman-applet")
 	hl.exec_cmd("gammastep -l 48.1:16.2 -t 6500:4000")
+	hl.exec_cmd("hypridle")
 	hl.exec_cmd("hyprpm reload -n")
 	hl.exec_cmd("sleep 1; nextcloud")
 	hl.exec_cmd("sleep 1; nm-applet")
-	hl.exec_cmd("sleep 1; uwsm app -- awww-daemon")
+	hl.exec_cmd("swaync")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("systemctl --user start wl-clipboard-notifier.service")
-	hl.exec_cmd("uwsm app -- hypridle")
-	hl.exec_cmd("uwsm app -- swaync")
 	hl.exec_cmd("wal -R")
 	hl.exec_cmd(HOME .. "/.config/quickshell/toggle.sh")
 

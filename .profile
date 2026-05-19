@@ -58,8 +58,3 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # Device specific profile overrides
 [ -f "$HOME/.profile-overrides" ] && source "$HOME/.profile-overrides"
-
-# Launch Hyprland
-if uwsm check may-start && uwsm select; then
-	exec uwsm start default
-fi
