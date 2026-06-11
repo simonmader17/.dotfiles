@@ -25,8 +25,8 @@ My3dRectangle {
 				return Quickshell.iconPath(Globals.guessIcon(id), true)
 			}
 			visible: source.toString() !== ""
-			implicitWidth: 1.5 * title.implicitHeight
-			implicitHeight: 1.5 * title.implicitHeight
+			implicitWidth: 1.8 * title.font.pixelSize
+			implicitHeight: 1.8 * title.font.pixelSize
 		}
 
 		Text {
