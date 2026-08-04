@@ -58,6 +58,10 @@
     "pywal": {
       "rev": "e9eca6870acc27c08e3d8dc7e121c25b48283273",
       "src": "https://github.com/simonmader17/pywal.nvim"
+    },
+    "snacks.nvim": {
+      "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
+      "src": "https://github.com/folke/snacks.nvim"
     }
   }
 }

@@ -10,6 +10,7 @@ require("plugins.pywal") -- must go before lualine
 require("plugins.codestats")
 require("plugins.lualine")
 require("plugins.nvim-tree")
+require("plugins.snacks-nvim")
 
 -- completions
 require("plugins.nvim-treesitter")
