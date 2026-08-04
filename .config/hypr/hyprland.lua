@@ -14,10 +14,10 @@ local colors = require("colors")
 ------------------
 
 hl.monitor({
-	output = "",
-	mode = "preferred",
-	position = "auto",
-	scale = "auto",
+  output = "",
+  mode = "preferred",
+  position = "auto",
+  scale = "auto",
 })
 -- configure monitors in hyprland-overrides.lua per device
 
@@ -25,7 +25,7 @@ hl.monitor({
 ---- MY PROGRAMS ----
 ---------------------
 
-local browser = "brave-origin-nightly"
+local browser = "brave-origin"
 local browser_incognito_flag = "--incognito"
 local file_manager = "nemo"
 local menu = HOME .. "/.config/rofi/launch.sh"
@@ -39,23 +39,23 @@ local terminal = "kitty"
 -------------------
 
 hl.on("hyprland.start", function ()
-	hl.exec_cmd("awww-daemon")
-	hl.exec_cmd("blueman-applet")
-	hl.exec_cmd("gammastep -l 48.1:16.2 -t 6500:4000")
-	hl.exec_cmd("hypridle")
-	hl.exec_cmd("hyprpm reload -n")
-	hl.exec_cmd("sleep 1; nextcloud")
-	hl.exec_cmd("sleep 1; nm-applet")
-	hl.exec_cmd("swaync")
-	hl.exec_cmd("systemctl --user start hyprpolkitagent")
-	hl.exec_cmd("systemctl --user start wl-clipboard-notifier.service")
-	hl.exec_cmd("wal -R")
-	hl.exec_cmd(HOME .. "/.config/quickshell/toggle.sh")
+  hl.exec_cmd("awww-daemon")
+  hl.exec_cmd("blueman-applet")
+  hl.exec_cmd("gammastep -l 48.1:16.2 -t 6500:4000")
+  hl.exec_cmd("hypridle")
+  hl.exec_cmd("hyprpm reload -n")
+  hl.exec_cmd("sleep 1; nextcloud")
+  hl.exec_cmd("sleep 1; nm-applet")
+  hl.exec_cmd("swaync")
+  hl.exec_cmd("systemctl --user start hyprpolkitagent")
+  hl.exec_cmd("systemctl --user start wl-clipboard-notifier.service")
+  hl.exec_cmd("wal -R")
+  hl.exec_cmd(HOME .. "/.config/quickshell/toggle.sh")
 
-	-- Autostart apps on "✉️" named workspace, as autostarting apps on special
-	-- workspace is not working
-	hl.exec_cmd("signal-desktop", { workspace = "name:✉️ silent" })
-	hl.exec_cmd("thunderbird", { workspace = "name:✉️ silent" })
+  -- Autostart apps on "✉️" named workspace, as autostarting apps on special
+  -- workspace is not working
+  hl.exec_cmd("signal-desktop", { workspace = "name:✉️ silent" })
+  hl.exec_cmd("thunderbird", { workspace = "name:✉️ silent" })
 end)
 
 -------------------------------
@@ -85,20 +85,20 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 -------------------------
 
 hl.on("hyprland.start", function ()
-	hl.exec_cmd(
-		"gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic"
-	)
-	hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size 24")
+  hl.exec_cmd(
+    "gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic"
+  )
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size 24")
 end)
 hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_THEME", "bibata-cursor-git")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.config({
-	cursor = {
-		no_hardware_cursors = 1,
-		inactive_timeout = 5,
-	},
+  cursor = {
+    no_hardware_cursors = 1,
+    inactive_timeout = 5,
+  },
 })
 
 -----------------------
@@ -106,68 +106,68 @@ hl.config({
 -----------------------
 
 hl.config({
-	general = {
-		gaps_in = 5,
-		gaps_out = 10,
-		border_size = 5,
+  general = {
+    gaps_in = 5,
+    gaps_out = 10,
+    border_size = 5,
 
-		col = {
-			active_border = {
-				colors = { colors.color1, colors.color4 },
-				angle = 45,
-			},
-			inactive_border = colors.color0,
-		},
+    col = {
+      active_border = {
+        colors = { colors.color1, colors.color4 },
+        angle = 45,
+      },
+      inactive_border = colors.color0,
+    },
 
-		layout = "dwindle",
-		allow_tearing = false,
-	},
+    layout = "dwindle",
+    allow_tearing = false,
+  },
 
-	dwindle = {
-		force_split = 2,
-		precise_mouse_move = true,
-	},
+  dwindle = {
+    force_split = 2,
+    precise_mouse_move = true,
+  },
 
-	decoration = {
-		rounding = 14,
+  decoration = {
+    rounding = 14,
 
-		blur = {
-			enabled = true,
-			size = 8,
-			passes = 3,
-			xray = true,
-			popups = true,
-		},
+    blur = {
+      enabled = true,
+      size = 8,
+      passes = 3,
+      xray = true,
+      popups = true,
+    },
 
-		shadow = {
-			enabled = true,
-			range = 300,
-			offset = { 0, 40 },
-			scale = 0.9,
-			render_power = 4,
-			color = "#00000066",
-		},
-	},
+    shadow = {
+      enabled = true,
+      range = 300,
+      offset = { 0, 40 },
+      scale = 0.9,
+      render_power = 4,
+      color = "#00000066",
+    },
+  },
 
-	animations = {
-		enabled = true,
-	},
+  animations = {
+    enabled = true,
+  },
 
-	binds = {
-		movefocus_cycles_fullscreen = false,
-	},
+  binds = {
+    movefocus_cycles_fullscreen = false,
+  },
 
-	gestures = {
-		workspace_swipe_touch = true,
-	},
+  gestures = {
+    workspace_swipe_touch = true,
+  },
 
-	misc = {
-		disable_hyprland_logo = true,
-		background_color = colors.background,
-		animate_manual_resizes = true,
-		middle_click_paste = false,
-		enable_anr_dialog = false,
-	},
+  misc = {
+    disable_hyprland_logo = true,
+    background_color = colors.background,
+    animate_manual_resizes = true,
+    middle_click_paste = false,
+    enable_anr_dialog = false,
+  },
 })
 
 -- stylua: ignore start
@@ -179,7 +179,7 @@ hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}
 hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
 
 -- Default springs
-hl.curve("easy",           { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
+hl.curve("easy",           { type = "spring", mass = 0.55, stiffness = 229.2633, dampening = 18.8273644 })
 
 hl.animation({ leaf = "global",        enabled = true,  speed = 10,   bezier = "default" })
 hl.animation({ leaf = "border",        enabled = true,  speed = 5.39, bezier = "easeOutQuint" })
@@ -205,38 +205,38 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 -----------------
 
 if hl.plugin.hyprexpo ~= nil then
-	hl.config({
-		plugin = {
-			hyprexpo = {
-				columns = 2,
-				gap_size = 5,
-				bg_col = colors.background,
-				skip_empty = true,
-			},
-		},
-	})
+  hl.config({
+    plugin = {
+      hyprexpo = {
+        columns = 2,
+        gap_size = 5,
+        bg_col = colors.background,
+        skip_empty = true,
+      },
+    },
+  })
 end
 if hl.plugin.hyprgrass ~= nil then
-	hl.config({
-		plugin = {
-			touch_gestures = {
-				sensitivity = 4.0,
-				workspace_swipe_fingers = 3,
-				workspace_swipe_edge = "d",
-				-- ["hyprgrass-bindm"] = ", longpress:2, movewindow",
-				-- ["hyprgrass-bindm"] = ", longpress:3, resizewindow",
-			},
-		},
-	})
+  hl.config({
+    plugin = {
+      touch_gestures = {
+        sensitivity = 4.0,
+        workspace_swipe_fingers = 3,
+        workspace_swipe_edge = "d",
+        -- ["hyprgrass-bindm"] = ", longpress:2, movewindow",
+        -- ["hyprgrass-bindm"] = ", longpress:3, resizewindow",
+      },
+    },
+  })
 end
 if hl.plugin.hyprtrails ~= nil then
-	hl.config({
-		plugin = {
-			hyprtrails = {
-				color = colors.color2 .. "aa",
-			},
-		},
-	})
+  hl.config({
+    plugin = {
+      hyprtrails = {
+        color = colors.color2 .. "aa",
+      },
+    },
+  })
 end
 
 ---------------
@@ -244,30 +244,30 @@ end
 ---------------
 
 hl.config({
-	input = {
-		kb_layout = "de",
-		kb_variant = "",
-		kb_model = "",
-		kb_options = "",
-		kb_rules = "",
+  input = {
+    kb_layout = "de",
+    kb_variant = "",
+    kb_model = "",
+    kb_options = "",
+    kb_rules = "",
 
-		repeat_rate = 40,
-		repeat_delay = 200,
+    repeat_rate = 40,
+    repeat_delay = 200,
 
-		follow_mouse = 2,
-		float_switch_override_focus = 0,
+    follow_mouse = 2,
+    float_switch_override_focus = 0,
 
-		sensitivity = 0,
-		accel_profile = "flat",
+    sensitivity = 0,
+    accel_profile = "flat",
 
-		touchpad = {
-			natural_scroll = true,
-		},
+    touchpad = {
+      natural_scroll = true,
+    },
 
-		tablet = {
-			output = "current",
-		},
-	},
+    tablet = {
+      output = "current",
+    },
+  },
 })
 
 ---------------------
@@ -281,8 +281,8 @@ hl.bind("SUPER + SHIFT + SPACE", hl.dsp.window.center())
 -- Programs
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(
-	"SUPER + SHIFT + RETURN",
-	hl.dsp.exec_cmd(terminal .. ' --class="terminal-floating"')
+  "SUPER + SHIFT + RETURN",
+  hl.dsp.exec_cmd(terminal .. ' --class="terminal-floating"')
 )
 hl.bind("CONTROL + SHIFT + ESCAPE", hl.dsp.exec_cmd("missioncenter"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
@@ -296,41 +296,41 @@ hl.bind("SUPER + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
 hl.bind("SUPER + PERIOD", hl.dsp.exec_cmd(menu))
 hl.bind("SUPER + S", hl.dsp.exec_cmd("spotify-launcher"))
 hl.bind(
-	"SUPER + SHIFT + B",
-	hl.dsp.exec_cmd(browser .. " " .. browser_incognito_flag)
+  "SUPER + SHIFT + B",
+  hl.dsp.exec_cmd(browser .. " " .. browser_incognito_flag)
 )
 hl.bind("SUPER + SHIFT + C", hl.dsp.exec_cmd(HOME .. "/scripts/dictionary.sh"))
 hl.bind("SUPER + SHIFT + PERIOD", hl.dsp.exec_cmd(menu_run))
 hl.bind(
-	"SUPER + SHIFT + R",
-	hl.dsp.exec_cmd(HOME .. "/.config/quickshell/toggle.sh")
+  "SUPER + SHIFT + R",
+  hl.dsp.exec_cmd(HOME .. "/.config/quickshell/toggle.sh")
 )
 hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd("chatterino"))
 hl.bind(
-	"SUPER + SHIFT + W",
-	hl.dsp.exec_cmd(HOME .. "/scripts/pywal/random-wallpaper.sh")
+  "SUPER + SHIFT + W",
+  hl.dsp.exec_cmd(HOME .. "/scripts/pywal/random-wallpaper.sh")
 )
 hl.bind("SUPER + T", hl.dsp.exec_cmd("teamspeak3"))
 hl.bind("SUPER + W", hl.dsp.exec_cmd(HOME .. "/scripts/wallpapers.sh"))
 
 -- Clipboard
 hl.on("hyprland.start", function ()
-	hl.exec_cmd("wl-paste --type text --watch cliphist store")
-	hl.exec_cmd("wl-paste --type image --watch cliphist store")
+  hl.exec_cmd("wl-paste --type text --watch cliphist store")
+  hl.exec_cmd("wl-paste --type image --watch cliphist store")
 end)
 hl.bind(
-	"SUPER + V",
-	hl.dsp.exec_cmd(
-		"cliphist list | " .. menu_dmenu .. " | cliphist decode | wl-copy"
-	)
+  "SUPER + V",
+  hl.dsp.exec_cmd(
+    "cliphist list | " .. menu_dmenu .. " | cliphist decode | wl-copy"
+  )
 )
 
 -- Screenshots
 hl.bind(
-	"SUPER + SHIFT + S",
-	hl.dsp.exec_cmd(
-		"wayfreeze --after-freeze-cmd 'slurp | grim -g - - | { swappy -f - & }; killall wayfreeze'"
-	)
+  "SUPER + SHIFT + S",
+  hl.dsp.exec_cmd(
+    "wayfreeze --after-freeze-cmd 'slurp | grim -g - - | { swappy -f - & }; killall wayfreeze'"
+  )
 )
 
 -- Audio controls
@@ -338,95 +338,95 @@ local l = { locked = true }
 local r = { repeating = true }
 local lr = { locked = true, repeating = true }
 hl.bind(
-	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1.0 @DEFAULT_SINK@ 5%+"),
-	lr
+  "XF86AudioRaiseVolume",
+  hl.dsp.exec_cmd("wpctl set-volume -l 1.0 @DEFAULT_SINK@ 5%+"),
+  lr
 )
 hl.bind(
-	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%-"),
-	lr
+  "XF86AudioLowerVolume",
+  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%-"),
+  lr
 )
 hl.bind(
-	"XF86AudioMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SINK@ togglr"),
-	lr
+  "XF86AudioMute",
+  hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SINK@ togglr"),
+  lr
 )
 hl.bind(
-	"XF86AudioMicMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ togglr"),
-	lr
+  "XF86AudioMicMute",
+  hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ togglr"),
+  lr
 )
 
 -- Spotify controls
 local sptfy = "playerctl --player spotify"
 for _, keys in ipairs({
-	"XF86AudioPrev",
-	"XF86Launch5",
-	"SUPER + CONTROL + LEFT",
+  "XF86AudioPrev",
+  "XF86Launch5",
+  "SUPER + CONTROL + LEFT",
 }) do
-	hl.bind(keys, hl.dsp.exec_cmd(sptfy .. " previous"), l)
+  hl.bind(keys, hl.dsp.exec_cmd(sptfy .. " previous"), l)
 end
 for _, keys in ipairs({
-	"XF86AudioPlay",
-	"XF86Launch6",
-	"SUPER + CONTROL + DOWN",
+  "XF86AudioPlay",
+  "XF86Launch6",
+  "SUPER + CONTROL + DOWN",
 }) do
-	hl.bind(keys, hl.dsp.exec_cmd(sptfy .. " play-pause"), l)
+  hl.bind(keys, hl.dsp.exec_cmd(sptfy .. " play-pause"), l)
 end
 for _, keys in ipairs({
-	"XF86AudioNext",
-	"XF86Launch7",
-	"SUPER + CONTROL + RIGHT",
+  "XF86AudioNext",
+  "XF86Launch7",
+  "SUPER + CONTROL + RIGHT",
 }) do
-	hl.bind(keys, hl.dsp.exec_cmd(sptfy .. " next"), l)
+  hl.bind(keys, hl.dsp.exec_cmd(sptfy .. " next"), l)
 end
 hl.bind("SUPER + MINUS", hl.dsp.exec_cmd(sptfy .. " volume 0.1-"), lr)
 hl.bind("SUPER + PLUS", hl.dsp.exec_cmd(sptfy .. " volume 0.1+"), lr)
 
 -- Brightness controls
 hl.bind(
-	"XF86MonBrightnessDown",
-	hl.dsp.exec_cmd(HOME .. "/scripts/brightness-control.sh down"),
-	lr
+  "XF86MonBrightnessDown",
+  hl.dsp.exec_cmd(HOME .. "/scripts/brightness-control.sh down"),
+  lr
 )
 hl.bind(
-	"XF86MonBrightnessUp",
-	hl.dsp.exec_cmd(HOME .. "/scripts/brightness-control.sh up"),
-	lr
+  "XF86MonBrightnessUp",
+  hl.dsp.exec_cmd(HOME .. "/scripts/brightness-control.sh up"),
+  lr
 )
 
 -- Move focus/window
 local vim_keys = { "H", "J", "K", "L" }
 local dirs = { "left", "down", "up", "right" }
 for i = 1, 4 do
-	local dir = { direction = dirs[i] }
-	hl.bind("SUPER + " .. vim_keys[i], hl.dsp.focus(dir))
-	hl.bind("SUPER + " .. dirs[i], hl.dsp.focus(dir))
-	hl.bind("SUPER + SHIFT + " .. vim_keys[i], hl.dsp.window.move(dir))
-	hl.bind("SUPER + SHIFT + " .. dirs[i], hl.dsp.window.move(dir))
+  local dir = { direction = dirs[i] }
+  hl.bind("SUPER + " .. vim_keys[i], hl.dsp.focus(dir))
+  hl.bind("SUPER + " .. dirs[i], hl.dsp.focus(dir))
+  hl.bind("SUPER + SHIFT + " .. vim_keys[i], hl.dsp.window.move(dir))
+  hl.bind("SUPER + SHIFT + " .. dirs[i], hl.dsp.window.move(dir))
 end
 
 -- Resize window
 hl.bind(
-	"SUPER + SHIFT + Z",
-	hl.dsp.window.resize({ x = -20, y = 0, relative = true }),
-	r
+  "SUPER + SHIFT + Z",
+  hl.dsp.window.resize({ x = -20, y = 0, relative = true }),
+  r
 )
 hl.bind(
-	"SUPER + SHIFT + U",
-	hl.dsp.window.resize({ x = 0, y = -20, relative = true }),
-	r
+  "SUPER + SHIFT + U",
+  hl.dsp.window.resize({ x = 0, y = -20, relative = true }),
+  r
 )
 hl.bind(
-	"SUPER + SHIFT + I",
-	hl.dsp.window.resize({ x = 0, y = 20, relative = true }),
-	r
+  "SUPER + SHIFT + I",
+  hl.dsp.window.resize({ x = 0, y = 20, relative = true }),
+  r
 )
 hl.bind(
-	"SUPER + SHIFT + O",
-	hl.dsp.window.resize({ x = 20, y = 0, relative = true }),
-	r
+  "SUPER + SHIFT + O",
+  hl.dsp.window.resize({ x = 20, y = 0, relative = true }),
+  r
 )
 
 -- Resize gaps
@@ -443,36 +443,36 @@ hl.bind("SUPER + SHIFT + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 -- Switch workspace with SUPER + [0-9]
 -- Move active window to a workspace with SUPER + SHIFT + [0-9]
 for i = 1, 10 do
-	local key = i % 10
-	hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
-	hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+  local key = i % 10
+  hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
+  hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
 local function toggle_workspace (target_ws_selector)
-	local target_ws = hl.get_workspace(target_ws_selector)
-	if target_ws == nil then
-		return
-	end
-	local active_ws = hl.get_active_workspace()
-	if target_ws == active_ws then
-		hl.dispatch(hl.dsp.focus({ workspace = "previous_per_monitor" }))
-	else
-		hl.dispatch(hl.dsp.focus({ workspace = "name:" .. target_ws.name }))
-	end
+  local target_ws = hl.get_workspace(target_ws_selector)
+  if target_ws == nil then
+    return
+  end
+  local active_ws = hl.get_active_workspace()
+  if target_ws == active_ws then
+    hl.dispatch(hl.dsp.focus({ workspace = "previous_per_monitor" }))
+  else
+    hl.dispatch(hl.dsp.focus({ workspace = "name:" .. target_ws.name }))
+  end
 end
 hl.bind("SUPER + PAGE_DOWN", function ()
-	toggle_workspace("name:✉️")
+  toggle_workspace("name:✉️")
 end)
 hl.bind("SUPER + PAGE_UP", function ()
-	toggle_workspace("name:✉️")
+  toggle_workspace("name:✉️")
 end)
 hl.bind(
-	"SUPER + SHIFT + PAGE_DOWN",
-	hl.dsp.window.move({ workspace = "name:✉️" })
+  "SUPER + SHIFT + PAGE_DOWN",
+  hl.dsp.window.move({ workspace = "name:✉️" })
 )
 hl.bind(
-	"SUPER + SHIFT + PAGE_UP",
-	hl.dsp.window.move({ workspace = "name:✉️" })
+  "SUPER + SHIFT + PAGE_UP",
+  hl.dsp.window.move({ workspace = "name:✉️" })
 )
 
 -- Gamemode / Battery saver mode
@@ -489,9 +489,9 @@ hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 
 -- Layer rules
 hl.layer_rule({
-	match = { namespace = "^(quickshell|rofi|swaync-control-center|waybar)$" },
-	blur = true,
-	ignore_alpha = 0.5,
+  match = { namespace = "^(quickshell|rofi|swaync-control-center|waybar)$" },
+  blur = true,
+  ignore_alpha = 0.5,
 })
 
 -- General window rules
@@ -500,52 +500,34 @@ hl.window_rule({ match = { float = "false" }, no_shadow = true })
 
 -- Program specific window rules
 hl.window_rule({
-	match = { class = "com.libretro.RetroArch" },
-	fullscreen = true,
+  match = { class = "com.libretro.RetroArch" },
+  fullscreen = true,
 })
 hl.window_rule({
-	match = { class = "com.nextcloud.desktopclient.nextcloud" },
-	float = true,
+  match = { class = "com.nextcloud.desktopclient.nextcloud" },
+  float = true,
 })
 hl.window_rule({
-	match = {
-		class = "com.nextcloud.desktopclient.nextcloud",
-		title = "Nextcloud",
-	},
-	move = { "cursor_x", 44 },
-	size = { 400, 500 },
+  match = {
+    class = "com.nextcloud.desktopclient.nextcloud",
+    title = "Nextcloud",
+  },
+  move = { "cursor_x", 44 },
+  size = { 400, 500 },
 })
 hl.window_rule({ match = { class = "gamescope" }, immediate = true })
 hl.window_rule({ match = { class = "jetbrains-idea" }, opacity = 0.9 })
 hl.window_rule({
-	match = { class = "jetbrains-idea-ce", title = "^win(.*)" },
-	no_initial_focus = true,
+  match = { class = "jetbrains-idea-ce", title = "^win(.*)" },
+  no_initial_focus = true,
 })
-hl.window_rule({
-	match = { class = "mpv" },
-	center = true,
-	float = true,
-	max_size = { "0.8 * monitor_w", "0.8 * monitor_h" },
-})
-hl.window_rule({
-	match = { class = "nemo" },
-	center = true,
-	float = true,
-	opacity = 0.9,
-})
-hl.window_rule({
-	match = { class = "Nsxiv" },
-	center = true,
-	float = true,
-	size = { "0.6 * monitor_w", "0.8 * monitor_h" },
-})
+hl.window_rule({ match = { class = "nemo" }, opacity = 0.9 })
 hl.window_rule({ match = { class = "Peek" }, no_blur = true })
 hl.window_rule({ match = { class = "spotify" }, opacity = 0.9 })
 hl.window_rule({
-	match = { class = "terminal-floating" },
-	center = true,
-	float = true,
-	max_size = { "0.6 * monitor_w", "0.8 * monitor_h" },
+  match = { class = "terminal-floating" },
+  center = true,
+  float = true,
 })
 
 ------------------------------
