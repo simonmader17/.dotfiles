@@ -6,15 +6,53 @@
 # Usage:
 # 1. Source the script at the beginning of your script.
 # 2. Call `progress-bar` at the beginning of each loop iteration, and once after
-#	the loop finishes.
+# the loop finishes.
+
+start="$SECONDS"
+eta_prev=0
+
+STATUS_TEXT="Processing"
+
+usage-progress-bar() {
+	echo "progress-bar [-s <STATUS_TEXT>] <current> <total>"
+	exit 1
+}
 
 progress-bar() {
+	local OPTARG OPTIND opt
+	while getopts 's:' opt; do
+		case "$opt" in
+			s) STATUS_TEXT="$OPTARG" ;;
+			*) usage-progress-bar ;;
+		esac
+	done
+	shift $((OPTIND - 1))
+
 	local current="$1"
 	local total="$2"
 
+	local now="$SECONDS"
+	local time_diff="$(( now - start ))"
+	local eta
+	if (( time_diff == 0 || current <= 1 )); then
+		eta='--:--:--'
+	else
+		local time_per_item time_remaining hours_remaining mins_remaining secs_remaining
+		time_per_item="$(bc -l <<< "$time_diff / ($current - 1)")"
+		time_remaining="$(bc -l <<< "$time_per_item * ($total - $current + 1)")"
+
+		eta="$(bc -l <<< "($eta_prev + $time_remaining) / 2")"
+		eta_prev="$eta"
+
+		hours_remaining="$(bc -l <<< "$eta / 3600")"
+		mins_remaining="$(bc -l <<< "$(bc <<< "$eta % 3600") / 60")"
+		secs_remaining="$(bc <<< "$eta % 60")"
+		eta="$(printf '%02.0f:%02.0f:%02.0f' "$hours_remaining" "$mins_remaining" "$secs_remaining")"
+	fi
+
 	local perc_done=$(( current * 100 / total ))
 
-	local status=" Processing $current/$total ($perc_done%)"
+	local status=" $STATUS_TEXT $current/$total ($perc_done%) $eta ETA"
 	local bar_length=$(( COLUMNS - ${#status} - 2 ))
 	local num_bars=$(( perc_done * bar_length / 100 ))
 

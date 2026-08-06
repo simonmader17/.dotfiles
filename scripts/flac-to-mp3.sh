@@ -1,9 +1,30 @@
 #!/usr/bin/env bash
 
-source ~/scripts/progress-bar.sh
+# shellcheck source=progress-bar.sh
+source "$HOME/scripts/progress-bar.sh"
+
+usage() {
+	cat << EOF
+Usage: $0 [OPTION]... SOURCE_DIR DEST_DIR
+
+Options
+	-h	print usage message
+	-n	perform a dry run with no changes made
+EOF
+}
+
+dry_run=false
+while getopts 'hn' opt; do
+	case "$opt" in
+		h) usage; exit 0;;
+		n) dry_run=true;;
+		*) usage >&2; exit 1;;
+	esac
+done
+shift $(( OPTIND - 1 ))
 
 if (( $# != 2 )); then
-	echo "Usage: $0 <source> <dest>"
+	usage
 	exit 1
 fi
 
@@ -39,13 +60,13 @@ for file in "${files[@]}"; do
 	filename="$(basename "$file")"
 	extension="${filename##*.}"
 
-	# cat <<- EOF
-	# File: $file
-	# 	rel_path: $rel_path
-	# 	dir_path: $dir_path
-	# 	filename: $file
-	# 	extension: $extension
-	# EOF
+# 	cat << EOF
+# File: $file
+# 	rel_path: $rel_path
+# 	dir_path: $dir_path
+# 	filename: $file
+# 	extension: $extension
+# EOF
 
 	mkdir -p "$dest/$dir_path"
 	if [[ "$extension" == "flac" ]]; then
@@ -70,8 +91,12 @@ for file in "${files[@]}"; do
 			done
 		done
 
-		ffmpeg -i "$file" -ab 192k -map_metadata 0 -id3v2_version 3 -nostdin -loglevel error -y "$out_file" &
-		pids+=($!)
+		if ! $dry_run; then
+			ffmpeg -i "$file" -ab 320k -map_metadata 0 -id3v2_version 3 -nostdin -loglevel error -y "$out_file" &
+			pids+=($!)
+		else
+			(( converted++ ))
+		fi
 	else
 		out_file="$dest/$dir_path/$filename"
 		if [[ -f "$out_file" ]]; then
@@ -81,7 +106,11 @@ for file in "${files[@]}"; do
 		fi
 
 		echo "Copying: $file -> $out_file"
-		if cp "$file" "$out_file"; then (( copied++ )) else (( failed_copied++ )) fi
+		if ! $dry_run; then
+			if cp "$file" "$out_file"; then (( copied++ )) else (( failed_copied++ )) fi
+		else
+			(( copied++ ))
+		fi
 	fi
 done
 
