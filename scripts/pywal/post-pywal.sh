@@ -41,5 +41,8 @@ type spicetify && (spicetify apply || spicetify restore backup apply)
 # update pywalfox colors
 ~/.mozilla/firefox/simon-arkenfox/update-pywalfox.sh
 
+# generate colors-dynacat.yaml
+~/scripts/pywal/generate-dynacat-colors.sh
+
 # reload swaync
 swaync-client --reload-css
