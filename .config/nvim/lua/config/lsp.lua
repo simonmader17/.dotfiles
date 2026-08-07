@@ -20,6 +20,10 @@ vim.lsp.enable({
   "yamlls", -- yaml-language-server
 })
 
+vim.lsp.config("qmlls", {
+  cmd = { "qmlls", "-E" },
+})
+
 vim.lsp.config("texlab", {
   capabilities = { workspace = { configuration = false } },
   settings = {

@@ -26,3 +26,25 @@ vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter" }, {
     vim.w.trailing_ws_match = vim.fn.matchadd("DiffDelete", [[\s\+$]])
   end,
 })
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  desc = "Use tabs instead of spaces for indentation in shell scripts to make `<<-` heredocs work",
+  group = group,
+  pattern = { "sh", "bash", "zsh" },
+  callback = function ()
+    vim.opt_local.expandtab = false
+    vim.opt_local.softtabstop = 0
+    -- workaround because there is no `leadtab` option in `vim.opt.listchars`.
+    -- Doesn't show leading tabs in shell scripts:
+    vim.pack.add({
+      "https://github.com/lukas-reineke/indent-blankline.nvim",
+    })
+    local ibl = require("ibl")
+    ibl.setup({ enabled = false })
+    ibl.setup_buffer(0, {
+      enabled = true,
+      indent = { char = "·", tab_char = "" },
+      scope = { enabled = false },
+    })
+  end,
+})

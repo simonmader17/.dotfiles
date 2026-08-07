@@ -50,4 +50,18 @@ vim.opt.spelllang = { "en_us", "de_at" }
 vim.opt.spelloptions = "noplainbuffer,camel"
 
 -- diagnostics
-vim.diagnostic.config({ virtual_text = true })
+local icons = {
+  [vim.diagnostic.severity.ERROR] = "󰅙",
+  [vim.diagnostic.severity.WARN] = "󰀦",
+  [vim.diagnostic.severity.INFO] = "󰋼",
+  [vim.diagnostic.severity.HINT] = "󰌵",
+}
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = function (diagnostic)
+      return " " .. (icons[diagnostic.severity] or " 󰧞")
+    end,
+    spacing = 2,
+    suffix = " ",
+  },
+})

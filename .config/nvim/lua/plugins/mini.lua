@@ -2,6 +2,7 @@ vim.pack.add({
   "https://github.com/nvim-mini/mini.notify",
   "https://github.com/nvim-mini/mini.pairs",
   "https://github.com/nvim-mini/mini.pick",
+  "https://github.com/nvim-mini/mini.surround",
 })
 
 require("mini.notify").setup()
@@ -17,5 +18,6 @@ vim.keymap.set("n", "<leader>ph", ":Pick help<CR>", {
 vim.keymap.set("n", "<leader>ps", ":Pick grep_live<CR>", {
   desc = "Grep files",
 })
-local sel = vim.api.nvim_get_hl(0, { name = "PmenuSel", link = false })
-vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", { bg = sel.bg })
+vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", { link = "PmenuSel" })
+
+require("mini.surround").setup()

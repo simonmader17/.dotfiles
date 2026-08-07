@@ -18,6 +18,10 @@
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
+    "indent-blankline.nvim": {
+      "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
+      "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
+    },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"
@@ -37,6 +41,10 @@
     "mini.pick": {
       "rev": "04e73ab07222508361095bb6e27621b315e6b9f1",
       "src": "https://github.com/nvim-mini/mini.pick"
+    },
+    "mini.surround": {
+      "rev": "8d5d0c5aa92449368ac251e85451d79d8f69d296",
+      "src": "https://github.com/nvim-mini/mini.surround"
     },
     "nvim-lspconfig": {
       "rev": "1c0d8f70dbc8827263eedc3cf7021ceba0f68689",

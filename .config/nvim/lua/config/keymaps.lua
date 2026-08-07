@@ -23,7 +23,10 @@ k("n", "gl", vim.diagnostic.open_float, {
 })
 
 -- search highlight
-k("n", "<Esc>", ":nohlsearch<CR>", { desc = "Clear search highlight" })
+k("n", "<Esc>", ":nohlsearch<CR>", {
+  desc = "Clear search highlight",
+  silent = true,
+})
 
 -- split window
 k("n", '<leader>"', ":new<CR>", { desc = "Split window horizontally" })
