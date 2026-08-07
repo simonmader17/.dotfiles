@@ -3,7 +3,10 @@
 # This script toggles autocompilation for a document/file.
 # I bind this to <leader>a in vim.
 
-pkill -f "entr -n $HOME/scripts/compile.sh $1" &&
-	notify-send -a nvim "autocompile.sh" "Stopped auto compilation for \"$1\"" && exit
-notify-send -a nvim "autocompile.sh" "Started auto compilation for \"$1\""
-echo "$1" | entr -n ~/scripts/compile.sh "$1" &
+[[ -f "$1" ]] || exit 1
+file="$(realpath -- "$1")"
+
+pkill -f "entr -n $HOME/scripts/compile.sh $file" &&
+	notify-send -a nvim "autocompile.sh" "Stopped auto compilation for \"$file\"" && exit
+notify-send -a nvim "autocompile.sh" "Started auto compilation for \"$file\""
+echo "$file" | entr -n ~/scripts/compile.sh "$file" >/dev/null 2>&1 &
