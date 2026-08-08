@@ -5,112 +5,112 @@
 // ██║ ╚═╝ ██║╚██████╔╝██████╔╝╚██████╔╝███████╗███████╗███████║
 // ╚═╝     ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚══════╝
 {
-	// Left modules
-	"hyprland/workspaces": {
-		"sort-by": "id"
-	},
+  // Left modules
+  "hyprland/workspaces": {
+    "sort-by": "id"
+  },
 
-	"hyprland/window": {
-		"icon": true,
-		"rewrite": {
-			"(.*) — Mozilla Firefox": "$1"
-		}
-	},
+  "hyprland/window": {
+    "icon": true,
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "$1"
+    }
+  },
 
-	// Right modules
-	"tray": {
-		"show-passive-items": true,
-		"spacing": 5
-	},
-	"custom/weather": {
-		"format": "{}°C",
-		"interval": 900,
-		// "exec": "~/.config/waybar/themes/3d/scripts/custom-weather.sh",
-		"exec": "wttrbar --date-format %d.%m.%Y --hide-conditions -l de --observation-time",
-		"return-type": "json"
-	},
-	"custom/disks": {
-		"format": "",
-		"interval": 60,
-		"exec": "~/.config/waybar/themes/3d/scripts/custom-disks.sh",
-		"exec-if": "exit 0" // always run
-	},
-	"backlight": {
-		"format": "{percent}% {icon}",
-		"format-icons": ["󰃞", "󰃟", "󰃠"]
-	},
-	"wireplumber": {
-		"format": "{volume}% {icon}",
-		"format-icons": ["", "", ""],
-		"format-muted": ""
-	},
-	"memory": {
-		"interval": 2,
-		"format": "{percentage}% ",
-		"tooltip-format": "{used}GiB memory used out of {total}GiB ({percentage}%)\n{swapUsed}GiB swap used out of {swapTotal}GiB ({swapPercentage}%)"
-	},
-	"cpu": {
-		"interval": 2,
-		"format": "{usage}% "
-	},
-	"temperature": {
-		"thermal-zone": 1,
-		"interval": 2,
-		"critical-threshold": 80,
-		"format": "{temperatureC}°C {icon}",
-		"format-icons": ["", "", "", "", ""],
-		"tooltip-format": "{temperatureC}°C\n{temperatureF}°F\n{temperatureK}°K"
-	},
-	"network": {
-		"interval": 3,
-		"format": "󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes} ",
-		"format-ethernet": "󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes} {icon}",
-		"format-wifi": "󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes} {icon}",
-		"format-icons": {
-			"ethernet": [""],
-			"wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
-		},
-		"format-disconnected": "Disconnected 󰤮",
-		"tooltip-format": "IP-Address: {ipaddr}<span color=\"gray\">/{cidr}</span>\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}",
-		"tooltip-format-ethernet": "IP-Address: {ipaddr}<span color=\"gray\">/{cidr}</span>\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}",
-		"tooltip-format-wifi": "{essid}\nIP-Address: {ipaddr}<span color=\"gray\">/{cidr}</span>\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}\nSignal Strength: {signalStrength}%\nFrequency: {frequency}"
-	},
-	"battery": {
-		"interval": 15,
-		"states": {
-			"critical": 15
-		},
-		"format": "{capacity}% {icon}",
-		"format-icons": ["", "", "", "", ""],
-		"format-charging": "{capacity}% {icon}",
-		"tooltip-format": "{timeTo}\nPower Draw: {power}W\nCharge Cycles: {cycles}\nHealth: {health}%"
-	},
-	"clock": {
-		"interval": 1,
-		// "format": "{:%H:%M 󰥔 %d.%m.%Y }",
-		"format": "{:%a %d %h, %H:%M }",
-		"format-alt": "{:%H:%M:%S 󰥔 %Y-%m-%d }",
-		"tooltip-format": "<tt>{calendar}</tt>",
-		"calendar": {
-			"mode": "month",
-			"weeks-pos": "left",
-			"on-scroll": 1,
-			"format": {
-				"today": "<span color='#ff6666'><b>{}</b></span>",
-				"weeks": "<span color='grey'><b>KW{}</b></span>"
-			}
-		}
-	},
-	"custom/clock": {
-		"exec": "date '+%b %-d, %H:%M '",
-		"interval": 1,
-		"tooltip": false
-	},
-	"privacy": {
-		"icon-spacing": 5,
-		"icon-size": 14,
-	},
-	"custom/notification": {
+  // Right modules
+  "tray": {
+    "show-passive-items": true,
+    "spacing": 5
+  },
+  "custom/weather": {
+    "format": "{}°C",
+    "interval": 900,
+    // "exec": "~/.config/waybar/themes/3d/scripts/custom-weather.sh",
+    "exec": "wttrbar --date-format %d.%m.%Y --hide-conditions -l de --observation-time",
+    "return-type": "json"
+  },
+  "custom/disks": {
+    "format": "",
+    "interval": 60,
+    "exec": "~/.config/waybar/themes/3d/scripts/custom-disks.sh",
+    "exec-if": "exit 0" // always run
+  },
+  "backlight": {
+    "format": "{percent}% {icon}",
+    "format-icons": ["󰃞", "󰃟", "󰃠"]
+  },
+  "wireplumber": {
+    "format": "{volume}% {icon}",
+    "format-icons": ["", "", ""],
+    "format-muted": ""
+  },
+  "memory": {
+    "interval": 2,
+    "format": "{percentage}% ",
+    "tooltip-format": "{used}GiB memory used out of {total}GiB ({percentage}%)\n{swapUsed}GiB swap used out of {swapTotal}GiB ({swapPercentage}%)"
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "{usage}% "
+  },
+  "temperature": {
+    "thermal-zone": 1,
+    "interval": 2,
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "{temperatureC}°C\n{temperatureF}°F\n{temperatureK}°K"
+  },
+  "network": {
+    "interval": 3,
+    "format": "󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes} ",
+    "format-ethernet": "󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes} {icon}",
+    "format-wifi": "󰜮 {bandwidthDownBytes} 󰜷 {bandwidthUpBytes} {icon}",
+    "format-icons": {
+      "ethernet": [""],
+      "wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+    },
+    "format-disconnected": "Disconnected 󰤮",
+    "tooltip-format": "IP-Address: {ipaddr}<span color=\"gray\">/{cidr}</span>\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "IP-Address: {ipaddr}<span color=\"gray\">/{cidr}</span>\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}",
+    "tooltip-format-wifi": "{essid}\nIP-Address: {ipaddr}<span color=\"gray\">/{cidr}</span>\nCurrent Download: {bandwidthDownBytes}\nCurrent Upload: {bandwidthUpBytes}\nSignal Strength: {signalStrength}%\nFrequency: {frequency}"
+  },
+  "battery": {
+    "interval": 15,
+    "states": {
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "format-charging": "{capacity}% {icon}",
+    "tooltip-format": "{timeTo}\nPower Draw: {power}W\nCharge Cycles: {cycles}\nHealth: {health}%"
+  },
+  "clock": {
+    "interval": 1,
+    // "format": "{:%H:%M 󰥔 %d.%m.%Y }",
+    "format": "{:%a %d %h, %H:%M }",
+    "format-alt": "{:%H:%M:%S 󰥔 %Y-%m-%d }",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "left",
+      "on-scroll": 1,
+      "format": {
+        "today": "<span color='#ff6666'><b>{}</b></span>",
+        "weeks": "<span color='grey'><b>KW{}</b></span>"
+      }
+    }
+  },
+  "custom/clock": {
+    "exec": "date '+%b %-d, %H:%M '",
+    "interval": 1,
+    "tooltip": false
+  },
+  "privacy": {
+    "icon-spacing": 5,
+    "icon-size": 14,
+  },
+  "custom/notification": {
     "tooltip": false,
     "format": "{icon}",
     "format-icons": {

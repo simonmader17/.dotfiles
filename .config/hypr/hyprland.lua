@@ -450,9 +450,7 @@ end
 
 local function toggle_workspace (target_ws_selector)
   local target_ws = hl.get_workspace(target_ws_selector)
-  if target_ws == nil then
-    return
-  end
+  if target_ws == nil then return end
   local active_ws = hl.get_active_workspace()
   if target_ws == active_ws then
     hl.dispatch(hl.dsp.focus({ workspace = "previous_per_monitor" }))
@@ -460,12 +458,8 @@ local function toggle_workspace (target_ws_selector)
     hl.dispatch(hl.dsp.focus({ workspace = "name:" .. target_ws.name }))
   end
 end
-hl.bind("SUPER + PAGE_DOWN", function ()
-  toggle_workspace("name:✉️")
-end)
-hl.bind("SUPER + PAGE_UP", function ()
-  toggle_workspace("name:✉️")
-end)
+hl.bind("SUPER + PAGE_DOWN", function () toggle_workspace("name:✉️") end)
+hl.bind("SUPER + PAGE_UP", function () toggle_workspace("name:✉️") end)
 hl.bind(
   "SUPER + SHIFT + PAGE_DOWN",
   hl.dsp.window.move({ workspace = "name:✉️" })

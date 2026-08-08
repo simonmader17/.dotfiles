@@ -26,24 +26,24 @@ slider {
 
 /*** Single Notification "Box" ************************************************/
 .notification-background .notification {
-	background-color: @color8;
-	color: white;
-	border-bottom: 8px solid shade(@color8, 0.8);
-	border-radius: 5px;
-	padding: 7px;
-	box-shadow: alpha(@background, 0.16) 0px 3px 6px, alpha(@background, 0.23) 0px 3px 6px;
+  background-color: @color8;
+  color: white;
+  border-bottom: 8px solid shade(@color8, 0.8);
+  border-radius: 5px;
+  padding: 7px;
+  box-shadow: alpha(@background, 0.16) 0px 3px 6px, alpha(@background, 0.23) 0px 3px 6px;
 }
 .notification-background .notification.critical {
-	background-color: @red;
-	color: @background;
-	border-bottom: 8px solid shade(@red, 0.8);
+  background-color: @red;
+  color: @background;
+  border-bottom: 8px solid shade(@red, 0.8);
 }
 .notification-background .notification .notification-content {
-	margin: 7px;
+  margin: 7px;
 }
 .notification-background .notification .notification-content .summary {
-	font-size: 17px;
-	font-weight: bold;
+  font-size: 17px;
+  font-weight: bold;
 }
 .notification-background .notification .notification-content .time {
   color: @color6;
@@ -51,11 +51,11 @@ slider {
 
 /* Progress Bar */
 .notification progress {
-	min-height: .8em;
+  min-height: .8em;
   background-color: @color2;
-	border-bottom: .3em solid shade(@color2, 0.8);
-	border-radius: .2em;
-	margin-top: 7px;
+  border-bottom: .3em solid shade(@color2, 0.8);
+  border-radius: .2em;
+  margin-top: 7px;
 }
 .notification.critical progress {
   background-color: @background;
@@ -63,7 +63,7 @@ slider {
 
 /* Outside of control-center */
 .floating-notifications.background .notification-row .notification-background {
-	margin: 20px;
+  margin: 20px;
 }
 /* Inside of control-center */
 .control-center .notification-row .notification-background {
@@ -80,46 +80,46 @@ slider {
 
 .notification-background .notification > *:last-child > * .notification-action,
 .control-center .widget-title button {
-	font-weight: bold;
-	background-color: @color1;
-	color: @background;
-	border-bottom: 8px solid shade(@color1, 0.8);
-	border-radius: 5px;
+  font-weight: bold;
+  background-color: @color1;
+  color: @background;
+  border-bottom: 8px solid shade(@color1, 0.8);
+  border-radius: 5px;
   margin: 7px;
 }
 
 .notification-background .notification > *:last-child > * .notification-action:hover,
 .control-center .widget-title button:hover {
-	border-bottom: 0px solid shade(@color1, 0.8);
-	margin-top: 15px;
+  border-bottom: 0px solid shade(@color1, 0.8);
+  margin-top: 15px;
 }
 
 .notification-background .notification > *:last-child > * .notification-action:active,
 .control-center .widget-title button:active {
-	background-color: shade(@color1, 1.2);
+  background-color: shade(@color1, 1.2);
 }
 
 .control-center .widget-title button {
-	padding: 7px;
+  padding: 7px;
 }
 
 /* Close button */
 .notification-background .close-button {
-	background-color: @red;
-	color: @background;
-	border-bottom: 4px solid shade(@red, 0.8);
-	border-radius: 5px;
+  background-color: @red;
+  color: @background;
+  border-bottom: 4px solid shade(@red, 0.8);
+  border-radius: 5px;
   margin: 7px;
   padding: 2px;
 }
 
 .notification-background .close-button:hover {
-	border-bottom: 0px solid shade(@red, 0.8);
-	margin-top: 11px;
+  border-bottom: 0px solid shade(@red, 0.8);
+  margin-top: 11px;
 }
 
 .notification-background .close-button:active {
-	background-color: shade(@red, 1.2);
+  background-color: shade(@red, 1.2);
 }
 
 /*** Control Center ***********************************************************/
@@ -128,14 +128,14 @@ slider {
   /* border: 5px solid @color1; */
   /* margin: 18px; */
   padding: 14px 25px;
-	/* background-color: alpha(@background, 0.8); */
-	background: @background;
-	color: white;
+  /* background-color: alpha(@background, 0.8); */
+  background: @background;
+  color: white;
 }
 
 .control-center .widget-title > label {
   font-size: 1.3em;
-	font-weight: bold;
+  font-weight: bold;
 }
 
 /******************************************************************************/
@@ -265,5 +265,5 @@ slider {
 }
 
 .image {
-	margin-right: 7px;
+  margin-right: 7px;
 }

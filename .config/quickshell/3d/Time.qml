@@ -5,13 +5,13 @@ import Quickshell
 import QtQuick
 
 Singleton {
-	id: root
+  id: root
 
-	readonly property string time: Qt.formatDateTime(systemClock.date, "ddd d MMM, hh:mm")
+  readonly property string time: Qt.formatDateTime(systemClock.date, "ddd d MMM, hh:mm")
 
-	SystemClock {
-		id: systemClock
+  SystemClock {
+    id: systemClock
 
-		precision: SystemClock.Minutes
-	}
+    precision: SystemClock.Minutes
+  }
 }

@@ -10,32 +10,32 @@ import "../components"
 import "../helper.js" as Helper
 
 My3dRectangle {
-	id: root
+  id: root
 
-	visible: Hyprland.activeToplevel != null && Hyprland.activeToplevel.workspace.active
-	baseColor: Colors.color8
-	textColor: Helper.contrastColor(baseColor, "black", "white")
+  visible: Hyprland.activeToplevel != null && Hyprland.activeToplevel.workspace.active
+  baseColor: Colors.color8
+  textColor: Helper.contrastColor(baseColor, "black", "white")
 
-	RowLayout {
-		Layout.maximumWidth: 350
+  RowLayout {
+    Layout.maximumWidth: 350
 
-		IconImage {
-			source: {
-				var id = Hyprland.activeToplevel?.wayland?.appId;
-				return Quickshell.iconPath(Globals.guessIcon(id), true)
-			}
-			visible: source.toString() !== ""
-			implicitWidth: 1.8 * title.font.pixelSize
-			implicitHeight: 1.8 * title.font.pixelSize
-		}
+    IconImage {
+      source: {
+        var id = Hyprland.activeToplevel?.wayland?.appId;
+        return Quickshell.iconPath(Globals.guessIcon(id), true)
+      }
+      visible: source.toString() !== ""
+      implicitWidth: 1.8 * title.font.pixelSize
+      implicitHeight: 1.8 * title.font.pixelSize
+    }
 
-		Text {
-			id: title
+    Text {
+      id: title
 
-			Layout.fillWidth: true
-			elide: Text.ElideRight
-			font: Globals.myFont
-			text: Hyprland.activeToplevel?.title || ""
-		}
-	}
+      Layout.fillWidth: true
+      elide: Text.ElideRight
+      font: Globals.myFont
+      text: Hyprland.activeToplevel?.title || ""
+    }
+  }
 }

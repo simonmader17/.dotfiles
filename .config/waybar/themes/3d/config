@@ -1,55 +1,55 @@
 {
-	"layer": "top",
+  "layer": "top",
 
-	"include": ["~/.config/waybar/themes/3d/modules.json"],
+  "include": ["~/.config/waybar/themes/3d/modules.json"],
 
-	// Modules left
-	"modules-left": [
-		"hyprland/workspaces",
-		"hyprland/window"
-	],
+  // Modules left
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
 
-	// Modules center
-	"modules-center": [],
+  // Modules center
+  "modules-center": [],
 
-	// Modules right
-	"modules-right": [
-		"tray",
-		"custom/disks",
-		"group/controls",
-		"group/hardware",
-		"network",
-		"battery",
-		"custom/weather",
-		"clock",
-		// "custom/clock",
-		// "custom/notification",
-		"group/notifications"
-	],
+  // Modules right
+  "modules-right": [
+    "tray",
+    "custom/disks",
+    "group/controls",
+    "group/hardware",
+    "network",
+    "battery",
+    "custom/weather",
+    "clock",
+    // "custom/clock",
+    // "custom/notification",
+    "group/notifications"
+  ],
 
-	"group/controls": {
-		"orientation": "inherit",
-		"modules": [
-			"wireplumber",
-			"backlight"
-		]
-	},
+  "group/controls": {
+    "orientation": "inherit",
+    "modules": [
+      "wireplumber",
+      "backlight"
+    ]
+  },
 
-	"group/hardware": {
-		"orientation": "inherit",
-		"modules": [
-			"memory",
-			"cpu",
-			"temperature"
-		]
-	},
+  "group/hardware": {
+    "orientation": "inherit",
+    "modules": [
+      "memory",
+      "cpu",
+      "temperature"
+    ]
+  },
 
-	"group/notifications": {
-		"orientation": "inherit",
-		"modules": [
-			"privacy",
-			"custom/notification"
-		]
-	}
+  "group/notifications": {
+    "orientation": "inherit",
+    "modules": [
+      "privacy",
+      "custom/notification"
+    ]
+  }
 }
 // vim:ft=jsonc

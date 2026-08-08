@@ -6,7 +6,10 @@ systemctl --user enable xclip-notifier
 systemctl --user start xclip-notifier
 ```
 
-Because X server has to run for this script to work and `graphical-session.target` is not started automatically by Xorg, we need to explicitly start it (Refer to [https://superuser.com/a/1128905/636739](https://superuser.com/a/1128905/636739)):
+Because X server has to run for this script to work and
+`graphical-session.target` is not started automatically by Xorg, we need to
+explicitly start it (Refer to
+[https://superuser.com/a/1128905/636739](https://superuser.com/a/1128905/636739)):
 
 Add this to your `~/.xsessionrc`:
 

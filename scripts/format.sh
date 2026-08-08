@@ -16,12 +16,12 @@ format() {
 		java) clang-format -i "$file" ;;
 		lua)
 			stylua \
+				--collapse-simple-statement=Always \
 				--column-width=80 \
 				--indent-type=Spaces \
 				--indent-width=2 \
 				--space-after-function-names=Definitions \
 				"$file"
-				# --collapse-simple-statement=Always \
 			;;
 		md) mdformat --wrap 80 "$file" ;;
 		py) black "$file" ;;

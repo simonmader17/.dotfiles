@@ -14,16 +14,16 @@
 
   // Modules right
   "modules-right": [
-	// "custom/updates",
+  // "custom/updates",
     "group/disks",
     "wireplumber",
     "memory",
     "cpu",
     "temperature",
     "network",
-	"battery",
+    "battery",
     "clock",
-	"custom/wallpaper",
+    "custom/wallpaper",
     "custom/powermenu",
     "tray"
   ],

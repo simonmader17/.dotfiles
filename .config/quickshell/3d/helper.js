@@ -9,10 +9,10 @@
  * @returns {any} Returns the `dark` value for light input colors and `light` for dark ones.
  */
 function contrastColor(inputColor, dark, light) {
-	// Calculate relative luminance
-	// Formula from Wikipedia: 0.2126*R + 0.7152*G + 0.0722*B
-	let luma = (0.2126 * inputColor.r) + (0.7152 * inputColor.g) + (0.0722 * inputColor.b);
-	return luma > 0.5 ? dark : light;
+  // Calculate relative luminance
+  // Formula from Wikipedia: 0.2126*R + 0.7152*G + 0.0722*B
+  let luma = (0.2126 * inputColor.r) + (0.7152 * inputColor.g) + (0.0722 * inputColor.b);
+  return luma > 0.5 ? dark : light;
 }
 
 /**
@@ -22,6 +22,6 @@ function contrastColor(inputColor, dark, light) {
  * @returns {any} The icon corresponding to the specific percentage bucket.
  */
 function chooseIconBasedOnPercentage(icons, per) {
-	let index = Math.min(Math.floor(per * icons.length), icons.length - 1);
-	return icons[index];
+  let index = Math.min(Math.floor(per * icons.length), icons.length - 1);
+  return icons[index];
 }

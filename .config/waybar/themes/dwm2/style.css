@@ -1,48 +1,48 @@
 @import "../../../../.cache/wal/colors-waybar.css";
 
 * {
-	font-family: "CaskaydiaCove Nerd Font";
-	font-size: 100%;
-	font-weight: 900;
+  font-family: "CaskaydiaCove Nerd Font";
+  font-size: 100%;
+  font-weight: 900;
 
-	padding: 0;
+  padding: 0;
 
-	background: none;
+  background: none;
 }
 
 window#waybar {
-	background-color: @color1;
+  background-color: @color1;
 }
 
 .modules-left,
 .modules-right {
-	background-color: @background;
-	color: @foreground;
-	/* border: solid 4px @color8; */
-	/* border-radius: 999px; */
+  background-color: @background;
+  color: @foreground;
+  /* border: solid 4px @color8; */
+  /* border-radius: 999px; */
 
-	/* margin: 10px 10px 0 10px; */
-	/* padding: 2px 5px; */
+  /* margin: 10px 10px 0 10px; */
+  /* padding: 2px 5px; */
 }
 
 /* .modules-left { */
-/* 	padding: 0; */
+/*  padding: 0; */
 /* } */
 
 /* window#waybar.empty .modules-center { */
-/* 	opacity: 0; */
+/*  opacity: 0; */
 /* } */
 
 /* Workspaces *****************************************************************/
 
 #workspaces button {
-	background: none;
+  background: none;
   color: white;
-	border-radius: 0px;
-	padding: 0 6px;
+  border-radius: 0px;
+  padding: 0 6px;
  /*  transition: all 0.2s ease-in-out; */
-	/* border-radius: 8px; */
-	/* padding: 2px 5px; */
+  /* border-radius: 8px; */
+  /* padding: 2px 5px; */
 }
 
 #workspaces button.visible {
@@ -67,19 +67,19 @@ window#waybar {
 /* Tooltip ********************************************************************/
 
 tooltip {
-	background-color: @background;
-	color: @foreground;
-	border: solid 5px @color1;
-	/* border-radius: 16px; */
+  background-color: @background;
+  color: @foreground;
+  border: solid 5px @color1;
+  /* border-radius: 16px; */
 }
 
 /* Modules ********************************************************************/
 
 #window {
-	background-color: @color1;
-	color: white;
-	padding-left: 1ex;
-	padding-right: 1ex;
+  background-color: @color1;
+  color: white;
+  padding-left: 1ex;
+  padding-right: 1ex;
 }
 
 #tray,
@@ -92,83 +92,83 @@ tooltip {
 #network,
 #battery,
 #clock {
-	padding-right: 3ex;
+  padding-right: 3ex;
 }
 
 #tray {
-	padding-left: 1ex;
+  padding-left: 1ex;
 }
 
 #tray menu {
-	background-color: alpha(@background, 0.8);
-	color: @foreground;
-	border: solid 4px @color8;
-	border-radius: 16px;
+  background-color: alpha(@background, 0.8);
+  color: @foreground;
+  border: solid 4px @color8;
+  border-radius: 16px;
 }
 
 #custom-disks {
-	color: @color1;
+  color: @color1;
 }
 
 #custom-disks.critical {
-	animation: pulse-critical 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse-critical 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 #wireplumber {
-	color: @color6;
+  color: @color6;
 }
 
 #memory {
-	color: @color2;
+  color: @color2;
 }
 
 #cpu {
-	color: @color5;
+  color: @color5;
 }
 
 #temperature {
-	color: @color5;
+  color: @color5;
 }
 
 #temperature.critical {
-	animation: pulse-critical 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse-critical 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 #network {
-	color: @color3;
+  color: @color3;
 }
 
 #battery {
-	color: @color6;
+  color: @color6;
 }
 
 #battery.critical.discharging {
-	animation: pulse-critical 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse-critical 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 #custom-weather {
-	color: @color6;
+  color: @color6;
 }
 
 #clock {
-	color: @color4;
+  color: @color4;
 }
 
 #custom-notification {
-	color: @color5;
-	padding-right: 2ex;
+  color: @color5;
+  padding-right: 2ex;
 }
 
 /* Keyframes ******************************************************************/
 
 @keyframes pulse-critical {
-	0% {
-		color: @color6;
-	}
-	50% {
-		color: red;
-	}
-	100% {
-		color: @color6;
-	}
+  0% {
+    color: @color6;
+  }
+  50% {
+    color: red;
+  }
+  100% {
+    color: @color6;
+  }
 }

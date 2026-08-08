@@ -6,4 +6,5 @@ systemctl --user enable spotify-notifier
 systemctl --user start spotify-notifier
 ```
 
-❗ spotify-notifer currently crashes when starting spotify using spicetify. Current workaround is adding `Restart=always` to the service file.
+❗ spotify-notifer currently crashes when starting spotify using spicetify.
+Current workaround is adding `Restart=always` to the service file.

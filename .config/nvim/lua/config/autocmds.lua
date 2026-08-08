@@ -20,9 +20,7 @@ vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter" }, {
   desc = "Color trailing whitespaces",
   group = group,
   callback = function ()
-    if vim.w.trailing_ws_match then
-      return
-    end
+    if vim.w.trailing_ws_match then return end
     vim.w.trailing_ws_match = vim.fn.matchadd("DiffDelete", [[\s\+$]])
   end,
 })

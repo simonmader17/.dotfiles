@@ -1,6 +1,6 @@
 # This content should go in the path ~/.config/sss/config.toml
 # These parameters contain the same parameters and format as those of the arguments
- 
+
 # These are the configurations for sss
 [cli]
 # area = "x,y WxH"

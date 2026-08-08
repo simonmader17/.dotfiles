@@ -24,13 +24,13 @@
   },
  //  "custom/updates": {
  //    "exec": "~/scripts/arch-updates.sh",
-	// "return-type": "json",
-	// "interval": 10800,
-	// "format": "📦 {}"
+  // "return-type": "json",
+  // "interval": 10800,
+  // "format": "📦 {}"
  //  },
   "custom/wallpaper": {
-	"format": "🖼️",
-	"on-click": "~/scripts/pywal/random-wallpaper.sh &"
+  "format": "🖼️",
+  "on-click": "~/scripts/pywal/random-wallpaper.sh &"
   },
   "custom/powermenu": {
     "format": "🔒",
@@ -93,13 +93,13 @@
   },
   // Battery
   "battery": {
-	"interval": 10,
-	"states": {
-	  "critical": 20
-	},
-	"format": "🔋 {capacity}% ({power} W)",
-	"format-critical": "🪫 {capacity}% ({power} W)",
-	"format-charging": "🔌 {capacity}% ({power} W)",
+  "interval": 10,
+  "states": {
+    "critical": 20
+  },
+  "format": "🔋 {capacity}% ({power} W)",
+  "format-critical": "🪫 {capacity}% ({power} W)",
+  "format-charging": "🔌 {capacity}% ({power} W)",
   }
 }
 // vim: ft=jsonc

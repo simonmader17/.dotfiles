@@ -32,7 +32,7 @@ send_text_notification() {
 				-h "$dunst_tag" \
 				-i "accessories-clipboard" \
 				"Clipboard - Artvee" "Downloading artwork..."
-			cd "$WALLS/artvee/"
+			cd "$WALLS/artvee/" || return
 			artwork="$(~/scripts/avdl.sh "$content" | tail -n1)"
 			ACTION=$(notify-send \
 				-a Clipboard \

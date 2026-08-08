@@ -21,12 +21,8 @@ vim.api.nvim_create_autocmd("PackChanged", {
     if
       name == "nvim-treesitter" and (kind == "install" or kind == "update")
     then
-      if not check_treesitter_cli() then
-        return
-      end
-      if not ev.data.active then
-        vim.cmd.packadd("nvim-treesitter")
-      end
+      if not check_treesitter_cli() then return end
+      if not ev.data.active then vim.cmd.packadd("nvim-treesitter") end
       vim.cmd("TSUpdate")
     end
   end,
@@ -46,22 +42,16 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
   callback = function (ev)
     local lang = vim.treesitter.language.get_lang(ev.match)
-    if not lang then
-      return
-    end
+    if not lang then return end
     local available_langs = ts.get_available()
     local is_available = vim.tbl_contains(available_langs, lang)
     if is_available then
       local installed_langs = ts.get_installed()
       local installed = vim.tbl_contains(installed_langs, lang)
       if not installed then
-        if not check_treesitter_cli() then
-          return
-        end
+        if not check_treesitter_cli() then return end
         ts.install(lang):await(function ()
-          if not vim.api.nvim_buf_is_valid(ev.buf) then
-            return
-          end
+          if not vim.api.nvim_buf_is_valid(ev.buf) then return end
           vim.treesitter.start(ev.buf, lang)
           vim.notify(
             "Installed and started " .. lang .. " parser",
@@ -70,9 +60,7 @@ vim.api.nvim_create_autocmd("FileType", {
           )
         end)
       else
-        if not vim.api.nvim_buf_is_valid(ev.buf) then
-          return
-        end
+        if not vim.api.nvim_buf_is_valid(ev.buf) then return end
         vim.treesitter.start(ev.buf, lang)
       end
     end

@@ -35,9 +35,7 @@ require("lualine").setup({
         function ()
           local buf = vim.api.nvim_get_current_buf()
           local hl = vim.treesitter.highlighter.active[buf]
-          if not hl then
-            return ""
-          end
+          if not hl then return "" end
           return " " .. hl.tree:lang()
         end,
       },

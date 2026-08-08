@@ -1,10 +1,10 @@
 [user]
-	name = Simon Mader
-	email = mail@simonmader.at
-	signingkey = 0C912397109B5D1F5D58FAB5A19ACD01D8CAE998
+  name = Simon Mader
+  email = mail@simonmader.at
+  signingkey = 0C912397109B5D1F5D58FAB5A19ACD01D8CAE998
 [core]
-	editor = vim
+  editor = vim
 [init]
-	templatedir = ~/.config/git/template
+  templatedir = ~/.config/git/template
 [commit]
-	gpgsign = true
+  gpgsign = true

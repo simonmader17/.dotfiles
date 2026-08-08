@@ -7,146 +7,146 @@ import "processes"
 import "widgets"
 
 Scope {
-	Variants {
-		model: Quickshell.screens
-		Scope {
-			id: root
+  Variants {
+    model: Quickshell.screens
+    Scope {
+      id: root
 
-			required property var modelData
+      required property var modelData
 
-			// Left bar (only on small screens)
-			PanelWindow {
-				id: leftBar
+      // Left bar (only on small screens)
+      PanelWindow {
+        id: leftBar
 
-				visible: root.modelData.height <= 1080
+        visible: root.modelData.height <= 1080
 
-				screen: root.modelData
-				color: "transparent"
-				implicitWidth: workspaces.implicitWidth + 4
-				anchors {
-					top: true
-					bottom: true
-					left: true
-				}
+        screen: root.modelData
+        color: "transparent"
+        implicitWidth: workspaces.implicitWidth + 4
+        anchors {
+          top: true
+          bottom: true
+          left: true
+        }
 
-				// Background
-				Rectangle {
-					anchors.fill: parent
-					color: Colors.background
-					opacity: 0.8
-					Rectangle {
-						anchors.right: parent.right
-						anchors.bottom: parent.bottom
-						width: 8
-						height: parent.height - topBar.height + 8
-						color: Qt.darker(parent.color, 1.2)
-						opacity: 0.8
-					}
-				}
+        // Background
+        Rectangle {
+          anchors.fill: parent
+          color: Colors.background
+          opacity: 0.8
+          Rectangle {
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            width: 8
+            height: parent.height - topBar.height + 8
+            color: Qt.darker(parent.color, 1.2)
+            opacity: 0.8
+          }
+        }
 
-				WorkspacesWidget {
-					id: workspaces
-					screen: leftBar.screen
-					smallScreen: true
-				}
-			}
+        WorkspacesWidget {
+          id: workspaces
+          screen: leftBar.screen
+          smallScreen: true
+        }
+      }
 
-			// Top bar
-			PanelWindow {
-				id: topBar
+      // Top bar
+      PanelWindow {
+        id: topBar
 
-				screen: root.modelData
-				color: "transparent"
-				implicitHeight: Math.max(leftWidgets.implicitHeight, rightWidgets.implicitHeight)
-				anchors {
-					top: true
-					left: true
-					right: true
-				}
+        screen: root.modelData
+        color: "transparent"
+        implicitHeight: Math.max(leftWidgets.implicitHeight, rightWidgets.implicitHeight)
+        anchors {
+          top: true
+          left: true
+          right: true
+        }
 
-				// Background
-				Rectangle {
-					anchors.fill: parent
-					color: Colors.background
-					opacity: 0.8
-					Rectangle {
-						anchors.bottom: parent.bottom
-						width: parent.width
-						height: 8
-						color: Qt.darker(parent.color, 1.2)
-						opacity: 0.8
-					}
-				}
+        // Background
+        Rectangle {
+          anchors.fill: parent
+          color: Colors.background
+          opacity: 0.8
+          Rectangle {
+            anchors.bottom: parent.bottom
+            width: parent.width
+            height: 8
+            color: Qt.darker(parent.color, 1.2)
+            opacity: 0.8
+          }
+        }
 
-				FlexboxLayout {
-					anchors.fill: parent
-					justifyContent: FlexboxLayout.JustifySpaceBetween
-					gap: 4
+        FlexboxLayout {
+          anchors.fill: parent
+          justifyContent: FlexboxLayout.JustifySpaceBetween
+          gap: 4
 
-					// Left widgets
-					RowLayout {
-						id: leftWidgets
+          // Left widgets
+          RowLayout {
+            id: leftWidgets
 
-						Layout.fillWidth: true
+            Layout.fillWidth: true
 
-						spacing: 4
-						// anchors {
-						// 	left: parent.left
-						// 	top: parent.top
-						// 	bottom: parent.bottom
-						// }
+            spacing: 4
+            // anchors {
+            //  left: parent.left
+            //  top: parent.top
+            //  bottom: parent.bottom
+            // }
 
-						WorkspacesWidget {
-							screen: topBar.screen
-							visible: screen.height > 1080
-						}
+            WorkspacesWidget {
+              screen: topBar.screen
+              visible: screen.height > 1080
+            }
 
-						WindowWidget {}
-					}
+            WindowWidget {}
+          }
 
-					// Right widgets
-					RowLayout {
-						id: rightWidgets
+          // Right widgets
+          RowLayout {
+            id: rightWidgets
 
-						spacing: 4
-						// anchors {
-						// 	right: parent.right
-						// 	top: parent.top
-						// 	bottom: parent.bottom
-						// }
+            spacing: 4
+            // anchors {
+            //  right: parent.right
+            //  top: parent.top
+            //  bottom: parent.bottom
+            // }
 
-						MediaWidget {}
+            MediaWidget {}
 
-						TrayWidget {}
+            TrayWidget {}
 
-						AudioWidget {}
+            AudioWidget {}
 
-						CpuMemWidget {}
+            CpuMemWidget {}
 
-						NetworkWidget {}
+            NetworkWidget {}
 
-						BatteryWidget {}
+            BatteryWidget {}
 
-						ClockWidget {}
+            ClockWidget {}
 
-						NotificationsWidget {}
-					}
-				}
-			}
-		}
-	}
+            NotificationsWidget {}
+          }
+        }
+      }
+    }
+  }
 
-	Timer {
-		interval: 2000
-		running: true
-		repeat: true
-		triggeredOnStart: true
-		onTriggered: {
-			BatteryProc.running = true
-			CpuTempProc.running = true
-			CpuUsageProc.running = true
-			MemoryProc.running = true
-			NetworkProc.running = true
-		}
-	}
+  Timer {
+    interval: 2000
+    running: true
+    repeat: true
+    triggeredOnStart: true
+    onTriggered: {
+      BatteryProc.running = true
+      CpuTempProc.running = true
+      CpuUsageProc.running = true
+      MemoryProc.running = true
+      NetworkProc.running = true
+    }
+  }
 }
