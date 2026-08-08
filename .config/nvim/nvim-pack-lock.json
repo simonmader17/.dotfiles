@@ -47,15 +47,15 @@
       "src": "https://github.com/nvim-mini/mini.surround"
     },
     "nvim-lspconfig": {
-      "rev": "1c0d8f70dbc8827263eedc3cf7021ceba0f68689",
+      "rev": "43ed3797b266e1ee8d222e491379ad471c9d3146",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-tree.lua": {
-      "rev": "4213bd6eabac38b16dd6615002b6243b23cf3bf6",
+      "rev": "b2aadda94b107480c48e548d6db51c6840b7b33c",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
-      "rev": "7b6cc8949f9999c5ed91436cbe24aa5f99c42025",
+      "rev": "c9f9ed6c1892f629ea399f4ee7905f2686fa13f2",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -64,7 +64,7 @@
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "pywal": {
-      "rev": "e9eca6870acc27c08e3d8dc7e121c25b48283273",
+      "rev": "49b56a667ea5d019b7399d8e8edd153015093d1e",
       "src": "https://github.com/simonmader17/pywal.nvim"
     },
     "snacks.nvim": {
