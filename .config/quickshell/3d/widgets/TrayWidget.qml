@@ -1,5 +1,6 @@
 // widgets/TrayWidget.qml
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.SystemTray
@@ -7,6 +8,7 @@ import Quickshell.Widgets
 
 import ".."
 import "../components"
+import "../helper.js" as Helper
 
 My3dRectangle {
   id: root
@@ -35,6 +37,18 @@ My3dRectangle {
           source: trayItem.modelData.icon
           implicitWidth: 21
           implicitHeight: 21
+
+          layer.enabled: true
+          layer.effect: MultiEffect {
+            contrast: -1
+            brightness: 0.5
+            colorization: 1
+            colorizationColor: Helper.contrastColor(
+              root.baseColor,
+              Colors.background,
+              Colors.foreground
+            )
+          }
         }
 
         MouseArea {
