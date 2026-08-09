@@ -1,6 +1,7 @@
 // processes/BatteryProc.qml
 pragma Singleton
 
+import QtQuick
 import Quickshell
 import Quickshell.Io
 
@@ -10,17 +11,13 @@ Singleton {
   property alias running: batteryProc.running
 
   property bool valid: false
-  property int capacity
-  property string status
-  property int acOnline
-  property int powerNow
-  property int energyNow
-  property int energyFull
-  property int energyFullDesign
-  property int voltageNow
-  property int voltageMinDesign
-  property string manufacturer
-  property string modelName
+  property int acOnline: 0
+  property bool charging: false
+
+  readonly property alias batteries: batteryModel
+  ListModel {
+    id: batteryModel
+  }
 
   Process {
     id: batteryProc
@@ -28,21 +25,49 @@ Singleton {
     stdout: StdioCollector {
       onStreamFinished: {
         if (text) {
-          var p = text.split(";");
-          root.capacity = parseInt(p[0]);
-          root.status = p[1];
-          root.acOnline = parseInt(p[2]);
-          root.powerNow = parseInt(p[3]);
-          root.energyNow = parseInt(p[4]);
-          root.energyFull = parseInt(p[5]);
-          root.energyFullDesign = parseInt(p[6]);
-          root.voltageNow = parseInt(p[7]);
-          root.voltageMinDesign = parseInt(p[8]);
-          root.manufacturer = p[9];
-          root.modelName = p[10];
+          const lines = text.trim().split("\n").filter(line => line !== "");
+          if (lines.length < 2) {
+            batteryModel.clear();
+            root.charging = false;
+            root.valid = false;
+            return;
+          }
+
+          root.acOnline = parseInt(lines[0]);
+
+          const batteries = lines.slice(1).map(line => {
+            const p = line.split(";");
+            return {
+              capacity: parseInt(p[0]),
+              status: p[1],
+              powerNow: parseInt(p[2]),
+              energyNow: parseInt(p[3]),
+              energyFull: parseInt(p[4]),
+              energyFullDesign: parseInt(p[5]),
+              voltageNow: parseInt(p[6]),
+              voltageMinDesign: parseInt(p[7]),
+              manufacturer: p[8],
+              modelName: p[9],
+            };
+          });
+
+          if (batteryModel.count !== batteries.length) {
+            batteryModel.clear();
+            for (const battery of batteries) {
+              batteryModel.append(battery);
+            }
+          } else {
+            for (let i = 0; i < batteries.length; i++) {
+              batteryModel.set(i, batteries[i]);
+            }
+          }
+
+          root.charging = batteries.some(battery => battery.status === "Charging");
           root.valid = true;
         } else {
           root.valid = false;
+          root.acOnline = 0;
+          root.charging = false;
         }
       }
     }
