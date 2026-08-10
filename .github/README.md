@@ -28,7 +28,7 @@ home directory:
 
 ```sh
 dotfiles status
-dotfiles add .config/nvim/init.lua
+dotfiles add ~/.config/nvim/init.lua
 dotfiles commit -m "Update Neovim config"
 dotfiles push
 ```
