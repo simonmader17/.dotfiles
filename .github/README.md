@@ -6,7 +6,7 @@
 
 Clone the repository as a bare repo and set up an alias to interact with it:
 
-```
+```sh
 git clone --bare https://github.com/simonmader17/.dotfiles.git $HOME/.dotfiles
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 dotfiles checkout
@@ -17,7 +17,7 @@ dotfiles config --local status.showUntrackedFiles no
 If `checkout` fails because files already exist in `$HOME`, either back them up
 or force-overwrite your local config files:
 
-```
+```sh
 dotfiles checkout -f
 ```
 
@@ -26,7 +26,7 @@ dotfiles checkout -f
 Once the alias is set, use `dotfiles` exactly like `git`, from anywhere in your
 home directory:
 
-```
+```sh
 dotfiles status
 dotfiles add .config/nvim/init.lua
 dotfiles commit -m "Update Neovim config"
