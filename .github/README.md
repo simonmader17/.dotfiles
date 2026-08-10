@@ -7,7 +7,7 @@
 Clone the repository as a bare repo and set up an alias to interact with it:
 
 ```sh
-git clone --bare https://github.com/simonmader17/.dotfiles.git $HOME/.dotfiles
+git clone --bare https://github.com/simonmader17/.dotfiles.git "$HOME"/.dotfiles
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 dotfiles checkout
 dotfiles submodule update --init --recursive
