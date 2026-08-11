@@ -44,6 +44,7 @@ ls.add_snippets("markdown", {
   s("sc", fmta("[<>]{.smallcaps}<>", { i(1, "SMALLCAPS_TEXT"), i(0) })),
   s("tt", fmta("`<>`<>", { i(1, "TYPEWRITTEN_TEXT"), i(0) })),
 })
+ls.filetype_extend("vimwiki", { "markdown" })
 
 ls.add_snippets("tex", {
   s("qq", fmta([[\enquote{<>}<>]], { i(1, "TEXT"), i(0) })),

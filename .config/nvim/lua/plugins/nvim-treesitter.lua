@@ -35,6 +35,8 @@ vim.pack.add({
   },
 })
 
+vim.treesitter.language.register("markdown", "vimwiki")
+
 local ts = require("nvim-treesitter")
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Automatically install/start treesitter parsers",

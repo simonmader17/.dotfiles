@@ -12,7 +12,7 @@ k({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 k("n", "<leader>Y", '"+Y', { desc = "Yank line to system clipboard" })
 k({ "n", "x" }, "<leader>d", '"+d', { desc = "Cut to system clipboard" })
 k("n", "<leader>D", '"+D', { desc = "Cut to end of line to system clipboard" })
-k({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+k({ "n", "x" }, "<leader>pp", '"+p', { desc = "Paste from system clipboard" })
 k({ "n", "x" }, "<leader>P", '"+P', {
   desc = "Paste before from system clipboard",
 })
@@ -69,6 +69,9 @@ k("x", "<C-j>", ":m '>+1<CR>gv=gv", {
 k("x", "<C-k>", ":m '<-2<CR>gv=gv", {
   desc = "Move selected lines up and reindent",
 })
+
+-- sort lines
+k("x", "<leader>s", ":sort<CR>", { desc = "Sort selected lines" })
 
 -- my format/compile/open scripts
 k("n", "<leader>c", ":update<CR>:!~/scripts/compile.sh %:p:S<CR>", {
