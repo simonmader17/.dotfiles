@@ -15,6 +15,10 @@ My3dRectangle {
 
   baseColor: Colors.color2
 
+  readonly property var keepOwnColors: [
+    "blueman",
+  ]
+
   RowLayout {
     Repeater {
       model: {
@@ -27,6 +31,9 @@ My3dRectangle {
         id: trayItem
 
         required property SystemTrayItem modelData
+        readonly property bool recolor: !root.keepOwnColors.some(
+          pattern => modelData.id.toLowerCase().includes(pattern)
+        )
 
         implicitWidth: icon.implicitWidth
         implicitHeight: icon.implicitHeight
@@ -38,7 +45,7 @@ My3dRectangle {
           implicitWidth: 21
           implicitHeight: 21
 
-          layer.enabled: true
+          layer.enabled: trayItem.recolor
           layer.effect: MultiEffect {
             contrast: -1
             brightness: 0.5
