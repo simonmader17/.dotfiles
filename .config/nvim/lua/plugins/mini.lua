@@ -19,5 +19,6 @@ vim.keymap.set("n", "<leader>ps", ":Pick grep_live<CR>", {
   desc = "Grep files",
 })
 vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", { link = "PmenuSel" })
+vim.api.nvim_set_hl(0, "MiniPickMatchRanges", { bold = true, underline = true })
 
 require("mini.surround").setup()

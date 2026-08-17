@@ -25,3 +25,4 @@ require("plugins.blink-cmp")
 -- misc
 require("plugins.vimwiki")
 require("plugins.img-clip-nvim")
+require("plugins.gitsigns-nvim")

@@ -14,6 +14,7 @@ vim.lsp.enable({
   "lua_ls", -- lua-language-server
   "qmlls",
   "rust_analyzer",
+  "tailwindcss", -- tailwindcss-language-server
   "texlab",
   "tinymist",
   "ts_ls", -- typescript-language-server
