@@ -13,6 +13,20 @@ Options
 EOF
 }
 
+mp3_bitrate=320
+
+# Turn "Artist - Track (FLAC 24bit 1730 kbps).flac" into
+#      "Artist - Track (MP3-320 320 kbps).mp3"
+# Falls back to a plain extension swap when there is no such tag.
+mp3_filename() {
+	local base="${1%.*}"
+	shopt -s nocasematch
+	if [[ "$base" =~ ^(.*)\(FLAC[^\)]*kbps\)(.*)$ ]]; then
+		base="${BASH_REMATCH[1]}(MP3-${mp3_bitrate} ${mp3_bitrate} kbps)${BASH_REMATCH[2]}"
+	fi
+	printf '%s.mp3' "$base"
+}
+
 dry_run=false
 while getopts 'hn' opt; do
 	case "$opt" in
@@ -70,7 +84,7 @@ for file in "${files[@]}"; do
 
 	mkdir -p "$dest/$dir_path"
 	if [[ "$extension" == "flac" ]]; then
-		out_file="$dest/$dir_path/${filename%.*}.mp3"
+		out_file="$dest/$dir_path/$(mp3_filename "$filename")"
 		if [[ -f "$out_file" ]]; then
 			echo "Skipping (already exists): $file"
 			(( skipped++ ))
@@ -92,7 +106,7 @@ for file in "${files[@]}"; do
 		done
 
 		if ! $dry_run; then
-			ffmpeg -i "$file" -ab 320k -map_metadata 0 -id3v2_version 3 -nostdin -loglevel error -y "$out_file" &
+			ffmpeg -i "$file" -ab "${mp3_bitrate}k" -map_metadata 0 -id3v2_version 3 -nostdin -loglevel error -y "$out_file" &
 			pids+=($!)
 		else
 			(( converted++ ))
