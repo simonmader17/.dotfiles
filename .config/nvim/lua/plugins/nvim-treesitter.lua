@@ -37,6 +37,16 @@ vim.pack.add({
 
 vim.treesitter.language.register("markdown", "vimwiki")
 
+local function ts_start (buf, lang)
+  if not vim.api.nvim_buf_is_valid(buf) then return end
+  vim.treesitter.start(buf, lang)
+  -- Folds
+  -- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+  -- vim.wo[0][0].foldmethod = "expr"
+  -- Indentation (experimental)
+  vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+end
+
 local ts = require("nvim-treesitter")
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Automatically install/start treesitter parsers",
@@ -54,7 +64,7 @@ vim.api.nvim_create_autocmd("FileType", {
         if not check_treesitter_cli() then return end
         ts.install(lang):await(function ()
           if not vim.api.nvim_buf_is_valid(ev.buf) then return end
-          vim.treesitter.start(ev.buf, lang)
+          ts_start(ev.buf, lang)
           vim.notify(
             "Installed and started " .. lang .. " parser",
             vim.log.levels.INFO,
@@ -63,7 +73,7 @@ vim.api.nvim_create_autocmd("FileType", {
         end)
       else
         if not vim.api.nvim_buf_is_valid(ev.buf) then return end
-        vim.treesitter.start(ev.buf, lang)
+        ts_start(ev.buf, lang)
       end
     end
   end,
