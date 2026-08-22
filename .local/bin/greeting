@@ -11,7 +11,7 @@ if command -v colorscript &>/dev/null && command -v krabby &>/dev/null; then
 		fi
 	fi
 elif command -v cowsay &>/dev/null; then
-	cosway "Hello there, $USER"
+	cowsay "Hello there, $USER"
 else
 	echo "Hello there, $USER"
 fi
