@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if command -v colorscript &>/dev/null && command -v krabby &>/dev/null; then
+	if (( RANDOM % 2 == 0 )); then
+		colorscript -r
+	else
+		if (( RANDOM % 4096 == 0 )); then
+			krabby random --info --shiny
+		else
+			krabby random --info
+		fi
+	fi
+elif command -v cowsay &>/dev/null; then
+	cosway "Hello there, $USER"
+else
+	echo "Hello there, $USER"
+fi

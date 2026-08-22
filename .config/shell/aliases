@@ -1,0 +1,25 @@
+alias mv='mv -iv'
+alias rm='rm -iv'
+alias cp='cp -iv'
+
+alias ls='eza --color=always --icons=auto --group-directories-first'
+alias la='eza -a --color=always --icons=auto --group-directories-first'
+alias ll='eza -l --color=always --icons=auto --group-directories-first'
+alias lt='eza -aT --color=always --icons=auto --group-directories-first'
+
+alias cat='bat --paging=never --style=plain --theme=base16 --tabs=2'
+alias grep='grep --color'
+alias neofetch='fastfetch --config neofetch.jsonc'
+alias rscp='rsync -aP'
+alias rsmv='rsync -aP --remove-source-files'
+alias se='~/scripts/fuzzy-finder.sh'
+
+alias dotfiles='/usr/bin/git --git-dir ~/.dotfiles/ --work-tree ~'
+alias lazydotfiles='/usr/bin/lazygit --git-dir ~/.dotfiles/ --work-tree ~'
+
+# ~/ clean up
+alias abook='abook --config "$XDG_CONFIG_HOME/abook/abookrc" --datafile "$XDG_DATA_HOME/abook/addressbook"'
+
+[[ "$TERM" = "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"
+
+# vim:ft=sh

@@ -1,0 +1,35 @@
+if [[ -n "$ZSH_VERSION" ]]; then
+	_cur_shell="zsh"
+elif [[ -n "$BASH_VERSION" ]]; then
+	_cur_shell="bash"
+else
+	_cur_shell="sh"
+fi
+
+# Disable ctrl-s and ctrl-q
+stty -ixon
+
+# Angular CLI completions
+command -v ng >/dev/null 2>&1 && source <(ng completion script)
+
+# change-theme completions
+source ~/scripts/pywal/change-theme/change-theme-completions-bash.sh
+
+# fnm - Fast and simple Node.js version manager
+if command -v fnm >/dev/null 2>&1; then
+	eval "$(fnm env \
+		--use-on-cd \
+		--version-file-strategy=recursive \
+		--shell "$_cur_shell")"
+	eval "$(fnm completions --shell "$_cur_shell")"
+fi
+
+# gpg-agent
+if [[ "$_cur_shell" = "zsh" ]]; then
+	GPG_TTY="$TTY"
+else
+	GPG_TTY="$(tty)"
+fi
+export GPG_TTY
+
+# vim:ft=sh

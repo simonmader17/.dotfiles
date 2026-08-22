@@ -1,143 +1,104 @@
 #    ███████╗███████╗██╗  ██╗██████╗  ██████╗
 #    ╚══███╔╝██╔════╝██║  ██║██╔══██╗██╔════╝
-#      ███╔╝ ███████╗███████║██████╔╝██║     
-#     ███╔╝  ╚════██║██╔══██║██╔══██╗██║     
+#      ███╔╝ ███████╗███████║██████╔╝██║
+#     ███╔╝  ╚════██║██╔══██║██╔══██╗██║
 # ██╗███████╗███████║██║  ██║██║  ██║╚██████╗
 # ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 
-################################################################################
-# GREETING
-################################################################################
-
-if [ -n "$1" ] && [ "$1" != "--no-greeting" ]; then
-	echo "Usage: source $0 [ --no-greeting ]"
-	return 1
+# Load pywal theme
+if [[ "$TERM" != "xterm-kitty" ]] && [[ -r "$XDG_CACHE_HOME/wal/sequences" ]]; then
+	(cat "$XDG_CACHE_HOME/wal/sequences" &)
+	source "$XDG_CACHE_HOME/wal/colors-tty.sh"
 fi
 
-greeting() {
-	if type colorscript &>/dev/null && type krabby &>/dev/null; then
-		if [ $(($RANDOM % 2)) = 0 ]; then
-			colorscript -r
-		else
-			[ $(($RANDOM % 4096)) -eq 0 ] && krabby random --info --shiny || krabby random --info
-		fi
-	else
-		type cowsay &>/dev/null && cowsay "Hello $USER" || echo "Hello $USER"
-	fi
-}
-if [ "$1" != "--no-greeting" ]; then
-	[ -f /usr/local/bin/greeting ] && /usr/local/bin/greeting || greeting
-fi
+# Window title
+precmd () { print -Pn "\e]0;%n@%M: %~\a" }
+preexec () { print -Pn "\e]0;%n@%M: ${1:gs/%/%%}\a" }
+
+# greeting
+command -v greeting &>/dev/null && greeting
 
 ################################################################################
 # BASIC SETTINGS
 ################################################################################
 
-stty -ixon # Disable ctrl-s and ctrl-q
-
-setopt globdots # include dotfiles
-setopt extended_glob # match ~ # ^
-setopt interactive_comments # allow comments in shell
-unsetopt prompt_sp # don't autoclean blanklines
-
-# Window title
-precmd () { print -Pn "\e]0;%n@%M: %~\a" } 
-preexec () { print -Pn "\e]0;%n@%M: $1\a" }
+setopt EXTENDED_GLOB # match ~ # ^
+setopt INTERACTIVE_COMMENTS # allow comments in shell
 
 # History
 HISTSIZE=1000000
 SAVEHIST=1000000
-HISTFILE=~/.cache/zsh/history
-setopt hist_ignore_all_dups append_history inc_append_history share_history # better history
-# on exit, history appends rather than overwrites; history is appended as soon as cmds are executed; history shared across sessions
-
-# Aliases
-source ~/.config/aliases/aliases
-
-# Basic auto/tab completions
-autoload -U compinit && compinit
-autoload -U bashcompinit && bashcompinit
-_comp_options+=(globdots) # Include hidden files
-zstyle ':completion:*' menu select # tab opens cmp menu
-bindkey '^[[Z' reverse-menu-complete # Enable Shift+Tab in menu selection
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} 'ma=38;5;0;48;5;14' # colorize cmp menu
-
-# Load pywal theme
-if [ "$TERM" != "xterm-kitty" ]; then
-	/usr/bin/cat ~/.cache/wal/sequences
-fi
-
-# NordVPN automatically update polybar hook
-nordvpn() {
-	command nordvpn $@
-	type polybar-msg &>/dev/null && polybar-msg hook nordvpn 1 >/dev/null
-}
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# react-native
-export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
-export PATH="$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$PATH"
-
-# CHROME_PATH for marp
-export CHROME_PATH="$(which brave-browser)"
-
-# Go
-export GOPATH="$HOME/.go"
-export PATH="$GOPATH/bin:$PATH"
-
-# Load Angular CLI autocompletion.
-type ng &>/dev/null && source <(ng completion script)
-
-# change-theme completions
-source ~/scripts/pywal/change-theme/change-theme-completions-bash.sh
-
-# flutter sdk
-export PATH="$HOME/.local/share/flutter/sdk/flutter/bin:$PATH"
-
-# fnm - Fast and simple Node.js version manager
-type fnm &>/dev/null && eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
-type fnm &>/dev/null && eval "$(fnm completions --shell zsh)"
-
-# gpg-agent
-export GPG_TTY="$(tty)"
+[[ -d "$XDG_STATE_HOME/zsh" ]] || mkdir -p "$XDG_STATE_HOME/zsh"
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE # ignore lines that start with a space
+setopt SHARE_HISTORY # history lines are added as soon as they are entered
 
 ################################################################################
-# PLUGINS
+# COMPLETIONS
 ################################################################################
-	
-# zsh-autosuggestions
-source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# zsh-completions
+fpath=("$ZDOTDIR/plugins/zsh-completions/src" $fpath)
 
 # zsh-autocomplete
-source ~/.config/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-# zstyle ':autocomplete:history-search-backward:*' list-lines 16
+source "$ZDOTDIR/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+
+# Auto-include recent directories
+zstyle -e ':completion:*:directories' fake '
+	[[ -z $PREFIX$SUFFIX || -d $PREFIX$SUFFIX ]] ||
+		chpwd_recent_filehandler
+'
+zstyle ':completion:*:directories' sort no
+
+# colorize cmp menu
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} 'ma=38;5;0;48;5;14'
+
+# zsh-autosuggestions
+source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+################################################################################
 
 # zsh-vi-mode
-source ~/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
+source "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.zsh"
 ZVM_CURSOR_STYLE_ENABLED=false
-function init_other_plugins() {
-	# Cycle through completion menu using Tab and Shift-Tab
-	bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-	bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-}
-zvm_after_init_commands+=(init_other_plugins)
-
-# zsh-syntax-highlighting (should be at the end of the config file)
-source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# zsh-history-substring-search
-source ~/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[OA' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey '^[OB' history-substring-search-down
 
 # prompt
-# source ~/.config/zsh/themes/sashimi-zsh-theme/sashimi.zsh-theme
-source ~/.config/zsh/themes/boxy-zsh-theme/boxy.zsh-theme
+source "$ZDOTDIR/themes/boxy-zsh-theme/boxy.zsh-theme"
 
 # must be loaded after prompt
-source ~/.config/zsh/plugins/zsh-vi-mode-indicator/zsh-vi-mode-indicator.plugin.zsh
+source "$ZDOTDIR/plugins/zsh-vi-mode-indicator/zsh-vi-mode-indicator.plugin.zsh"
+
+# Common shell configs
+source "$XDG_CONFIG_HOME/shell/rc"
+source "$XDG_CONFIG_HOME/shell/aliases"
+
+# zsh-syntax-highlighting (should be at the end of the config file)
+source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# zsh-history-substring-search (must be after zsh-syntax-highlighting)
+source "$ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh"
+
+init_other_plugins() {
+	zmodload zsh/complist
+	zmodload zsh/terminfo
+
+	# Cycle through completion menu using Tab and Shift-Tab
+	bindkey '\t' menu-select
+	bindkey "${terminfo[kcbt]}" menu-select
+	bindkey -M menuselect '\t' menu-complete
+	bindkey -M menuselect "${terminfo[kcbt]}" reverse-menu-complete
+
+	# History substring search
+	local mode
+	for mode in viins vicmd; do
+		bindkey -M "$mode" '^[[A' history-substring-search-up # arrow up
+		bindkey -M "$mode" '^[OA' history-substring-search-up # arrow up
+		bindkey -M "$mode" '^P' history-substring-search-up # Control-P
+		bindkey -M "$mode" '^[[B' history-substring-search-down # arrow down
+		bindkey -M "$mode" '^[OB' history-substring-search-down # arrow down
+		bindkey -M "$mode" '^N' history-substring-search-down # arrow down
+	done
+}
+zvm_after_init_commands+=(init_other_plugins)
