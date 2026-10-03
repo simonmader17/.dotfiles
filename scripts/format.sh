@@ -14,6 +14,11 @@ format() {
 	case "$ext" in
 		c) clang-format -i --style "{BasedOnStyle: llvm, IndentWidth: 4}" "$file" ;;
 		java) clang-format -i "$file" ;;
+		js|jsx|ts|tsx|json|css|scss|yaml|yml|mdx)
+			if ! npx --no -- prettier --write "$file"; then
+				prettier --write "$file"
+			fi
+			;;
 		lua)
 			stylua \
 				--collapse-simple-statement=Always \
@@ -26,7 +31,6 @@ format() {
 		md) mdformat --wrap 80 "$file" ;;
 		py) black "$file" ;;
 		rs) rustfmt "$file" ;;
-		tsx) npx prettier "$file" --write ;;
 		typ) typstyle -i --wrap-text "$file" ;;
 		xml|xslt|nfo)
 			temp_file="$(mktemp)" &&

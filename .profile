@@ -29,6 +29,7 @@ export XCURSOR_PATH="/usr/share/icons:$XDG_DATA_HOME/icons"
 
 # Environmental variables
 export EDITOR="vim"
+export LESS="-R"
 export MANPAGER="vim +Man!"
 export MANWIDTH="80"
 export TERMINAL="kitty"

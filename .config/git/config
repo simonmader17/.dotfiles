@@ -4,6 +4,10 @@
   signingkey = 0C912397109B5D1F5D58FAB5A19ACD01D8CAE998
 [core]
   editor = vim
+  pager = delta
+[delta]
+  syntax-theme = gruvbox-dark
+  inspect-raw-lines = false
 [init]
   templatedir = ~/.config/git/template
 [commit]

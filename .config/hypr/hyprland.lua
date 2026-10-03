@@ -49,7 +49,7 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("swaync")
   hl.exec_cmd("systemctl --user start hyprpolkitagent")
   hl.exec_cmd("systemctl --user start wl-clipboard-notifier.service")
-  hl.exec_cmd("wal -R")
+  hl.exec_cmd("wal -Rqst")
   hl.exec_cmd(HOME .. "/.config/quickshell/toggle.sh")
 
   -- Autostart apps on "✉️" named workspace, as autostarting apps on special
@@ -98,6 +98,7 @@ hl.config({
   cursor = {
     no_hardware_cursors = 1,
     inactive_timeout = 5,
+    default_monitor = "1",
   },
 })
 
@@ -491,6 +492,13 @@ hl.layer_rule({
 -- General window rules
 hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
 hl.window_rule({ match = { float = "false" }, no_shadow = true })
+
+-- Float bitwarden browser extension window
+hl.window_rule({
+  match = { class = "brave-nngceckbapebfimnlniiiahkandclblb-Default" },
+  float = true,
+  size = "480 650",
+})
 
 -- Program specific window rules
 hl.window_rule({

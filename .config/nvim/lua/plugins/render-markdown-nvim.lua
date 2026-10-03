@@ -5,7 +5,4 @@ vim.pack.add({
 
 require("render-markdown").setup({
   file_types = { "markdown", "vimwiki" },
-  anti_conceal = {
-    enabled = false,
-  },
 })
