@@ -9,11 +9,21 @@ Usage: $0 [OPTION]... SOURCE_DIR DEST_DIR
 
 Options
 	-h	print usage message
+	-c	clean/car compatible mode
 	-n	perform a dry run with no changes made
 EOF
 }
 
 mp3_bitrate=320
+
+# ASCII-only, FAT-safe names. '/' stays allowed so this also works on paths.
+sanitize() {
+	printf '%s' "$1" | LC_ALL=C.UTF-8 iconv -f UTF-8 -t ASCII//TRANSLIT 2>/dev/null \
+		| tr -c 'A-Za-z0-9._ ()/-' '_' | tr -s '_'
+}
+
+# Tags that car head units display. Everything else is dropped.
+car_tags=(title artist album album_artist genre date track disc)
 
 # Turn "Artist - Track (FLAC 24bit 1730 kbps).flac" into
 #      "Artist - Track (MP3-320 320 kbps).mp3"
@@ -27,10 +37,12 @@ mp3_filename() {
 	printf '%s.mp3' "$base"
 }
 
+car_compatible=false
 dry_run=false
-while getopts 'hn' opt; do
+while getopts 'hcn' opt; do
 	case "$opt" in
 		h) usage; exit 0;;
+		c) car_compatible=true;;
 		n) dry_run=true;;
 		*) usage >&2; exit 1;;
 	esac
@@ -82,9 +94,13 @@ for file in "${files[@]}"; do
 # 	extension: $extension
 # EOF
 
+	$car_compatible && dir_path="$(sanitize "$dir_path")"
+
 	mkdir -p "$dest/$dir_path"
 	if [[ "$extension" == "flac" ]]; then
-		out_file="$dest/$dir_path/$(mp3_filename "$filename")"
+		out_name="$(mp3_filename "$filename")"
+		$car_compatible && out_name="$(sanitize "$out_name")"
+		out_file="$dest/$dir_path/$out_name"
 		if [[ -f "$out_file" ]]; then
 			echo "Skipping (already exists): $file"
 			(( skipped++ ))
@@ -106,12 +122,36 @@ for file in "${files[@]}"; do
 		done
 
 		if ! $dry_run; then
-			ffmpeg -i "$file" -ab "${mp3_bitrate}k" -map_metadata 0 -id3v2_version 3 -nostdin -loglevel error -y "$out_file" &
+			ff_args=(-map_metadata 0)
+			if $car_compatible; then
+				# 500x500 JPEG cover, whitelisted tags only
+				ff_args=(
+					-map 0:a
+					-map "0:v?"
+					-c:v mjpeg
+					-vf scale=500:500
+					-disposition:v attached_pic
+					-map_metadata -1
+				)
+				for key in "${car_tags[@]}"; do
+					value="$(ffprobe -v error -show_entries "format_tags=$key" \
+						-of default=nw=1:nk=1 "$file")"
+					[[ -n "$value" ]] && ff_args+=(-metadata "$key=$value")
+				done
+			fi
+			ffmpeg -i "$file" \
+				-ab "${mp3_bitrate}k" \
+				"${ff_args[@]}" \
+				-id3v2_version 3 \
+				-nostdin \
+				-loglevel error \
+				-y "$out_file" &
 			pids+=($!)
 		else
 			(( converted++ ))
 		fi
 	else
+		$car_compatible && continue
 		out_file="$dest/$dir_path/$filename"
 		if [[ -f "$out_file" ]]; then
 			echo "Skipping (already exists): $file"
