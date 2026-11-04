@@ -23,6 +23,7 @@ command -v greeting &>/dev/null && greeting
 ################################################################################
 
 setopt EXTENDED_GLOB # match ~ # ^
+setopt CSH_NULL_GLOB
 setopt INTERACTIVE_COMMENTS # allow comments in shell
 
 # History
