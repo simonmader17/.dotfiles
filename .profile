@@ -11,6 +11,16 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# Localization
+export LANG="en_US.UTF-8"
+export LC_ADDRESS="de_AT.UTF-8"
+export LC_MEASUREMENT="de_AT.UTF-8"
+export LC_MONETARY="de_AT.UTF-8"
+export LC_NAME="de_AT.UTF-8"
+export LC_PAPER="de_AT.UTF-8"
+export LC_TELEPHONE="de_AT.UTF-8"
+export LC_TIME="de_AT.UTF-8"
+
 # ~/ clean up
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
