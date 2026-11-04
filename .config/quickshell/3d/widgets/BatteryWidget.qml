@@ -11,7 +11,7 @@ My3dRectangle {
   id: root
 
   visible: BatteryProc.valid
-  baseColor: Colors.color4
+  baseColor: Pywal.color4
 
   RowLayout {
     id: rowLayout
@@ -67,7 +67,7 @@ My3dRectangle {
             } else if (entry.battery.capacity <= 20) {
               return "red";
             } else {
-              return Helper.contrastColor(root.baseColor, Colors.background, Colors.foreground);
+              return Helper.contrastColor(root.baseColor, Pywal.background, Pywal.foreground);
             }
           }
 

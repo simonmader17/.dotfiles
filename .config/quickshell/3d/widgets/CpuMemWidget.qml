@@ -11,7 +11,7 @@ My3dButton {
   id: root
 
   visible: CpuUsageProc.valid || CpuTempProc.valid || MemoryProc.valid
-  baseColor: Colors.color5
+  baseColor: Pywal.color5
   
   onClicked: Quickshell.execDetached(["missioncenter"])
 

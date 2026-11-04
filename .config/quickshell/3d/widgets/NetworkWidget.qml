@@ -11,7 +11,7 @@ My3dRectangle {
   id: root
 
   visible: NetworkProc.valid
-  baseColor: Colors.color2
+  baseColor: Pywal.color2
 
   RowLayout {
     id: rowLayout

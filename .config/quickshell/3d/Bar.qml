@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 
+import "components"
 import "processes"
 import "widgets"
 
@@ -32,7 +33,7 @@ Scope {
         // Background
         Rectangle {
           anchors.fill: parent
-          color: Colors.background
+          color: Pywal.background
           opacity: 0.8
           Rectangle {
             anchors.right: parent.right
@@ -67,7 +68,7 @@ Scope {
         // Background
         Rectangle {
           anchors.fill: parent
-          color: Colors.background
+          color: Pywal.background
           opacity: 0.8
           Rectangle {
             anchors.bottom: parent.bottom
@@ -132,6 +133,21 @@ Scope {
             NotificationsWidget {}
           }
         }
+      }
+
+      // Animated tooltips below the top bar
+      My3dToolTipWindow {
+        screen: root.modelData
+        bar: topBar
+      }
+
+      // Animated tooltips next to the left bar
+      My3dToolTipWindow {
+        visible: leftBar.visible
+        screen: root.modelData
+        bar: leftBar
+        vertical: true
+        topOffset: topBar.height
       }
     }
   }

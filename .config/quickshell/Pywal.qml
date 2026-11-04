@@ -1,4 +1,4 @@
-// Colors.qml
+// Pywal.qml
 pragma Singleton
 
 import QtQuick
@@ -8,6 +8,7 @@ import Quickshell.Io
 Singleton {
   id: root
 
+  property string wallpaper
   property color background
   property color foreground
   property color color0
@@ -27,8 +28,9 @@ Singleton {
   property color color14
   property color color15
 
-  function loadPywalColors(data: string): void {
+  function load(data: string): void {
     const wal = JSON.parse(data);
+    root.wallpaper = wal.wallpaper;
     root.background = wal.special.background;
     root.foreground = wal.special.foreground;
     root.color0 = wal.colors.color0;
@@ -53,6 +55,6 @@ Singleton {
     path: Quickshell.env("HOME") + "/.cache/wal/colors.json"
     watchChanges: true
     onFileChanged: reload()
-    onLoaded: root.loadPywalColors(text())
+    onLoaded: root.load(text())
   }
 }

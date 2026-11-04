@@ -10,7 +10,7 @@ Item {
 
   default property alias content: content.data
   property bool pressed: false
-  property color baseColor: Colors.color1
+  property color baseColor: Pywal.color1
   property color textColor
   property int depth: 4 // The "height" of the 3D effect
   property int paddingX: 15
@@ -25,8 +25,8 @@ Item {
         } else {
           child.color = Qt.binding(() => Helper.contrastColor(
             root.baseColor,
-            Colors.background,
-            Colors.foreground
+            Pywal.background,
+            Pywal.foreground
           ));
         }
       }

@@ -14,7 +14,7 @@ My3dRectangle {
   readonly property var player: Mpris.players.values.filter(p => p.isPlaying)[0];
 
   visible: player !== undefined
-  baseColor: Colors.color4
+  baseColor: Pywal.color4
 
   RowLayout {
     Layout.maximumWidth: 350
@@ -90,7 +90,7 @@ My3dRectangle {
               height: Math.max(0.3 * equalizerLeft.height,
                 Math.pow(equalizerLeft.levels[index], 0.6) * equalizerLeft.height)
               radius: 2
-              color: Helper.contrastColor(Colors.color4, Colors.background, Colors.foreground)
+              color: Helper.contrastColor(Pywal.color4, Pywal.background, Pywal.foreground)
             }
           }
         }
@@ -174,7 +174,7 @@ My3dRectangle {
               height: Math.max(0.3 * equalizer.height,
                 Math.pow(equalizer.levels[index], 0.6) * equalizer.height)
               radius: 2
-              color: Helper.contrastColor(Colors.color4, Colors.background, Colors.foreground)
+              color: Helper.contrastColor(Pywal.color4, Pywal.background, Pywal.foreground)
             }
           }
         }

@@ -13,7 +13,7 @@ My3dRectangle {
   id: root
 
   visible: Hyprland.activeToplevel != null && Hyprland.activeToplevel.workspace.active
-  baseColor: Colors.color8
+  baseColor: Pywal.color8
   textColor: Helper.contrastColor(baseColor, "black", "white")
 
   RowLayout {

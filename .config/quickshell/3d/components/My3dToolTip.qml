@@ -3,36 +3,30 @@ import QtQuick
 import Quickshell
 
 import ".."
-import "../components"
 
+// Registers itself with the ToolTips singleton while visible. The tooltip is
+// drawn by My3dToolTipWindow.
 Scope {
   id: root
 
-  property alias baseColor: toolTipContent.baseColor
+  property color baseColor: Pywal.background
+  property int paddingX: 15
+  property int paddingY: 8
   property bool visible: false
   required property Item anchorItem
-  required property string text
+  property string text: ""
+  // Optional component drawn instead of the text
+  property Component content: null
 
-  PopupWindow {
-    id: toolTip
+  readonly property bool active: visible && (text !== "" || content !== null)
 
-    visible: root.visible && toolTipContentText.text
-    color: "transparent"
-    implicitWidth: toolTipContent.implicitWidth
-    implicitHeight: toolTipContent.implicitHeight
-    anchor.item: root.anchorItem
-    anchor.edges: Edges.Bottom | Edges.Left
-
-    My3dRectangle {
-      id: toolTipContent
-
-      baseColor: Colors.background
-
-      Text {
-        id: toolTipContentText
-        text: root.text
-        font: Globals.myFont
-      }
+  onActiveChanged: {
+    if (active) {
+      ToolTips.show(root);
+    } else {
+      ToolTips.hide(root);
     }
   }
+
+  Component.onDestruction: ToolTips.hide(root)
 }

@@ -5,7 +5,7 @@ import ".."
 import "../components"
 
 My3dRectangle {
-  baseColor: Colors.color6
+  baseColor: Pywal.color6
 
   Text {
     font: Globals.myFont

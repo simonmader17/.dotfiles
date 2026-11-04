@@ -13,7 +13,7 @@ import "../helper.js" as Helper
 My3dRectangle {
   id: root
 
-  baseColor: Colors.color2
+  baseColor: Pywal.color2
 
   readonly property var keepOwnColors: [
     "blueman",
@@ -52,8 +52,8 @@ My3dRectangle {
             colorization: 1
             colorizationColor: Helper.contrastColor(
               root.baseColor,
-              Colors.background,
-              Colors.foreground
+              Pywal.background,
+              Pywal.foreground
             )
           }
         }

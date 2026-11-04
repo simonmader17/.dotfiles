@@ -28,15 +28,34 @@ GridLayout {
 
       required property HyprlandWorkspace modelData
       property HyprlandWorkspace ws: modelData
+      property bool iconPressed: false
 
       visible: ws.monitor == Hyprland.monitorFor(root.screen)
       implicitWidth: button.implicitWidth
       implicitHeight: button.implicitHeight
 
+      HoverHandler {
+        id: hoverHandler
+      }
+      My3dToolTip {
+        visible: hoverHandler.hovered
+        anchorItem: button
+        baseColor: button.baseColor
+        paddingX: 8
+        paddingY: 8
+        content: Component {
+          WorkspacePreview {
+            ws: box.ws
+            frameColor: button.baseColor
+          }
+        }
+      }
+
       My3dButton {
         id: button
 
-        baseColor: box.ws.active ? Colors.color1 : Qt.darker(Colors.color1, 1.5)
+        forcePressed: box.iconPressed
+        baseColor: box.ws.active ? Pywal.color1 : Qt.darker(Pywal.color1, 1.5)
         paddingX: root.smallScreen ? 8 : 15
         paddingY: root.smallScreen ? 15 : 8
 
@@ -113,6 +132,23 @@ GridLayout {
                   onStopped: {
                     multiEffect.shadowScale = 1.1
                   }
+                }
+              }
+
+              MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onPressedChanged: box.iconPressed = pressed
+                onReleased: mouse => {
+                  // Focus if released anywhere inside the workspace button,
+                  // not only on the icon itself
+                  if (!button.contains(mapToItem(button, mouse.x, mouse.y))) {
+                    return;
+                  }
+                  Quickshell.execDetached([
+                    Quickshell.shellDir + "/scripts/focus-window.sh",
+                    icon.modelData.address
+                  ]);
                 }
               }
             }
