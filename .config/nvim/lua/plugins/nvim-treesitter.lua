@@ -43,8 +43,10 @@ local function ts_start (buf, lang)
   -- Folds
   -- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
   -- vim.wo[0][0].foldmethod = "expr"
-  -- Indentation (experimental)
-  vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  -- Indentation (experimental), only where the parser ships indent queries
+  if vim.treesitter.query.get(lang, "indents") then
+    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end
 end
 
 local ts = require("nvim-treesitter")
