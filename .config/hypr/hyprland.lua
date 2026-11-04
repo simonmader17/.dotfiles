@@ -290,7 +290,11 @@ hl.bind("CONTROL + SHIFT + ESCAPE", hl.dsp.exec_cmd("missioncenter"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
 hl.bind("SUPER + C", hl.dsp.exec_cmd("code"))
 hl.bind("SUPER + COMMA", hl.dsp.exec_cmd(menu_emoji))
-hl.bind("SUPER + CONTROL + L", hl.dsp.exec_cmd("hyprlock"))
+-- hl.bind("SUPER + CONTROL + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(
+  "SUPER + CONTROL + L",
+  hl.dsp.exec_cmd(HOME .. "/.config/quickshell/3d-lockscreen/lock.sh")
+)
 hl.bind("SUPER + CONTROL + S", hl.dsp.exec_cmd("shazam-notif"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(file_manager))
 hl.bind("SUPER + INSERT", hl.dsp.exec_cmd(HOME .. "/scripts/my-rofi-rbw.sh"))

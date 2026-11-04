@@ -1,0 +1,1 @@
+../../3d/components/My3dRectangle.qml

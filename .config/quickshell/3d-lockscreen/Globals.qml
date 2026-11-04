@@ -1,0 +1,1 @@
+../3d/Globals.qml
