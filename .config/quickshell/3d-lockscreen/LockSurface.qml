@@ -7,149 +7,144 @@ import "components"
 import "widgets"
 
 Item {
-    id: root
+  id: root
 
-    required property LockContext context
-    required property var screen
-    readonly property string wallpaper: Pywal.wallpaper
+  required property LockContext context
+  required property var screen
+  readonly property string wallpaper: Pywal.wallpaper
 
-    // Background: blurred wallpaper, or plain background color as fallback
-    Rectangle {
-        anchors.fill: parent
-        color: Pywal.background
+  // Background: blurred wallpaper, or plain background color as fallback
+  Rectangle {
+    anchors.fill: parent
+    color: Pywal.background
+  }
+
+  Image {
+    id: wallpaperImage
+
+    anchors.fill: parent
+    // Load before the first frame so the wallpaper is there when the
+    // surface slides in (asynchronous loading would pop it in later)
+    asynchronous: false
+    fillMode: Image.PreserveAspectCrop
+    source: root.wallpaper !== "" ? "file://" + root.wallpaper : ""
+    visible: false
+  }
+
+  MultiEffect {
+    anchors.fill: parent
+    blur: 1
+    blurEnabled: true
+    blurMax: 64
+    source: wallpaperImage
+    visible: wallpaperImage.status === Image.Ready
+  }
+
+  Rectangle {
+    anchors.fill: parent
+    color: Pywal.background
+    opacity: 0.6
+  }
+
+  // Clicking anywhere gives the password field its focus back
+  // Mouse movement and clicks also count as activity
+  MouseArea {
+    anchors.fill: parent
+    hoverEnabled: true
+
+    onClicked: passwordCard.focusInput()
+    onPositionChanged: root.context.poke()
+    onPressed: root.context.poke()
+  }
+
+  // Rests above the password card; bounces around under it while idle
+  BouncingClock {
+    anchors.fill: parent
+    homeBottom: column.y - column.spacing
+    moving: root.context.idle
+  }
+
+  ColumnLayout {
+    id: column
+
+    anchors.centerIn: parent
+    // Hidden while the clock bounces. Opacity (not visible) keeps the
+    // input focused, so the first keystroke still lands and wakes it up.
+    opacity: root.context.idle ? 0 : 1
+    spacing: 24
+
+    Behavior on opacity {
+      NumberAnimation {
+        duration: 200
+      }
     }
 
-    Image {
-        id: wallpaperImage
+    PasswordCard {
+      id: passwordCard
 
-        anchors.fill: parent
-        visible: false
-        source: root.wallpaper !== "" ? "file://" + root.wallpaper : ""
-        fillMode: Image.PreserveAspectCrop
-        asynchronous: true
+      Layout.alignment: Qt.AlignHCenter
+      context: root.context
     }
 
-    MultiEffect {
-        anchors.fill: parent
-        visible: wallpaperImage.status === Image.Ready
-        source: wallpaperImage
-        blurEnabled: true
-        blur: 1
-        blurMax: 64
-    }
+    // Failure / PAM message
+    My3dRectangle {
+      Layout.alignment: Qt.AlignHCenter
+      baseColor: Pywal.color1
+      opacity: root.context.message !== "" ? 1 : 0
 
-    Rectangle {
-        anchors.fill: parent
-        color: Pywal.background
-        opacity: 0.6
-    }
-
-    // Clicking anywhere gives the password field its focus back
-    // Mouse movement and clicks also count as activity
-    MouseArea {
-        anchors.fill: parent
-        hoverEnabled: true
-        onPositionChanged: root.context.poke()
-        onPressed: root.context.poke()
-        onClicked: passwordCard.focusInput()
-    }
-
-    // Rests above the password card; bounces around under it while idle
-    BouncingClock {
-        anchors.fill: parent
-        moving: root.context.idle
-        homeBottom: column.y - column.spacing
-    }
-
-    ColumnLayout {
-        id: column
-
-        anchors.centerIn: parent
-        spacing: 24
-        // Hidden while the clock bounces. Opacity (not visible) keeps the
-        // input focused, so the first keystroke still lands and wakes it up.
-        opacity: root.context.idle ? 0 : 1
-
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 200
-            }
-
+      Behavior on opacity {
+        NumberAnimation {
+          duration: 150
         }
+      }
 
-        PasswordCard {
-            id: passwordCard
+      Text {
+        font: Globals.myIconFont
+        renderType: Globals.myIconFontRenderType
+        text: "\ue000" // error
+      }
 
-            Layout.alignment: Qt.AlignHCenter
-            context: root.context
-        }
+      Text {
+        font: Globals.myFont
+        text: root.context.message
+      }
+    }
+  }
 
-        // Failure / PAM message
-        My3dRectangle {
-            Layout.alignment: Qt.AlignHCenter
-            opacity: root.context.message !== "" ? 1 : 0
-            baseColor: Pywal.color1
+  // Status row
+  RowLayout {
+    // Hidden while the clock bounces, like the password column
+    opacity: root.context.idle ? 0 : 1
+    spacing: 4
 
-            Text {
-                font: Globals.myIconFont
-                renderType: Globals.myIconFontRenderType
-                text: "" // error
-            }
-
-            Text {
-                font: Globals.myFont
-                text: root.context.message
-            }
-
-            Behavior on opacity {
-                NumberAnimation {
-                    duration: 150
-                }
-
-            }
-
-        }
-
+    Behavior on opacity {
+      NumberAnimation {
+        duration: 200
+      }
     }
 
-    // Status row
-    RowLayout {
-        spacing: 4
-        // Hidden while the clock bounces, like the password column
-        opacity: root.context.idle ? 0 : 1
-
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 200
-            }
-
-        }
-
-        anchors {
-            right: parent.right
-            bottom: parent.bottom
-            margins: 16
-        }
-
-        My3dRectangle {
-            baseColor: Pywal.color5
-
-            Text {
-                font: Globals.myFont
-                text: Quickshell.env("USER") ?? ""
-            }
-
-            Text {
-                font: Globals.myIconFont
-                renderType: Globals.myIconFontRenderType
-                text: "" // person
-            }
-
-        }
-
-        BatteryCard {
-        }
-
+    anchors {
+      bottom: parent.bottom
+      margins: 16
+      right: parent.right
     }
 
+    My3dRectangle {
+      baseColor: Pywal.color5
+
+      Text {
+        font: Globals.myFont
+        text: Quickshell.env("USER") ?? ""
+      }
+
+      Text {
+        font: Globals.myIconFont
+        renderType: Globals.myIconFontRenderType
+        text: "\ue7fd" // person
+      }
+    }
+
+    BatteryCard {
+    }
+  }
 }

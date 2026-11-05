@@ -293,7 +293,7 @@ hl.bind("SUPER + COMMA", hl.dsp.exec_cmd(menu_emoji))
 -- hl.bind("SUPER + CONTROL + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(
   "SUPER + CONTROL + L",
-  hl.dsp.exec_cmd(HOME .. "/.config/quickshell/3d-lockscreen/lock.sh")
+  hl.dsp.exec_cmd(HOME .. "/.config/quickshell/3d-lockscreen/lock.sh --animate")
 )
 hl.bind("SUPER + CONTROL + S", hl.dsp.exec_cmd("shazam-notif"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(file_manager))
