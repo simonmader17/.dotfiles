@@ -11,9 +11,17 @@ Scope {
     property bool unlockInProgress: false
     property bool showFailure: false
     property string message: ""
+    // Becomes true after 3 s without input; drives the bouncing clock
+    property bool idle: false
 
     signal unlocked()
     signal failed()
+
+    // Call on any user input to reset the idle countdown
+    function poke() {
+        idle = false;
+        idleTimer.restart();
+    }
 
     function tryUnlock() {
         if (currentText === "" || unlockInProgress)
@@ -26,9 +34,18 @@ Scope {
 
     // Typing after a failure clears it
     onCurrentTextChanged: {
+        poke();
         if (currentText !== "")
             showFailure = false;
 
+    }
+
+    Timer {
+        id: idleTimer
+
+        interval: 3000
+        running: true
+        onTriggered: root.idle = true
     }
 
     PamContext {
@@ -37,10 +54,11 @@ Scope {
         // Same stack as /etc/pam.d/hyprlock
         config: "login"
         onPamMessage: {
+            // e.g. faillock lockout notices
+
             if (responseRequired)
                 respond(root.currentText);
             else if (message !== "")
-                // e.g. faillock lockout notices
                 root.message = message;
         }
         onCompleted: (result) => {
@@ -55,12 +73,14 @@ Scope {
                 root.failed();
             }
             root.unlockInProgress = false;
+            root.poke();
         }
         onError: (error) => {
             root.currentText = "";
             root.showFailure = true;
             root.message = "PAM error: " + PamError.toString(error);
             root.unlockInProgress = false;
+            root.poke();
             root.failed();
         }
     }

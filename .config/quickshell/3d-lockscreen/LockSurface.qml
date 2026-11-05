@@ -45,17 +45,36 @@ Item {
     }
 
     // Clicking anywhere gives the password field its focus back
+    // Mouse movement and clicks also count as activity
     MouseArea {
         anchors.fill: parent
+        hoverEnabled: true
+        onPositionChanged: root.context.poke()
+        onPressed: root.context.poke()
         onClicked: passwordCard.focusInput()
     }
 
+    // Rests above the password card; bounces around under it while idle
+    BouncingClock {
+        anchors.fill: parent
+        moving: root.context.idle
+        homeBottom: column.y - column.spacing
+    }
+
     ColumnLayout {
+        id: column
+
         anchors.centerIn: parent
         spacing: 24
+        // Hidden while the clock bounces. Opacity (not visible) keeps the
+        // input focused, so the first keystroke still lands and wakes it up.
+        opacity: root.context.idle ? 0 : 1
 
-        ClockCard {
-            Layout.alignment: Qt.AlignHCenter
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 200
+            }
+
         }
 
         PasswordCard {
@@ -96,6 +115,15 @@ Item {
     // Status row
     RowLayout {
         spacing: 4
+        // Hidden while the clock bounces, like the password column
+        opacity: root.context.idle ? 0 : 1
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 200
+            }
+
+        }
 
         anchors {
             right: parent.right

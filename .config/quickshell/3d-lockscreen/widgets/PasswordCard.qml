@@ -102,6 +102,11 @@ My3dRectangle {
             }
             onAccepted: root.context.tryUnlock()
             Keys.onEscapePressed: text = ""
+            // Any key counts as activity, even ones that don't change the text
+            Keys.onPressed: (event) => {
+                root.context.poke();
+                event.accepted = false;
+            }
         }
 
         Text {
