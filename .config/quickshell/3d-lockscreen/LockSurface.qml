@@ -46,17 +46,6 @@ Item {
     opacity: 0.6
   }
 
-  // Clicking anywhere gives the password field its focus back
-  // Mouse movement and clicks also count as activity
-  MouseArea {
-    anchors.fill: parent
-    hoverEnabled: true
-
-    onClicked: passwordCard.focusInput()
-    onPositionChanged: root.context.poke()
-    onPressed: root.context.poke()
-  }
-
   // Rests above the password card; bounces around under it while idle
   BouncingClock {
     anchors.fill: parent
