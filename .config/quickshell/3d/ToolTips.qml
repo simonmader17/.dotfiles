@@ -10,15 +10,42 @@ Singleton {
   id: root
 
   property var current: null
+  // Tooltip waiting for the open delay to pass
+  property var pending: null
+
+  function hide(tip) {
+    if (root.pending === tip) {
+      showTimer.stop();
+      root.pending = null;
+    }
+    if (root.current === tip) {
+      hideTimer.restart();
+    }
+  }
 
   function show(tip) {
     hideTimer.stop();
-    root.current = tip;
+    if (root.current !== null) {
+      // A card is already out: slide it over right away
+      showTimer.stop();
+      root.pending = null;
+      root.current = tip;
+    } else {
+      root.pending = tip;
+      showTimer.restart();
+    }
   }
 
-  function hide(tip) {
-    if (root.current === tip) {
-      hideTimer.restart();
+  // Short delay before the first tooltip opens, so moving the mouse across
+  // the bar doesn't flash tooltips open.
+  Timer {
+    id: showTimer
+
+    interval: 250
+
+    onTriggered: {
+      root.current = root.pending;
+      root.pending = null;
     }
   }
 
@@ -26,7 +53,9 @@ Singleton {
   // of closing and reopening it.
   Timer {
     id: hideTimer
+
     interval: 250
+
     onTriggered: root.current = null
   }
 }
