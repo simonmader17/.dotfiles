@@ -11,10 +11,56 @@ import "../helper.js" as Helper
 My3dRectangle {
   id: root
 
-  readonly property var player: Mpris.players.values.filter(p => p.isPlaying)[0];
+  readonly property var playingPlayer: Mpris.players.values.find(p => p.isPlaying) ?? null
+  // Picked with the switcher in the tooltip, or the last player that started
+  property var chosenPlayer: null
+  // Falls back to a playing player once the chosen one is closed
+  readonly property var player: Mpris.players.values.includes(chosenPlayer) ? chosenPlayer : playingPlayer
+  readonly property bool tooltipOpen: ToolTips.current === tip
 
-  visible: player !== undefined
+  function cyclePlayer() {
+    const players = Mpris.players.values;
+    if (players.length === 0) {
+      return;
+    }
+    const index = players.indexOf(root.player);
+    root.chosenPlayer = players[(index + 1) % players.length];
+  }
+
+  // Follow a player that starts playing unless the chosen one is playing.
+  // Deferred, since playingPlayer can change while player is being evaluated.
+  function followPlayingPlayer() {
+    if (root.playingPlayer && !(root.chosenPlayer?.isPlaying ?? false)) {
+      root.chosenPlayer = root.playingPlayer;
+    }
+  }
+
+  onPlayingPlayerChanged: Qt.callLater(root.followPlayingPlayer)
+
+  // Paused media stays visible while the tooltip is open, so it can be resumed
+  visible: !!player && (player.isPlaying || tooltipOpen)
   baseColor: Pywal.color4
+
+  HoverHandler {
+    id: hoverHandler
+  }
+
+  My3dToolTip {
+    id: tip
+
+    visible: hoverHandler.hovered
+    interactive: true
+    anchorItem: root
+    baseColor: Qt.darker(root.baseColor, 2)
+    content: Component {
+      MediaPopup {
+        player: root.player
+        baseColor: tip.baseColor
+        buttonColor: root.baseColor
+        onSwitchPlayer: root.cyclePlayer()
+      }
+    }
+  }
 
   RowLayout {
     Layout.maximumWidth: 350

@@ -17,16 +17,15 @@ Scope {
   property string text: ""
   // Optional component drawn instead of the text
   property Component content: null
-
+  // The card accepts input and stays open while hovered (e.g. for controls)
+  property bool interactive: false
   readonly property bool active: visible && (text !== "" || content !== null)
 
   onActiveChanged: {
-    if (active) {
+    if (active)
       ToolTips.show(root);
-    } else {
+    else
       ToolTips.hide(root);
-    }
   }
-
   Component.onDestruction: ToolTips.hide(root)
 }

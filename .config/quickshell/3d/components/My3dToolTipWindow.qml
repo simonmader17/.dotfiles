@@ -37,7 +37,27 @@ PanelWindow {
     right: !root.vertical
     bottom: root.vertical
   }
-  mask: Region {}
+  // Click-through, except for the visible part of an interactive card
+  mask: root.tip?.interactive ? cardRegion : emptyRegion
+
+  Region {
+    id: emptyRegion
+  }
+
+  // The visible part of the card, in window coordinates. The card's full rect
+  // reaches over the bar while it slides out, which would steal the anchor
+  // widget's hover and close the tooltip again.
+  Region {
+    id: cardRegion
+
+    readonly property real top: Math.max(0, card.y)
+    readonly property real left: Math.max(0, card.x)
+
+    x: clipArea.x + left
+    y: clipArea.y + top
+    width: Math.max(0, Math.min(card.x + card.width, clipArea.width) - left)
+    height: Math.max(0, Math.min(card.y + card.height, clipArea.height) - top)
+  }
 
   // Only draw outside the bar, so the card looks like it comes out from behind it
   Item {
@@ -48,6 +68,19 @@ PanelWindow {
     width: parent.width - x
     height: parent.height - y
     clip: true
+
+    // Keep interactive tooltips open while the mouse is on the card. The
+    // input mask limits this to the card's area.
+    HoverHandler {
+      enabled: root.shownTip?.interactive ?? false
+      onHoveredChanged: {
+        if (hovered) {
+          ToolTips.show(root.shownTip);
+        } else {
+          ToolTips.hide(root.shownTip);
+        }
+      }
+    }
 
     My3dRectangle {
       id: card
