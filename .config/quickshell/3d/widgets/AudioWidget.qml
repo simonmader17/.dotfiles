@@ -2,10 +2,10 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.Pipewire
-
-import ".."
 import "../components"
 import "../helper.js" as Helper
+
+import ".."
 
 My3dRectangle {
   id: root
@@ -20,16 +20,16 @@ My3dRectangle {
   RowLayout {
     // Speaker
     Item {
-      implicitWidth: rowLayoutSink.implicitWidth
       implicitHeight: rowLayoutSink.implicitHeight
+      implicitWidth: rowLayoutSink.implicitWidth
 
       RowLayout {
         id: rowLayoutSink
 
         Text {
-          visible: !root.sink?.audio.muted
           font: Globals.myFont
           text: Math.round(root.sink?.audio.volume * 100 || 0) + "%"
+          visible: !root.sink?.audio.muted
         }
 
         Text {
@@ -42,57 +42,68 @@ My3dRectangle {
             if (root.sink.audio.muted) {
               return "\ue04f"; // volume-off
             }
-            return Helper.chooseIconBasedOnPercentage(
-              [
-                "\ue04e", // volume-mute
-                "\ue04d", // volume-down
-                "\ue050", // volume-up
-              ],
-              root.sink?.audio.volume || 0
-            );
+            return Helper.chooseIconBasedOnPercentage(["\ue04e" // volume-mute
+                                                       , "\ue04d" // volume-down
+                                                       , "\ue050", // volume-up
+                                                      ], root.sink
+                                                      ?.audio.volume || 0);
           }
         }
 
         HoverHandler {
           id: hoverHandlerSink
         }
+
         My3dToolTip {
-          visible: hoverHandlerSink.hovered
+          id: tipSink
+
           anchorItem: rowLayoutSink
           baseColor: Qt.darker(root.baseColor, 2)
-          text: "Name: " + root.sink?.name + "\n"
-            + "Nickname: " + root.sink?.nickname + "\n"
-            + "Description: " + root.sink?.description
+          interactive: true
+          visible: hoverHandlerSink.hovered
+
+          content: Component {
+            AudioDevicePopup {
+              baseColor: tipSink.baseColor
+              buttonColor: root.baseColor
+              sink: true
+            }
+          }
         }
       }
 
       MouseArea {
         anchors.fill: parent
+
         onClicked: {
           if (root.sink) {
             root.sink.audio.muted = !root.sink.audio.muted;
           }
         }
-        onWheel: (event) => {
+        onWheel: event => {
           if (root.sink) {
-            root.sink.audio.volume = Math.min(1, root.sink.audio.volume + (event.angleDelta.y / 120) * 0.05);
+            root.sink.audio.volume = Math.min(1, root.sink.audio.volume + (
+                                                event.angleDelta.y / 120)
+                                              * 0.05);
           }
         }
       }
     }
+
     // Microphone
     Item {
-      implicitWidth: rowLayoutSource.implicitWidth
       implicitHeight: rowLayoutSource.implicitHeight
+      implicitWidth: rowLayoutSource.implicitWidth
 
       RowLayout {
         id: rowLayoutSource
 
         Text {
-          visible: !root.source?.audio.muted
           font: Globals.myFont
           text: Math.round(root.source?.audio.volume * 100 || 0) + "%"
+          visible: !root.source?.audio.muted
         }
+
         Text {
           font: Globals.myIconFont
           renderType: Globals.myIconFontRenderType
@@ -110,26 +121,38 @@ My3dRectangle {
         HoverHandler {
           id: hoverHandlerSource
         }
+
         My3dToolTip {
-          visible: hoverHandlerSource.hovered
+          id: tipSource
+
           anchorItem: rowLayoutSource
           baseColor: Qt.darker(root.baseColor, 2)
-          text: "Name: " + root.source?.name + "\n"
-            + "Nickname: " + root.source?.nickname + "\n"
-            + "Description: " + root.source?.description
+          interactive: true
+          visible: hoverHandlerSource.hovered
+
+          content: Component {
+            AudioDevicePopup {
+              baseColor: tipSource.baseColor
+              buttonColor: root.baseColor
+              sink: false
+            }
+          }
         }
       }
 
       MouseArea {
         anchors.fill: parent
+
         onClicked: {
           if (root.source) {
             root.source.audio.muted = !root.source.audio.muted;
           }
         }
-        onWheel: (event) => {
+        onWheel: event => {
           if (root.source) {
-            root.source.audio.volume = Math.min(1, root.source.audio.volume + (event.angleDelta.y / 120) * 0.05);
+            root.source.audio.volume = Math.min(1, root.source.audio.volume + (
+                                                  event.angleDelta.y / 120)
+                                                * 0.05);
           }
         }
       }
