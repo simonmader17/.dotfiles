@@ -135,6 +135,18 @@ Scope {
         }
       }
 
+      // Notification popups (top right) and the notification center
+      NotificationPopupWindow {
+        screen: root.modelData
+        screenName: root.modelData.name
+      }
+
+      NotificationCenter {
+        screen: root.modelData
+        screenName: root.modelData.name
+        bar: topBar
+      }
+
       // Animated tooltips below the top bar
       My3dToolTipWindow {
         screen: root.modelData
